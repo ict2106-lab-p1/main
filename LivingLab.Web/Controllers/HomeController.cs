@@ -24,7 +24,6 @@ public class HomeController : Controller
     [Route("/")]
     public IActionResult Index()
     {
-        HttpContext.Session.SetInt32("UserID", 1);
         return View("Index");
     }
 
@@ -34,30 +33,7 @@ public class HomeController : Controller
         return View("Privacy");
     }
     
-    // [HttpPost]
-    // public IActionResult SetSession()
-    // {
-    //     //Set value in Session object.
-    //     HttpContext.Session.SetString("Name", "Mudassar Khan");
-    //
-    //     return RedirectToAction("Index");
-    // }
-    // [HttpPost]
-    // public IActionResult DeleteSession()
-    // {
-    //     //Delete the Session object.
-    //     HttpContext.Session.Remove("UserID");
-    //     
-    //     return RedirectToAction("Index");
-    //     
-    // }
-    [Route("Logout")]
-    public IActionResult Logout()
-    {
-        //Delete the Session object.
-        HttpContext.Session.Clear();
-        return View("Index");
-    }
+    
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
