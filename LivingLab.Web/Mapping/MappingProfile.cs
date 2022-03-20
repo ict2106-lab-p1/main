@@ -19,13 +19,5 @@ public class MappingProfile : Profile
     public MappingProfile()
     {
         CreateMap<Todo, TodoDTO>().ReverseMap();
-        CreateMap<Device, DeviceViewModel>().ReverseMap();
-        CreateMap<Accessory, AccessoryViewModel>().ReverseMap();
-        CreateMap<ViewDeviceTypeDTO, DeviceTypeViewModel>().ReverseMap();
-        CreateMap<AccessoryDetailsDTO, AccessoryDetailsViewModel>().ReverseMap();
-        CreateMap<AccessoryType, AccessoryTypeViewModel>().ReverseMap();
-        CreateMap<SessionStats, SessionStatsViewModel>().ReverseMap();
-        CreateMap<ViewAccessoryTypeDTO, AccessoryTypeViewModel>().ReverseMap();        
-        CreateMap<ViewAccessoryTypeDTO, OverallAccessoryTypeViewModel>().ReverseMap();
     }
 }
