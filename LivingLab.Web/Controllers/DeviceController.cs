@@ -28,7 +28,7 @@ public class DeviceController : Controller
         ViewDeviceViewModel viewDevices = await _deviceService.ViewDevice(deviceType);
         return View("ViewDevice", viewDevices);
     }
-    
+
     [Route("ViewType")]
     public async Task<IActionResult> ViewType()
     {

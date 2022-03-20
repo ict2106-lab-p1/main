@@ -5,4 +5,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.dataTables_wrapper .myfilter .dataTables_filter{float:left}
+.dataTables_wrapper .myfilter .dataTables_filter {
+  float: left;
+}
