@@ -1,16 +1,3 @@
-<<<<<<< HEAD
-## Installation
-### Minimum System Requirements
-- Have Node >v16
-- Have ASP .NET 6
-
-### Steps
-1. Run `npm install` in /LivingLab.Web to install dependencies
-2. Install ef tools if they aren't already present with `dotnet tool install --global dotnet-ef`
-3. Run `dotnet ef migrations add CreateInitialDB -s LivingLab.Web -p LivingLab.Infrastructure` to create the initial DB
-4. Run `dotnet ef database update -s LivingLab.Web -p LivingLab.Infrastructure` to populate the DB
-5. Run project with the commands in the 'Running' section
-=======
 Refer to WORKFLOW.md for instructions on the development flow.
 
 ## Development Workflow
@@ -26,7 +13,6 @@ Refer to WORKFLOW.md for instructions on the development flow.
 ## Running
 - `cd LivingLab.Web && npm run dev`
 - Then, in a separate window: `dotnet watch --project LivingLab.Web`
->>>>>>> ec72931af7e28d980af5936861aa7cac775d2555
 
 ## Running the project
 1. Run `npm run dev` in /LivingLab.Web
