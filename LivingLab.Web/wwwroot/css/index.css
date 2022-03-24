@@ -20,8 +20,8 @@
 }
 
 body {
-  font-family: "Nunito Sans", sans-serif;
-  @apply bg-inherit;
+    font-family: "Nunito Sans", sans-serif;
+    @apply bg-inherit;
 }
 
 body::-webkit-scrollbar {
@@ -43,6 +43,7 @@ th:not(:last-child) {
 .btn {
     @apply font-bold py-2 px-4 rounded;
 }
+
 
 /*.btn-blue {
     @apply bg-denim-600 text-white;
