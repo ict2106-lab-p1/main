@@ -20,5 +20,5 @@ public class LabRepository : Repository<Lab>, ILabRepository
     //    var todo = await _context.Todos.FirstOrDefaultAsync(t => t.ID == id);
     //    return todo?.Title;
     //}
-    
+
 }

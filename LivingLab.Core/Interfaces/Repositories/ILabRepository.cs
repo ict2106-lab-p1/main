@@ -6,5 +6,5 @@ namespace LivingLab.Core.Interfaces.Repositories;
 /// </remarks>
 public interface ILabRepository : IRepository<Lab>
 {
-    
+
 }
