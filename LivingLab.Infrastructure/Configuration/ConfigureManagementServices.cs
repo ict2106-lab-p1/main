@@ -40,8 +40,6 @@ public static class ConfigureManagementServices
         services.AddTransient<ILabProfileDomainService, LabProfileDomainService>();
         services.AddTransient<IBookingDomainService, BookingDomainService>();
         services.AddTransient<ISessionStatsDomainService, SessionStatsDomainService>();
-        services.AddTransient<ILivingLabDashboardDomainService, LivingLabDashboardDomainService>();
-
 
         return services;
     }

@@ -30,7 +30,12 @@ public class DeviceDomainService : IDeviceDomainService
     {
         return _deviceRepository.GetAllDevicesForReview(labLocation);
     }
-    
+
+    public Task<List<Device>> GetAllDevices()
+    {
+        return _deviceRepository.GetAllAsync();
+    }
+
     public Task<List<Device>> ViewDevice(string deviceType, string labLocation)
     {
         return _deviceRepository.GetAllDevicesByType(deviceType, labLocation);

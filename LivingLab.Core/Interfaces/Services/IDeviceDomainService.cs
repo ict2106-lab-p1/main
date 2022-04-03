@@ -7,6 +7,7 @@ namespace LivingLab.Core.Interfaces.Services;
 /// </remarks>
 public interface IDeviceDomainService
 {
+    Task<List<Device>> GetAllDevices();
     Task<List<Device>> ViewDevice(string deviceType, string labLocation);
     
     /***
