@@ -200,6 +200,5 @@ function getData() {
             LoggedDate: loggedAt,
         });
     });
-});
-return data;
+    return data;
 }
