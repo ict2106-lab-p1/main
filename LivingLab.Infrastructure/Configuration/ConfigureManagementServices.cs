@@ -1,5 +1,4 @@
 using LivingLab.Core.DomainServices;
-using LivingLab.Core.Entities.Secrets;
 using LivingLab.Core.Interfaces.Repositories;
 using LivingLab.Core.Interfaces.Services;
 using LivingLab.Infrastructure.Repositories;
