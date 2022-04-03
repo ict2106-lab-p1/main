@@ -31,7 +31,6 @@ public static class ConfigureEnergyMonitoringServices
         services.AddTransient<IEnergyUsageRepository, EnergyUsageRepository>();
         services.AddTransient<ISmsRepository, SmsRepository>();
         services.AddTransient<IEmailRepository, EmailRepository>();
-        services.AddTransient<IPowerGenerationMixRepository, PowerGenerationMixRepository>();
 
         // Services
         services.AddTransient<IEnergyUsageLogCsvParser, EnergyUsageLogCsvParser>();
