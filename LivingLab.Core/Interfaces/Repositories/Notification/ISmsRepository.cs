@@ -1,6 +1,6 @@
 using LivingLab.Core.Entities;
 
-namespace LivingLab.Core.Interfaces.Repositories;
+namespace LivingLab.Core.Interfaces.Repositories.Notification;
 
 /// <remarks>
 /// Author: Team P1-1

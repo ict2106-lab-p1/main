@@ -1,7 +1,6 @@
 using LivingLab.Core.Entities;
-using LivingLab.Core.Entities.DTO;
 
-namespace LivingLab.Core.Interfaces.Repositories;
+namespace LivingLab.Core.Interfaces.Repositories.Account;
 /// <remarks>
 /// Author: Team P1-3
 /// </remarks>

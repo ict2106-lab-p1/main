@@ -1,5 +1,6 @@
 using LivingLab.Core.Entities.Identity;
 using LivingLab.Core.Interfaces.Repositories;
+using LivingLab.Core.Interfaces.Repositories.Account;
 using LivingLab.Core.Interfaces.Services;
 
 using Microsoft.Extensions.Logging;

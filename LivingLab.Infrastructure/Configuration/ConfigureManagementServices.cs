@@ -3,6 +3,9 @@ using LivingLab.Core.DomainServices.Account;
 using LivingLab.Core.DomainServices.Equipment;
 using LivingLab.Core.DomainServices.Lab;
 using LivingLab.Core.Interfaces.Repositories;
+using LivingLab.Core.Interfaces.Repositories.Account;
+using LivingLab.Core.Interfaces.Repositories.Equipment;
+using LivingLab.Core.Interfaces.Repositories.Lab;
 using LivingLab.Core.Interfaces.Services;
 using LivingLab.Infrastructure.Repositories;
 

@@ -1,6 +1,6 @@
 using LivingLab.Core.Entities;
 
-namespace LivingLab.Core.Interfaces.Repositories;
+namespace LivingLab.Core.Interfaces.Repositories.Lab;
 /// <remarks>
 /// Author: Team P1-5
 /// </remarks>

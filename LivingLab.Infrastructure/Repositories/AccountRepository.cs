@@ -4,6 +4,7 @@ using LivingLab.Core.Entities;
 using LivingLab.Core.Entities.DTO;
 using LivingLab.Core.Entities.Identity;
 using LivingLab.Core.Interfaces.Repositories;
+using LivingLab.Core.Interfaces.Repositories.Account;
 using LivingLab.Infrastructure.Data;
 
 using Microsoft.EntityFrameworkCore;

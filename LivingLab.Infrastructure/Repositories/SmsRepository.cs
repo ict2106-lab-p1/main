@@ -1,5 +1,6 @@
 using LivingLab.Core.Entities;
 using LivingLab.Core.Interfaces.Repositories;
+using LivingLab.Core.Interfaces.Repositories.Notification;
 
 namespace LivingLab.Infrastructure.Repositories;
 

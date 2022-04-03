@@ -1,3 +1,5 @@
+using LivingLab.Core.Interfaces.Repositories.Lab;
+
 namespace LivingLab.Infrastructure.Repositories;
 
 using LivingLab.Core.Entities;

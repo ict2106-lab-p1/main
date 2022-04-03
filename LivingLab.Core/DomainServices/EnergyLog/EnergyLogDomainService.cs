@@ -2,6 +2,10 @@ using LivingLab.Core.DomainServices.Notifications;
 using LivingLab.Core.Entities;
 using LivingLab.Core.Enums;
 using LivingLab.Core.Interfaces.Repositories;
+using LivingLab.Core.Interfaces.Repositories.Account;
+using LivingLab.Core.Interfaces.Repositories.EnergyUsage;
+using LivingLab.Core.Interfaces.Repositories.Equipment;
+using LivingLab.Core.Interfaces.Repositories.Lab;
 using LivingLab.Core.Interfaces.Services.EnergyUsageInterfaces;
 
 namespace LivingLab.Core.DomainServices.EnergyLog;

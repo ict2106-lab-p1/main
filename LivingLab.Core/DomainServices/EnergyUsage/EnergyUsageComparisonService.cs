@@ -1,6 +1,9 @@
 using LivingLab.Core.Entities;
 using LivingLab.Core.Entities.DTO.EnergyUsage;
 using LivingLab.Core.Interfaces.Repositories;
+using LivingLab.Core.Interfaces.Repositories.EnergyUsage;
+using LivingLab.Core.Interfaces.Repositories.Equipment;
+using LivingLab.Core.Interfaces.Repositories.Lab;
 using LivingLab.Core.Interfaces.Services.EnergyUsageInterfaces;
 
 namespace LivingLab.Core.DomainServices.EnergyUsage;

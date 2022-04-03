@@ -2,7 +2,7 @@ using LivingLab.Core.Entities;
 using LivingLab.Core.Entities.Identity;
 using LivingLab.Core.Enums;
 
-namespace LivingLab.Core.Interfaces.Repositories;
+namespace LivingLab.Core.Interfaces.Repositories.Notification;
 
 /// <remarks>
 /// Author: Team P1-1

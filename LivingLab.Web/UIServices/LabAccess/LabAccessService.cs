@@ -1,6 +1,7 @@
 using AutoMapper;
 
 using LivingLab.Core.Interfaces.Repositories;
+using LivingLab.Core.Interfaces.Repositories.Equipment;
 using LivingLab.Web.Models.ViewModels.Device;
 using LivingLab.Web.UIServices.LabBooking;
 

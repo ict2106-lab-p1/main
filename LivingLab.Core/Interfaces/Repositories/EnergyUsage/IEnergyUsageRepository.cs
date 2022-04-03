@@ -1,7 +1,7 @@
 using LivingLab.Core.Entities;
 using LivingLab.Core.Entities.Identity;
 
-namespace LivingLab.Core.Interfaces.Repositories;
+namespace LivingLab.Core.Interfaces.Repositories.EnergyUsage;
 
 /// <remarks>
 /// Author: Team P1-1

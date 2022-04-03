@@ -1,7 +1,7 @@
 using LivingLab.Core.Entities;
 using LivingLab.Core.Entities.DTO.Device;
 
-namespace LivingLab.Core.Interfaces.Repositories;
+namespace LivingLab.Core.Interfaces.Repositories.Equipment;
 /// <remarks>
 /// Author: Team P1-3
 /// </remarks>

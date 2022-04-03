@@ -1,6 +1,7 @@
 using LivingLab.Core.Entities;
 using LivingLab.Core.Entities.DTO.Accessory;
 using LivingLab.Core.Interfaces.Repositories;
+using LivingLab.Core.Interfaces.Repositories.Equipment;
 using LivingLab.Core.Interfaces.Services;
 
 namespace LivingLab.Core.DomainServices.Equipment;
