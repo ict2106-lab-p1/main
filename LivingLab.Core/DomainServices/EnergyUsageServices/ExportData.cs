@@ -1,7 +1,8 @@
 using System.Text;
 
+using LivingLab.Core.Entities.DTO.EnergyUsage;
 using LivingLab.Core.Interfaces.Services.EnergyUsageInterfaces;
-using LivingLab.Core.Entities.DTO.EnergyUsageDTOs;
+
 namespace LivingLab.Core.DomainServices.EnergyUsageServices;
 /// <remarks>
 /// Author: Team P1-2

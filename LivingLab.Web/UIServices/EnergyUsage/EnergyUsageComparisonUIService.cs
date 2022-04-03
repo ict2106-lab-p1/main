@@ -1,4 +1,4 @@
-using LivingLab.Core.Entities.DTO.EnergyUsageDTOs;
+using LivingLab.Core.Entities.DTO.EnergyUsage;
 using LivingLab.Core.Interfaces.Services.EnergyUsageInterfaces;
 namespace LivingLab.Web.UIServices.EnergyUsage;
 /// <remarks>

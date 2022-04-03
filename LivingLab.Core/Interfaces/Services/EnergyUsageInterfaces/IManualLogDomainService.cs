@@ -1,5 +1,5 @@
 using LivingLab.Core.Entities;
-using LivingLab.Core.Entities.DTO.EnergyUsageDTOs;
+using LivingLab.Core.Entities.DTO.EnergyUsage;
 
 using Microsoft.AspNetCore.Http;
 

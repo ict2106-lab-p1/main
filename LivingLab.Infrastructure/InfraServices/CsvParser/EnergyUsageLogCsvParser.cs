@@ -1,6 +1,6 @@
 using System.Text;
 
-using LivingLab.Core.Entities.DTO.EnergyUsageDTOs;
+using LivingLab.Core.Entities.DTO.EnergyUsage;
 using LivingLab.Core.Interfaces.Services.CsvParser;
 
 

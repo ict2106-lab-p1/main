@@ -2,7 +2,7 @@ using AutoMapper;
 
 using LivingLab.Core.Entities;
 using LivingLab.Core.Entities.DTO;
-using LivingLab.Core.Entities.DTO.EnergyUsageDTOs;
+using LivingLab.Core.Entities.DTO.EnergyUsage;
 using LivingLab.Core.Interfaces.Services.EnergyUsageInterfaces;
 using LivingLab.Web.Models.ViewModels.EnergyUsage;
 using LivingLab.Web.Models.ViewModels.LabProfile;

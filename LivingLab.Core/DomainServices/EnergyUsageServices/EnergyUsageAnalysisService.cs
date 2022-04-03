@@ -1,8 +1,9 @@
-using LivingLab.Core.Entities.DTO.EnergyUsageDTOs;
 using LivingLab.Core.Entities;
 using LivingLab.Core.Interfaces.Repositories;
 using LivingLab.Core.Interfaces.Services.EnergyUsageInterfaces;
 using System.Text;
+
+using LivingLab.Core.Entities.DTO.EnergyUsage;
 
 using Microsoft.AspNetCore.Mvc;
 

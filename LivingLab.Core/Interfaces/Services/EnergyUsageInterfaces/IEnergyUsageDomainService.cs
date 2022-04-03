@@ -1,6 +1,6 @@
 using LivingLab.Core.Entities;
 using LivingLab.Core.Entities.DTO;
-using LivingLab.Core.Entities.DTO.EnergyUsageDTOs;
+using LivingLab.Core.Entities.DTO.EnergyUsage;
 
 namespace LivingLab.Core.Interfaces.Services.EnergyUsageInterfaces;
 

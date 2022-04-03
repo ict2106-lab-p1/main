@@ -1,15 +1,12 @@
-namespace LivingLab.Core.Entities.DTO.EnergyUsageDTOs;
+namespace LivingLab.Core.Entities.DTO.EnergyUsage;
 /// <remarks>
 /// Author: Team P1-2
 /// </remarks>
-///
-/// JOEY: most likely for EnergyUsageTrendAllLab
-public class MonthlyEnergyUsageDTO 
+public class IndividualLabMonthlyEnergyUsageDTO
 {
+    // public string? LabLocation { get; set; }
     // public string? Month { get; set; }
-    //
     // public int TotalEnergyUsage { get; set;}
-    
     public List<EnergyUsageLog> Logs { get; set; }
     public Lab Lab { get; set; }
 }

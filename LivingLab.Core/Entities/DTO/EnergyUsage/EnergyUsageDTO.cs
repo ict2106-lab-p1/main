@@ -1,4 +1,4 @@
-namespace LivingLab.Core.Entities.DTO.EnergyUsageDTOs;
+namespace LivingLab.Core.Entities.DTO.EnergyUsage;
 
 /// <remarks>
 /// Author: Team P1-1
