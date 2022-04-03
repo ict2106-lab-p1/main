@@ -1,4 +1,4 @@
-namespace LivingLab.Core.Entities.DTO;
+namespace LivingLab.Core.Entities.DTO.Lab;
 
 public class LabDetailsDTO
 {

@@ -8,5 +8,5 @@ public class IndividualLabMonthlyEnergyUsageDTO
     // public string? Month { get; set; }
     // public int TotalEnergyUsage { get; set;}
     public List<EnergyUsageLog> Logs { get; set; }
-    public Lab Lab { get; set; }
+    public Entities.Lab Lab { get; set; }
 }

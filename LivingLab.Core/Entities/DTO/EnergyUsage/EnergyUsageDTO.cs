@@ -6,6 +6,6 @@ namespace LivingLab.Core.Entities.DTO.EnergyUsage;
 public class EnergyUsageDTO
 {
     public List<EnergyUsageLog> Logs { get; set; }
-    public Lab Lab { get; set; }
+    public Entities.Lab Lab { get; set; }
     public double Median { get; set; }
 }

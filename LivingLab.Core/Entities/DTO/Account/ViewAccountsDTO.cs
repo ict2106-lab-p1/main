@@ -1,4 +1,4 @@
-namespace LivingLab.Core.Entities.DTO;
+namespace LivingLab.Core.Entities.DTO.Account;
 
 public class ViewAccountsDTO
 {
