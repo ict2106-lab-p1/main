@@ -1,21 +1,9 @@
-using System.Security.Policy;
-
-using AutoMapper;
-
-using LivingLab.Core.Entities;
 using LivingLab.Core.Entities.Identity;
-using LivingLab.Core.Interfaces.Repositories;
 using LivingLab.Core.Interfaces.Services;
-using LivingLab.Web.Models.DTOs.Todo;
-using LivingLab.Web.Models.ViewModels.LabProfile;
 using LivingLab.Web.Models.ViewModels.Login;
 using LivingLab.Web.UIServices.NotificationManagement;
-using LivingLab.Web.UIServices.Todo;
 
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
-
-using Twilio.Http;
 
 using IEmailSender = LivingLab.Core.Interfaces.Services.IEmailSender;
 

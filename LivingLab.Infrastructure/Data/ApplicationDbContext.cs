@@ -12,7 +12,6 @@ namespace LivingLab.Infrastructure.Data;
 public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 {
     // Add new DB tables here
-    public DbSet<Todo> Todos { get; set; }
     public DbSet<Lab> Labs { get; set; }
     public DbSet<Device> Devices { get; set; }
     
@@ -40,7 +39,6 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         base.OnModelCreating(modelBuilder);
 
         // More info: https://docs.microsoft.com/en-us/ef/core/modeling/
-        new TodoConfig().Configure(modelBuilder.Entity<Todo>());
         // new EnergyUsageLogConfiguration().Configure(modelBuilder.Entity<EnergyUsageLog>());
         new NotificationsConfig().Configure(modelBuilder.Entity<ApplicationUser>());
         new AccessoryConfig().Configure(modelBuilder.Entity<Accessory>());

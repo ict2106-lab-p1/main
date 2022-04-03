@@ -48,8 +48,6 @@ public static class ConfigureServiceContainer
         services.AddEnergyMonitoringServices();
         services.AddManagementServices();
 
-        services.AddTransient<ITodoRepository, TodoRepository>();
-        services.AddTransient<ITodoDomainService, TodoDomainService>();
         // Shared Email Service Provider
         services.AddTransient<IEmailSender, EmailSender>();
 
