@@ -1,7 +1,7 @@
 using LivingLab.Core.Enums;
 using LivingLab.Core.Interfaces.Notifications;
 
-namespace LivingLab.Core.Factory;
+namespace LivingLab.Core.DomainServices.Notifications;
 
 public class NotifierFactory
 {

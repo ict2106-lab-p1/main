@@ -1,11 +1,11 @@
 using LivingLab.Core.Entities.Identity;
-using LivingLab.Core.Interfaces.Repositories;
 using LivingLab.Core.Enums;
+using LivingLab.Core.Interfaces.Repositories;
 using LivingLab.Core.Interfaces.Services;
 
 using Microsoft.Extensions.Logging;
 
-namespace LivingLab.Core.DomainServices;
+namespace LivingLab.Core.DomainServices.Notifications;
 
 /// <remarks>
 /// Author: Team P1-1

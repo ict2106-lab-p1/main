@@ -1,6 +1,6 @@
+using LivingLab.Core.DomainServices.Notifications;
 using LivingLab.Core.Entities;
 using LivingLab.Core.Enums;
-using LivingLab.Core.Factory;
 using LivingLab.Core.Interfaces.Repositories;
 using LivingLab.Core.Interfaces.Services.EnergyUsageInterfaces;
 

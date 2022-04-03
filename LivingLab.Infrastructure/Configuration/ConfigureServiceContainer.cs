@@ -1,5 +1,5 @@
+using LivingLab.Core.DomainServices.Notifications;
 using LivingLab.Core.Entities.Identity;
-using LivingLab.Core.Factory;
 using LivingLab.Core.Interfaces.Notifications;
 using LivingLab.Infrastructure.Data;
 using LivingLab.Infrastructure.InfraServices;
