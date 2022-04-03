@@ -30,7 +30,6 @@ public static class ConfigureManagementServices
         services.AddTransient<IAccessoryTypeRepository, AccessoryTypeRepository>();
         services.AddTransient<IDeviceRepository, DeviceRepository>();
         services.AddTransient<ISessionStatsRepository, SessionStatsRepository>();
-        services.AddTransient<ILabRepository, LabRepository>();
         services.AddTransient<IAccountRepository, AccountRepository>();
         services.AddTransient<ILabProfileRepository, LabProfileRepository>();
         services.AddTransient<IBookingRepository, BookingRepository>();

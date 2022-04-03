@@ -20,16 +20,10 @@ namespace LivingLab.Web.Controllers;
 public class EnergyUsageComparisonController : Controller
 {
     private readonly ILogger<EnergyUsageComparisonController> _logger;
-    private readonly IEnergyUsageRepository _repository;
-    private readonly ILabRepository _abRepository;
-    private readonly IDeviceRepository _deviceRepository;
     private readonly IEnergyUsageComparisonUIService _comparisonService;
-    public EnergyUsageComparisonController(ILogger<EnergyUsageComparisonController> logger, IEnergyUsageRepository repository, IDeviceRepository deviceRepository, ILabRepository labRepository, IEnergyUsageComparisonUIService comparisonService)
+    public EnergyUsageComparisonController(ILogger<EnergyUsageComparisonController> logger, IEnergyUsageComparisonUIService comparisonService)
     {
         _logger = logger;
-        _repository = repository;
-        _abRepository = labRepository;
-        _deviceRepository = deviceRepository;   
         _comparisonService = comparisonService;
     }
 

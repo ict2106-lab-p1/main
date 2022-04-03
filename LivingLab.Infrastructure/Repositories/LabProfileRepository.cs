@@ -18,7 +18,6 @@ public class LabProfileRepository : Repository<Lab>, ILabProfileRepository
         _context = context;
     }
 
-
     public async Task<List<Lab>> GetAllLabs()
     {
         var labGroup = await _context.LabProfile.ToListAsync();
@@ -61,6 +60,14 @@ public class LabProfileRepository : Repository<Lab>, ILabProfileRepository
     {
         Lab labInfo = (await _context.Labs.SingleOrDefaultAsync(l => l.LabLocation == labLocation))!;
         return labInfo;
+    }
+    
+    public Task<List<Lab>> GetAllLabLocation()
+    {
+        return IncludeReferences(
+                _context.Labs
+            )
+            .ToListAsync();
     }
 
     // public async Task<Lab> EditUserDetail(Lab editUser)
