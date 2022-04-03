@@ -1,31 +1,36 @@
-using LivingLab.Core.Interfaces.Services.EnergyUsageInterfaces;
 using LivingLab.Core.Entities.DTO.EnergyUsageDTOs;
 using LivingLab.Core.Entities;
 using LivingLab.Core.Interfaces.Repositories;
+using LivingLab.Core.Interfaces.Services.EnergyUsageInterfaces;
 using System.Text;
+
+using Microsoft.AspNetCore.Mvc;
 
 namespace LivingLab.Core.DomainServices.EnergyUsageServices;
 /// <remarks>
 /// Author: Team P1-2
 /// </remarks>
+
 public class EnergyUsageAnalysisService : IEnergyUsageAnalysisService
 {
     private readonly IEnergyUsageRepository _repository;
+    private readonly ILabProfileRepository _labRepository;
+    
     private readonly IEnergyUsageCalculationService _calculator = new EnergyUsageCalculationService();
 
     private double cost = 0.2544;
 
-    public EnergyUsageAnalysisService(IEnergyUsageRepository repository)
+    public EnergyUsageAnalysisService(IEnergyUsageRepository repository, ILabProfileRepository labRepository)
     {
         _repository = repository;
-
+        _labRepository = labRepository;
     }
 
-    public byte[] ExportDeviceEU(List<DeviceEnergyUsageDTO> DeviceEUList)
+    public byte[] ExportDeviceEU(List<DeviceEnergyUsageDTO> DeviceEUList) 
     {
         var builder = new StringBuilder();
         var ColNames = "";
-        foreach (var propertyInfo in typeof(DeviceEnergyUsageDTO).GetProperties())
+        foreach(var propertyInfo in typeof(DeviceEnergyUsageDTO).GetProperties())
         {
             ColNames = ColNames + propertyInfo.Name + ",";
         }
@@ -36,9 +41,9 @@ public class EnergyUsageAnalysisService : IEnergyUsageAnalysisService
         }
         return Encoding.UTF8.GetBytes(builder.ToString());
     }
-    public List<DeviceEnergyUsageDTO> GetDeviceEnergyUsageByDate(DateTime start, DateTime end)
+    public List<DeviceEnergyUsageDTO> GetDeviceEnergyUsageByDate(DateTime start, DateTime end) 
     {
-        List<EnergyUsageLog> result = _repository.GetDeviceEnergyUsageByDateTime(start, end).Result;
+        List<EnergyUsageLog> result = _repository.GetDeviceEnergyUsageByDateTime(start,end).Result;
 
         //builder
         DeviceDirector director = new DeviceDirector();
@@ -48,19 +53,19 @@ public class EnergyUsageAnalysisService : IEnergyUsageAnalysisService
         return builder.GetProduct();
 
     }
-    public List<LabEnergyUsageDTO> GetLabEnergyUsageByDate(DateTime start, DateTime end)
+    public List<LabEnergyUsageDTO> GetLabEnergyUsageByDate(DateTime start, DateTime end) 
     {
         // missing of lab area, commenting this part to ensure no error
 
 
-        List<EnergyUsageLog> result = _repository.GetDeviceEnergyUsageByDateTime(start, end).Result;
+        List<EnergyUsageLog> result = _repository.GetDeviceEnergyUsageByDateTime(start,end).Result;
         List<LabEnergyUsageDTO> LabEUList = new List<LabEnergyUsageDTO>();
         List<string> uniqueLab = new List<string>();
         List<int> LabEUWatt = new List<int>();
         List<double> LabEUCost = new List<double>();
         List<double> LabEUIntensity = new List<double>();
         List<int> LabArea = new List<int>();
-        List<EUWatt> EUWatt = new List<EUWatt>();
+        List<EUWatt> EUWatt =  new List<EUWatt>();
 
         /*
         * get the unique lab into a list
@@ -70,13 +75,13 @@ public class EnergyUsageAnalysisService : IEnergyUsageAnalysisService
             if (!uniqueLab.Contains(item.Lab.LabLocation))
             {
                 uniqueLab.Add(item.Lab.LabLocation);
-                LabArea.Add(item.Lab.Capacity ?? 0);
-                LabEUWatt.Add(0);
+                LabArea.Add(item.Lab.Capacity??0);
+                LabEUWatt.Add(0);    
             }
             EUWatt.Add(new EUWatt
             {
                 id = item.Lab.LabLocation,
-                EU = _calculator.CalculateEnergyUsageInWatt((int)item.EnergyUsage, item.Interval.Minutes)
+                EU = _calculator.CalculateEnergyUsageInWatt((int) item.EnergyUsage,item.Interval.Minutes)
             });
         }
         Console.WriteLine("first section done");
@@ -94,14 +99,14 @@ public class EnergyUsageAnalysisService : IEnergyUsageAnalysisService
             }
         }
         Console.WriteLine("second section done");
-
+        
         /*
         * get the unique lab into a list
         */
         for (int i = 0; i < uniqueLab.Count; i++)
         {
-            LabEUCost.Add(_calculator.CalculateEnergyUsageCost(cost, LabEUWatt[i]));
-            LabEUIntensity.Add(_calculator.CalculateEnergyIntensity(LabArea[i], LabEUWatt[i]));
+            LabEUCost.Add(_calculator.CalculateEnergyUsageCost(cost,LabEUWatt[i]));
+            LabEUIntensity.Add(_calculator.CalculateEnergyIntensity(LabArea[i],LabEUWatt[i]));
         }
 
         // append the list of data to DeviceEnergyUsageDTO
@@ -109,31 +114,81 @@ public class EnergyUsageAnalysisService : IEnergyUsageAnalysisService
         {
             // 
             // 
-            LabEUList.Add(new LabEnergyUsageDTO
-            {
+            LabEUList.Add(new LabEnergyUsageDTO{
                 LabLocation = uniqueLab[i],
-                TotalEnergyUsage = Math.Round((double)LabEUIntensity[i] / 1000, 2),
+                TotalEnergyUsage = Math.Round((double)LabEUIntensity[i]/1000,2),
                 EnergyUsageCost = LabEUCost[i],
-                EnergyUsageIntensity = Math.Round((double)LabEUWatt[i] / 1000, 2)
-            });
+                EnergyUsageIntensity = Math.Round((double)LabEUWatt[i]/1000,2)
+                });
 
         }
         Console.WriteLine("Third section done");
         return LabEUList;
     }
     // joey
-    public List<TopSevenLabEnergyUsageDTO> GetTopSevenLabEnergyUsage(DateTime start, DateTime end)
+    public List<TopSevenLabEnergyUsageDTO> GetTopSevenLabEnergyUsage(DateTime start, DateTime end) 
     {
         throw new NotImplementedException();
     }
-    public List<MonthlyEnergyUsageDTO> GetEnergyUsageTrendAllLab(DateTime start, DateTime end)
+               
+    public async Task<MonthlyEnergyUsageDTO> GetEnergyUsageTrendAllLab(EnergyUsageFilterDTO filter) 
     {
-        throw new NotImplementedException();
+        // Grouping done here because SQLite doesn't support it
+        var logs = _repository
+            .GetLabEnergyUsageByDate(filter.Start, filter.End)
+            .Result
+            .GroupBy(log => log.LoggedDate.Date)
+            .Select(log => new EnergyUsageLog
+            {
+                LoggedDate = log.Key,
+                EnergyUsage = log.Sum(l => l.EnergyUsage),
+                Device = log.First().Device,
+                Lab = log.First().Lab
+            })
+            .OrderBy(log => log.LoggedDate).ToList();
+
+        // get by date
+        var lab = await _labRepository.GetByIdAsync(filter.LabId);
+        
+        var dto = new MonthlyEnergyUsageDTO
+        {
+            Logs = logs,
+            Lab = lab
+        };
+        return dto;
     }
-    public List<IndividualLabMonthlyEnergyUsageDTO> GetEnergyUsageTrendSelectedLab(DateTime start, DateTime end, int labId)
+
+    public Task<Lab> GetLabEnergyBenchmark(int labId)
     {
-        throw new NotImplementedException();
+        // add benchmark calculation
+        return _labRepository.GetByIdAsync(labId);
     }
+
+    public async Task<IndividualLabMonthlyEnergyUsageDTO> GetEnergyUsageTrendSelectedLab([FromBody] EnergyUsageFilterDTO filter)
+    {
+        // Grouping done here because SQLite doesn't support it
+        var logs = (await _repository
+            .GetLabEnergyUsageByLocationAndDate(filter.LabLocation, filter.Start, filter.End))
+            .GroupBy(log => log.LoggedDate.Date)
+            .Select(log => new EnergyUsageLog
+            {
+                LoggedDate = log.Key,
+                EnergyUsage = log.Sum(l => l.EnergyUsage),
+                Device = log.First().Device,
+                Lab = log.First().Lab
+            })
+            .OrderBy(log => log.LoggedDate).ToList();
+
+        var lab = await _labRepository.GetByIdAsync(filter.LabId);
+
+        var dto = new IndividualLabMonthlyEnergyUsageDTO
+        {
+            Logs = logs,
+            Lab = lab
+        };
+        return dto;
+    }
+    
     // weijie
     // not sure what will be your DTO looks like may have to create in LivingLab.Core.Entities.DTO.EnergyUsageDTOs;
     public List<DeviceInLabDTO> GetEnergyUsageLabDistribution(DateTime start, DateTime end, int labId)
@@ -144,7 +199,6 @@ public class EnergyUsageAnalysisService : IEnergyUsageAnalysisService
     {
         throw new NotImplementedException();
     }
-
 }
 
 public class EUWatt{
