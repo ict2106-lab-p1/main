@@ -48,7 +48,10 @@ $(document).ready(function () {
  */
 function fileChange(e) {
   const fileName = e.target.files[0].name;
-  $("#attachmentText").text(fileName);
+  const fileSizeBytes = e.target.files[0].size;
+  const fileSizeKb = fileSizeBytes / 1024;
+
+  $("#attachmentText").text(`${fileName} (${fileSizeKb.toFixed(2)} KB)`);
   $("#btn-submit").show();
 }
 
@@ -76,16 +79,35 @@ function deleteRow() {
 }
 
 /**
+ * Disable the submit button
+ */
+function disableUploadBtn() {
+    const $uploadBtn = $("#btn-submit");
+    $uploadBtn.removeClass("btn-primary").addClass("btn-disabled");
+}
+
+/**
+ * Enable the submit button
+ */
+function enableUploadBtn() {
+    const $uploadBtn = $("#btn-submit");
+    $uploadBtn.removeClass("btn-disabled").addClass("btn-primary");
+}
+
+/**
  * Save the data to the database.
  */
 function submit(e) {
   e.preventDefault();
-  const $uploadBtn = $(this);
-  $uploadBtn.hide();
+  disableUploadBtn();
   const file = $("#fileUpload")[0].files[0];
   const formData = new FormData();
   formData.append("file", file);
 
+  $("#progressBarContainer").removeClass("hidden")
+  const $progressBar = $("#progressBar");
+  $progressBar.show();
+  
   $.ajax({
     url: "/ManualLogs/Upload",
     type: "POST",
@@ -93,14 +115,18 @@ function submit(e) {
     processData: false,
     contentType: false,
     success: function (count) {
-      Swal.fire({
-        title: "Success!",
-        text: `${count} logs saved successfully!`,
-        icon: "success",
-        confirmButtonColor: "#363740",
-      }).then(function () {
-        window.location.href = "/ManualLogs/FileUpload";
-      });
+        $progressBar.removeClass("w-0");
+        $progressBar.addClass("w-full");
+        setTimeout(() => {
+            Swal.fire({
+            title: "Success!",
+            text: `${count} logs saved successfully!`,
+            icon: "success",
+            confirmButtonColor: "#363740",
+          }).then(function () {
+            window.location.href = "/ManualLogs/FileUpload";
+          });
+        }, 1000)
     },
     error: function (response) {
       Swal.fire({
@@ -108,7 +134,7 @@ function submit(e) {
         text: "Something went wrong!",
         icon: "error",
       });
-      $uploadBtn.show();
+      enableUploadBtn()
     },
   });
 }
