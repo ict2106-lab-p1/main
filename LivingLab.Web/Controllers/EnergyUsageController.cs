@@ -2,6 +2,7 @@ using System.Diagnostics;
 
 using LivingLab.Web.Models.ViewModels;
 using LivingLab.Web.Models.ViewModels.EnergyUsage;
+using LivingLab.Web.Models.ViewModels.LabProfile;
 using LivingLab.Web.UIServices.EnergyUsage;
 using LivingLab.Web.UIServices.LabProfile;
 
@@ -18,7 +19,6 @@ public class EnergyUsageController : Controller
 {
     private readonly IEnergyUsageService _energyUsageService;
     private readonly ILogger<EnergyUsageController> _logger;
-
     public EnergyUsageController(IEnergyUsageService energyUsageService, ILogger<EnergyUsageController> logger)
     {
         _energyUsageService = energyUsageService;
@@ -28,7 +28,11 @@ public class EnergyUsageController : Controller
     public async Task<IActionResult> Index()
     {
         var labs = await _energyUsageService.GetAllLabs();
-        return View(labs.labList);
+        var newLabList = new ViewLabProfileViewModel()
+        {
+          labList  = labs
+        };
+        return View(newLabList.labList);
     }
 
     public IActionResult Lab(int? LabId = 1)
@@ -66,7 +70,6 @@ public class EnergyUsageController : Controller
             _logger.Log(LogLevel.Error, e.Message);
             return Error();
         }
-
     }
 
     [HttpPost]
@@ -83,7 +86,6 @@ public class EnergyUsageController : Controller
             return RedirectToAction(nameof(Benchmark));
         }
     }
-
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {

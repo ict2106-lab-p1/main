@@ -133,4 +133,12 @@ public class DeviceRepository : Repository<Device>, IDeviceRepository
             )
             .ToListAsync();
     }
+    
+    public async Task<List<String>> GetDeviceTypes()
+    {
+        return (await _context.Devices
+            .Select(t => t.Type)
+            .Distinct()
+            .ToListAsync());
+    }
 }
