@@ -147,8 +147,7 @@ public class EnergyUsageAnalysisService : IEnergyUsageAnalysisService
 
 }
 
-public class EUWatt
-{
-    public string id { get; set; }
-    public int EU { get; set; }
+public class EUWatt{
+    public string id  {get; set;}
+    public int EU {get; set;}
 }
