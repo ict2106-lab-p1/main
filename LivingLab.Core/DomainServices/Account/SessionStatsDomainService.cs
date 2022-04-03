@@ -2,7 +2,7 @@ using LivingLab.Core.Entities;
 using LivingLab.Core.Interfaces.Repositories;
 using LivingLab.Core.Interfaces.Services;
 
-namespace LivingLab.Core.DomainServices;
+namespace LivingLab.Core.DomainServices.Account;
 
 public class SessionStatsDomainService : ISessionStatsDomainService
 {

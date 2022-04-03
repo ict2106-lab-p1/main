@@ -1,6 +1,6 @@
 using System.Text;
 
-using LivingLab.Core.DomainServices.Device;
+using LivingLab.Core.DomainServices.Equipment;
 using LivingLab.Core.Entities;
 using LivingLab.Core.Entities.DTO.EnergyUsage;
 using LivingLab.Core.Interfaces.Repositories;

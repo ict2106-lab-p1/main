@@ -3,7 +3,7 @@ using LivingLab.Core.Entities.DTO.Accessory;
 using LivingLab.Core.Interfaces.Repositories;
 using LivingLab.Core.Interfaces.Services;
 
-namespace LivingLab.Core.DomainServices;
+namespace LivingLab.Core.DomainServices.Equipment;
 /// <remarks>
 /// Author: Team P1-3
 /// </remarks>
@@ -88,9 +88,7 @@ public class AccessoryDomainService : IAccessoryDomainService
         
         return accessory;
     }
-    
-    
-    
+
     public Task<Accessory> DeleteAccessory(Accessory deletedAccessory)
     {
         return _accessoryRepository.DeleteAccessory(deletedAccessory);
