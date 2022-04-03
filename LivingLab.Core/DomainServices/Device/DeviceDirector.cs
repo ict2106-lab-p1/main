@@ -1,6 +1,6 @@
 using LivingLab.Core.Interfaces.Services.EnergyUsageInterfaces;
 
-namespace LivingLab.Core.DomainServices;
+namespace LivingLab.Core.DomainServices.Device;
 
 public class DeviceDirector
 {

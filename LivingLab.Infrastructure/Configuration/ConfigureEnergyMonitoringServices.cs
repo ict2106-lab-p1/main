@@ -1,6 +1,6 @@
 using LivingLab.Core.DomainServices;
-using LivingLab.Core.DomainServices.EnergyUsageLogServices;
-using LivingLab.Core.DomainServices.EnergyUsageServices;
+using LivingLab.Core.DomainServices.EnergyLog;
+using LivingLab.Core.DomainServices.EnergyUsage;
 using LivingLab.Core.DomainServices.Notifications;
 using LivingLab.Core.Interfaces.Repositories;
 using LivingLab.Core.Interfaces.Services;

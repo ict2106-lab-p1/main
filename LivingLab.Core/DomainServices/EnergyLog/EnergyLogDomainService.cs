@@ -4,7 +4,7 @@ using LivingLab.Core.Enums;
 using LivingLab.Core.Interfaces.Repositories;
 using LivingLab.Core.Interfaces.Services.EnergyUsageInterfaces;
 
-namespace LivingLab.Core.DomainServices.EnergyUsageLogServices;
+namespace LivingLab.Core.DomainServices.EnergyLog;
 
 /// <remarks>
 /// Author: Team P1-1

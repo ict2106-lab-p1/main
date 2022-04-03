@@ -1,7 +1,7 @@
-
 using LivingLab.Core.Entities;
 using LivingLab.Core.Interfaces.Services.EnergyUsageInterfaces;
-namespace LivingLab.Core.DomainServices.EnergyUsageServices;
+
+namespace LivingLab.Core.DomainServices.EnergyUsage;
 /// <remarks>
 /// Author: Team P1-2
 /// </remarks>

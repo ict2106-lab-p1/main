@@ -1,9 +1,10 @@
-using LivingLab.Core.Interfaces.Services;
-using LivingLab.Core.Interfaces.Repositories;
-using Microsoft.Extensions.Logging;
 using LivingLab.Core.Entities;
+using LivingLab.Core.Interfaces.Repositories;
+using LivingLab.Core.Interfaces.Services;
 
-namespace LivingLab.Core.DomainServices;
+using Microsoft.Extensions.Logging;
+
+namespace LivingLab.Core.DomainServices.Lab;
 /// <summary>
 /// Domain service implementations belongs here.
 /// Domain service are classes that are responsible for business logic.

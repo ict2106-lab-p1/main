@@ -1,6 +1,4 @@
-using System.Text;
-
-namespace LivingLab.Core.DomainServices.EnergyUsageServices;
+namespace LivingLab.Core.DomainServices.EnergyUsage;
 /// <remarks>
 /// Author: Team P1-2
 /// </remarks>

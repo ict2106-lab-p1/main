@@ -1,4 +1,6 @@
 using LivingLab.Core.DomainServices;
+using LivingLab.Core.DomainServices.Device;
+using LivingLab.Core.DomainServices.Lab;
 using LivingLab.Core.Interfaces.Repositories;
 using LivingLab.Core.Interfaces.Services;
 using LivingLab.Infrastructure.Repositories;

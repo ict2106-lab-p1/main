@@ -1,11 +1,9 @@
-using LivingLab.Core.Entities;
-using LivingLab.Core.Entities.Identity;
 using LivingLab.Core.Interfaces.Repositories;
 using LivingLab.Core.Interfaces.Services;
 
 using Microsoft.Extensions.Logging;
 
-namespace LivingLab.Core.DomainServices;
+namespace LivingLab.Core.DomainServices.Lab;
 /// <summary>
 /// Domain service implementations belongs here.
 /// Domain service are classes that are responsible for business logic.
@@ -23,24 +21,24 @@ public class LabProfileDomainService: ILabProfileDomainService
         _logger = logger;
     }    
     
-    public Task<List<Lab>> ViewLabs()
+    public Task<List<Entities.Lab>> ViewLabs()
     {
         return _labRepository.GetAllLabs();
     } 
  
     
-    public Task<Lab> ViewLabDetails(int id)
+    public Task<Entities.Lab> ViewLabDetails(int id)
     {
         return _labRepository.GetLabDetails(id);
     }
   
     /*Create new lab with lab details*/
-    public async Task<Lab?> NewLab(Lab labinput)
+    public async Task<Entities.Lab?> NewLab(Entities.Lab labinput)
     {
         return await _labRepository.AddAsync(labinput);
     }
 
-    public async Task<Lab> GetLabProfileDetails(string labLocation)
+    public async Task<Entities.Lab> GetLabProfileDetails(string labLocation)
     {
         _logger.LogInformation("Get the lab info from lab : " + labLocation);
         return await _labRepository.GetLabProfileDetails(labLocation);

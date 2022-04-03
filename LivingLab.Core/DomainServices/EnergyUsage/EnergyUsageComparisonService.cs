@@ -1,11 +1,9 @@
-using LivingLab.Core.Interfaces.Services.EnergyUsageInterfaces;
 using LivingLab.Core.Entities;
-using LivingLab.Core.Interfaces.Repositories;
-using System;
-
 using LivingLab.Core.Entities.DTO.EnergyUsage;
+using LivingLab.Core.Interfaces.Repositories;
+using LivingLab.Core.Interfaces.Services.EnergyUsageInterfaces;
 
-namespace LivingLab.Core.DomainServices.EnergyUsageServices;
+namespace LivingLab.Core.DomainServices.EnergyUsage;
 /// <remarks>
 /// Author: Team P1-2
 /// </remarks>
@@ -149,7 +147,7 @@ public class EnergyUsageComparisonService : IEnergyUsageComparisonService
 
     public List<string> GetAllDeviceType()
     {
-        List<Device> result = _deviceRepository.GetAllDeviceType().Result;
+        List<Entities.Device> result = _deviceRepository.GetAllDeviceType().Result;
         List<string> deviceType = new List<string>();
 
         foreach (var item in result)
@@ -162,7 +160,7 @@ public class EnergyUsageComparisonService : IEnergyUsageComparisonService
     }
     public List<string> GetAllLabLocation()
     {
-        List<Lab> result = _abRepository.GetAllLabLocation().Result;
+        List<Entities.Lab> result = _abRepository.GetAllLabLocation().Result;
         List<string> labNames = new List<string>();
 
         foreach (var item in result)

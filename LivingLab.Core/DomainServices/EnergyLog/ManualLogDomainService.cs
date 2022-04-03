@@ -5,9 +5,8 @@ using LivingLab.Core.Interfaces.Services.CsvParser;
 using LivingLab.Core.Interfaces.Services.EnergyUsageInterfaces;
 
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
 
-namespace LivingLab.Core.DomainServices.EnergyUsageLogServices;
+namespace LivingLab.Core.DomainServices.EnergyLog;
 
 /// <remarks>
 /// Author: Team P1-1

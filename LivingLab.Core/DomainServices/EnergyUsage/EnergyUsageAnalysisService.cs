@@ -1,13 +1,14 @@
-using LivingLab.Core.Entities;
-using LivingLab.Core.Interfaces.Repositories;
-using LivingLab.Core.Interfaces.Services.EnergyUsageInterfaces;
 using System.Text;
 
+using LivingLab.Core.DomainServices.Device;
+using LivingLab.Core.Entities;
 using LivingLab.Core.Entities.DTO.EnergyUsage;
+using LivingLab.Core.Interfaces.Repositories;
+using LivingLab.Core.Interfaces.Services.EnergyUsageInterfaces;
 
 using Microsoft.AspNetCore.Mvc;
 
-namespace LivingLab.Core.DomainServices.EnergyUsageServices;
+namespace LivingLab.Core.DomainServices.EnergyUsage;
 /// <remarks>
 /// Author: Team P1-2
 /// </remarks>
@@ -159,7 +160,7 @@ public class EnergyUsageAnalysisService : IEnergyUsageAnalysisService
         return dto;
     }
 
-    public Task<Lab> GetLabEnergyBenchmark(int labId)
+    public Task<Entities.Lab> GetLabEnergyBenchmark(int labId)
     {
         // add benchmark calculation
         return _labRepository.GetByIdAsync(labId);
