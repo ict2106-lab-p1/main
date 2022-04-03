@@ -1,6 +1,4 @@
-using LivingLab.Core.Interfaces.Repositories;
-using LivingLab.Core.Interfaces.Repositories.Lab;
-using LivingLab.Core.Interfaces.Services;
+using LivingLab.Core.Repositories.Lab;
 
 using Microsoft.Extensions.Logging;
 

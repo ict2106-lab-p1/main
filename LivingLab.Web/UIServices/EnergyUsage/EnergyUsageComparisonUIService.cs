@@ -1,5 +1,6 @@
+using LivingLab.Core.DomainServices.EnergyUsage.EnergyUsageComparison;
 using LivingLab.Core.Entities.DTO.EnergyUsage;
-using LivingLab.Core.Interfaces.Services.EnergyUsageInterfaces;
+
 namespace LivingLab.Web.UIServices.EnergyUsage;
 /// <remarks>
 /// Author: Team P1-2

@@ -1,9 +1,8 @@
-using LivingLab.Core.Interfaces.Repositories.Lab;
+using LivingLab.Core.Repositories.Lab;
 
 namespace LivingLab.Infrastructure.Repositories;
 
 using LivingLab.Core.Entities;
-using LivingLab.Core.Interfaces.Repositories;
 using LivingLab.Infrastructure.Data;
 using LivingLab.Core.Entities.Identity;
 

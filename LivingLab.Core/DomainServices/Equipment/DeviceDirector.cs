@@ -1,4 +1,4 @@
-using LivingLab.Core.Interfaces.Services.EnergyUsageInterfaces;
+using LivingLab.Core.DomainServices.EnergyUsage.EnergyUsageBuilder;
 
 namespace LivingLab.Core.DomainServices.Equipment;
 

@@ -1,12 +1,13 @@
 using LivingLab.Core.DomainServices;
 using LivingLab.Core.DomainServices.Account;
+using LivingLab.Core.DomainServices.Account.Session;
 using LivingLab.Core.DomainServices.Equipment;
+using LivingLab.Core.DomainServices.Equipment.Accessory;
+using LivingLab.Core.DomainServices.Equipment.Device;
 using LivingLab.Core.DomainServices.Lab;
-using LivingLab.Core.Interfaces.Repositories;
-using LivingLab.Core.Interfaces.Repositories.Account;
-using LivingLab.Core.Interfaces.Repositories.Equipment;
-using LivingLab.Core.Interfaces.Repositories.Lab;
-using LivingLab.Core.Interfaces.Services;
+using LivingLab.Core.Repositories.Account;
+using LivingLab.Core.Repositories.Equipment;
+using LivingLab.Core.Repositories.Lab;
 using LivingLab.Infrastructure.Repositories;
 
 using Microsoft.Extensions.DependencyInjection;

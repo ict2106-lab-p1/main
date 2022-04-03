@@ -1,9 +1,8 @@
 using System.Linq;
 using LivingLab.Core.Entities;
-using LivingLab.Core.Interfaces.Repositories;
 using LivingLab.Core.Entities.Identity;
 using LivingLab.Core.Enums;
-using LivingLab.Core.Interfaces.Repositories.Notification;
+using LivingLab.Core.Repositories.Notification;
 using LivingLab.Infrastructure.Data;
 
 using Microsoft.EntityFrameworkCore;

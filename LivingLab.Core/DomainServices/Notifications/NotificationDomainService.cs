@@ -1,8 +1,7 @@
+using LivingLab.Core.DomainServices.Account;
 using LivingLab.Core.Entities.Identity;
 using LivingLab.Core.Enums;
-using LivingLab.Core.Interfaces.Repositories;
-using LivingLab.Core.Interfaces.Repositories.Notification;
-using LivingLab.Core.Interfaces.Services;
+using LivingLab.Core.Repositories.Notification;
 
 using Microsoft.Extensions.Logging;
 

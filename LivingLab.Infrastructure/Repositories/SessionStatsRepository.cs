@@ -1,6 +1,5 @@
 using LivingLab.Core.Entities;
-using LivingLab.Core.Interfaces.Repositories;
-using LivingLab.Core.Interfaces.Repositories.Account;
+using LivingLab.Core.Repositories.Account;
 using LivingLab.Infrastructure.Data;
 
 using Microsoft.EntityFrameworkCore;

@@ -1,10 +1,10 @@
 using System.Net;
 using System.Net.Mail;
 
+using LivingLab.Core.DomainServices.Notifications;
 using LivingLab.Core.Entities.Identity;
 using LivingLab.Core.Enums;
-using LivingLab.Core.Interfaces.Notifications;
-using LivingLab.Core.Interfaces.Services;
+using LivingLab.Core.Notifications;
 
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;

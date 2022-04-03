@@ -1,5 +1,5 @@
 using LivingLab.Core.Enums;
-using LivingLab.Core.Interfaces.Notifications;
+using LivingLab.Core.Notifications;
 
 namespace LivingLab.Core.DomainServices.Notifications;
 

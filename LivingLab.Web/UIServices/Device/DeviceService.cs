@@ -1,10 +1,11 @@
 using AutoMapper;
 
+using LivingLab.Core.DomainServices.Equipment.Device;
+using LivingLab.Core.DomainServices.Lab;
 using LivingLab.Core.Entities;
 using LivingLab.Core.Entities.DTO.Device;
 using LivingLab.Core.Entities.Identity;
-using LivingLab.Core.Interfaces.Notifications;
-using LivingLab.Core.Interfaces.Services;
+using LivingLab.Core.Notifications;
 using LivingLab.Web.Models.ViewModels.Device;
 
 using Microsoft.AspNetCore.Identity;

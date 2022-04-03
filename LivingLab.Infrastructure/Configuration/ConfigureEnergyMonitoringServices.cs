@@ -1,13 +1,13 @@
+using LivingLab.Core.CsvParser;
 using LivingLab.Core.DomainServices;
 using LivingLab.Core.DomainServices.EnergyLog;
 using LivingLab.Core.DomainServices.EnergyUsage;
+using LivingLab.Core.DomainServices.EnergyUsage.EnergyUsageAnalysis;
+using LivingLab.Core.DomainServices.EnergyUsage.EnergyUsageBuilder;
+using LivingLab.Core.DomainServices.EnergyUsage.EnergyUsageComparison;
 using LivingLab.Core.DomainServices.Notifications;
-using LivingLab.Core.Interfaces.Repositories;
-using LivingLab.Core.Interfaces.Repositories.EnergyUsage;
-using LivingLab.Core.Interfaces.Repositories.Notification;
-using LivingLab.Core.Interfaces.Services;
-using LivingLab.Core.Interfaces.Services.CsvParser;
-using LivingLab.Core.Interfaces.Services.EnergyUsageInterfaces;
+using LivingLab.Core.Repositories.EnergyUsage;
+using LivingLab.Core.Repositories.Notification;
 using LivingLab.Infrastructure.InfraServices.CsvParser;
 using LivingLab.Infrastructure.Repositories;
 

@@ -1,10 +1,10 @@
 using System.Diagnostics;
 
 using Microsoft.AspNetCore.Mvc;
-using LivingLab.Core.Interfaces.Repositories;
+
 using LivingLab.Core.Entities;
 using LivingLab.Core.Entities.DTO.EnergyUsage;
-using LivingLab.Core.Interfaces.Repositories.EnergyUsage;
+using LivingLab.Core.Repositories.EnergyUsage;
 using LivingLab.Web.Models.ViewModels;
 using LivingLab.Web.Models.ViewModels.EnergyUsage;
 using LivingLab.Web.UIServices.EnergyUsage;

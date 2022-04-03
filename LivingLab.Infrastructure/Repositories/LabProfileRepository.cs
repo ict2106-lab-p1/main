@@ -1,7 +1,6 @@
 using LivingLab.Core.Entities;
 using LivingLab.Core.Entities.Identity;
-using LivingLab.Core.Interfaces.Repositories;
-using LivingLab.Core.Interfaces.Repositories.Lab;
+using LivingLab.Core.Repositories.Lab;
 using LivingLab.Infrastructure.Data;
 
 using Microsoft.EntityFrameworkCore;

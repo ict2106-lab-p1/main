@@ -1,6 +1,7 @@
 using AutoMapper;
 
-using LivingLab.Core.Interfaces.Services;
+using LivingLab.Core.DomainServices.Equipment.Device;
+using LivingLab.Core.DomainServices.Lab;
 using LivingLab.Web.Models.ViewModels.Device;
 using LivingLab.Web.Models.ViewModels.LivingLabDashboard;
 
