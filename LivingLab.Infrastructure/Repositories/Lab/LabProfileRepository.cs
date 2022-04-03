@@ -1,15 +1,13 @@
-using LivingLab.Core.Entities;
-using LivingLab.Core.Entities.Identity;
 using LivingLab.Core.Repositories.Lab;
 using LivingLab.Infrastructure.Data;
 
 using Microsoft.EntityFrameworkCore;
 
-namespace LivingLab.Infrastructure.Repositories;
+namespace LivingLab.Infrastructure.Repositories.Lab;
 /// <remarks>
 /// Author: Team P1-5
 /// </remarks>
-public class LabProfileRepository : Repository<Lab>, ILabProfileRepository
+public class LabProfileRepository : Repository<Core.Entities.Lab>, ILabProfileRepository
 {
     private readonly ApplicationDbContext _context;
 
@@ -18,14 +16,14 @@ public class LabProfileRepository : Repository<Lab>, ILabProfileRepository
         _context = context;
     }
 
-    public async Task<List<Lab>> GetAllLabs()
+    public async Task<List<Core.Entities.Lab>> GetAllLabs()
     {
         var labGroup = await _context.LabProfile.ToListAsync();
         return labGroup;
     }
-    public async Task<Lab> GetLabDetails(int id)
+    public async Task<Core.Entities.Lab> GetLabDetails(int id)
     {
-        Lab user = (await _context.LabProfile
+        Core.Entities.Lab user = (await _context.LabProfile
             .Include(d => d.Devices)
             .SingleOrDefaultAsync(d => d.LabId == id))!;
         return user;
@@ -51,18 +49,18 @@ public class LabProfileRepository : Repository<Lab>, ILabProfileRepository
     }
 
     // Added by P1-1
-    public Task<Lab> GetLabByLocation(string location)
+    public Task<Core.Entities.Lab> GetLabByLocation(string location)
     {
         return _context.Labs.FirstOrDefaultAsync(l => l.LabLocation == location);
     }
 
-    public async Task<Lab> GetLabProfileDetails(string labLocation)
+    public async Task<Core.Entities.Lab> GetLabProfileDetails(string labLocation)
     {
-        Lab labInfo = (await _context.Labs.SingleOrDefaultAsync(l => l.LabLocation == labLocation))!;
+        Core.Entities.Lab labInfo = (await _context.Labs.SingleOrDefaultAsync(l => l.LabLocation == labLocation))!;
         return labInfo;
     }
     
-    public Task<List<Lab>> GetAllLabLocation()
+    public Task<List<Core.Entities.Lab>> GetAllLabLocation()
     {
         return IncludeReferences(
                 _context.Labs

@@ -1,4 +1,3 @@
-using System.Linq;
 using LivingLab.Core.Entities;
 using LivingLab.Core.Entities.Identity;
 using LivingLab.Core.Enums;
@@ -7,7 +6,7 @@ using LivingLab.Infrastructure.Data;
 
 using Microsoft.EntityFrameworkCore;
 
-namespace LivingLab.Infrastructure.Repositories;
+namespace LivingLab.Infrastructure.Repositories.Notification;
 
 /// <remarks>
 /// Author: Team P1-1

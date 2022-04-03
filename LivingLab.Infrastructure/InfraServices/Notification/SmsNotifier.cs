@@ -9,7 +9,7 @@ using Twilio;
 using Twilio.Rest.Api.V2010.Account;
 using Twilio.Types;
 
-namespace LivingLab.Infrastructure.InfraServices;
+namespace LivingLab.Infrastructure.InfraServices.Notification;
 
 /// <remarks>
 /// Author: Team P1-1

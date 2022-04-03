@@ -2,9 +2,7 @@ using LivingLab.Core.Entities;
 using LivingLab.Core.Repositories.Equipment;
 using LivingLab.Infrastructure.Data;
 
-using Microsoft.EntityFrameworkCore;
-
-namespace LivingLab.Infrastructure.Repositories;
+namespace LivingLab.Infrastructure.Repositories.Equipment;
 
 public class AccessoryTypeRepository : Repository<AccessoryType>, IAccessoryTypeRepository
 {

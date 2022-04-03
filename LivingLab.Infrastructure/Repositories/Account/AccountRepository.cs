@@ -1,14 +1,10 @@
-using System.Net.Mime;
-
-using LivingLab.Core.Entities;
-using LivingLab.Core.Entities.DTO;
 using LivingLab.Core.Entities.Identity;
 using LivingLab.Core.Repositories.Account;
 using LivingLab.Infrastructure.Data;
 
 using Microsoft.EntityFrameworkCore;
 
-namespace LivingLab.Infrastructure.Repositories;
+namespace LivingLab.Infrastructure.Repositories.Account;
 /// <remarks>
 /// Author: Team P1-5
 /// </remarks>

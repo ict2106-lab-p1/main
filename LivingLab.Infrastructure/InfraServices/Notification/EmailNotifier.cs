@@ -9,7 +9,7 @@ using LivingLab.Core.Notifications;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 
-namespace LivingLab.Infrastructure.InfraServices;
+namespace LivingLab.Infrastructure.InfraServices.Notification;
 
 /// <remarks>
 /// Author: Team P1-1

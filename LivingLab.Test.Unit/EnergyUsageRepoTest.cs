@@ -9,6 +9,8 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using LivingLab.Infrastructure.Repositories.EnergyUsage;
+
 namespace LivingLab.UnitTests;
 
 public class EnergyUsageRepoTest

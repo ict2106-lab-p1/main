@@ -10,6 +10,8 @@ using LivingLab.Core.Repositories.EnergyUsage;
 using LivingLab.Core.Repositories.Notification;
 using LivingLab.Infrastructure.InfraServices.CsvParser;
 using LivingLab.Infrastructure.Repositories;
+using LivingLab.Infrastructure.Repositories.EnergyUsage;
+using LivingLab.Infrastructure.Repositories.Notification;
 
 using Microsoft.Extensions.DependencyInjection;
 

@@ -9,6 +9,9 @@ using LivingLab.Core.Repositories.Account;
 using LivingLab.Core.Repositories.Equipment;
 using LivingLab.Core.Repositories.Lab;
 using LivingLab.Infrastructure.Repositories;
+using LivingLab.Infrastructure.Repositories.Account;
+using LivingLab.Infrastructure.Repositories.Equipment;
+using LivingLab.Infrastructure.Repositories.Lab;
 
 using Microsoft.Extensions.DependencyInjection;
 

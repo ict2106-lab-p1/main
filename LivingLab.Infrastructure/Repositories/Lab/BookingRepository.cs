@@ -1,13 +1,11 @@
-using LivingLab.Core.Repositories.Lab;
-
-namespace LivingLab.Infrastructure.Repositories;
-
 using LivingLab.Core.Entities;
+using LivingLab.Core.Repositories.Lab;
 using LivingLab.Infrastructure.Data;
-using LivingLab.Core.Entities.Identity;
-
 
 using Microsoft.EntityFrameworkCore;
+
+namespace LivingLab.Infrastructure.Repositories.Lab;
+
 /// <remarks>
 /// Author: Team P1-5
 /// </remarks>
