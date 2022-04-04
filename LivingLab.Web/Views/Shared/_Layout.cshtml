@@ -59,205 +59,214 @@
     </a>
 </div>
 <ul class="relative">
-    <li>
+<li>
+    <div class="@Html.ActiveClass("Home", "Dashboard") collapse-title text-gray-400 px-5 font-medium  w-full flex items-center">
+        <a asp-controller="Home" asp-action="Dashboard">Dashboard</a>
+        <hr class="border-gray-600"/>
+    </div>
+</li>
+
+<li>
+    <div tabindex="0" class="collapse collapse-arrow">
+        <input type="checkbox">
         <div class="@Html.ActiveClass("", "") collapse-title text-gray-400 px-5 font-medium  w-full flex items-center">
-            <a asp-controller="LivingLabDashboard" asp-action="Dashboard">Dashboard</a>
+            Manage Bookings
+            <hr class="border-gray-600"/>
+        </div>
+        <div class="collapse-content text-gray-400">
+            <ul>
+                <li>
+                    <a
+                        class="hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer"
+                        asp-controller="LabBooking" asp-action="BookingsOverview">
+                        <span>Lab Availability</span>
+                    </a>
+                </li>
+                <li>
+                    <a
+                        class="hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer"
+                        asp-controller="LabBooking" asp-action="Register">
+                        <span>Create Booking</span>
+                    </a>
+                </li>
+                <li>
+                    <a
+                        class="hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer"
+                        asp-controller="LabBooking" asp-action="ViewAllBookings">
+                        <span>View Bookings</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</li>
+
+<li>
+    <div tabindex="0" class="collapse collapse-arrow">
+        <input type="checkbox">
+        <div class="@Html.ActiveClass("", "") collapse-title text-gray-400 px-5 font-medium  w-full flex items-center">
+            Manage Lab
+            <hr class="border-gray-600"/>
+        </div>
+        <div class="collapse-content text-gray-400">
+            <ul>
+                <li class="@Html.ActiveClass("", "") relative hover:bg-highlight hover:text-gray-700 ease-in duration-300">
+                    <a
+                        class="hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer"
+                        asp-controller="LabProfile" asp-action="ViewLab">
+                        <span>View Labs</span>
+                    </a>
+                </li>
+                <li class="@Html.ActiveClass("", "") relative hover:bg-highlight hover:text-gray-700 ease-in duration-300">
+                    <a
+                        class="hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer"
+                        asp-controller="LabProfile" asp-action="LabRegister">
+                        <span>Create New Lab</span>
+                    </a>
+                </li>
+                <div>
+                    <li>
+                        <a class="hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer"asp-controller="LabProfile" asp-action="LabProfile" asp-route-labLocation="NYP-SR7A">
+                            <span>NYP-SR7A</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer"asp-controller="LabProfile" asp-action="LabProfile" asp-route-labLocation="NYP-SR7B">
+                            <span>NYP-SR7B</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer"asp-controller="LabProfile" asp-action="LabProfile" asp-route-labLocation="NYP-SR7C">
+                            <span>NYP-SR7C</span>
+                        </a>
+                    </li>
+                </div>
+            </ul>
+        </div>
+    </div>
+</li>
+@*@if (SignInManager.IsSignedIn(User) && User.IsInRole("labtech")){*@
+<li>
+    <div class="@Html.ActiveClass("", "") collapse-title text-gray-400 px-5 font-medium  w-full flex items-center">
+        <a asp-controller="Equipment" asp-action="ReviewEquipment" asp-route-labLocation="NYP-SR7A">
+            Review Equipment
+        </a>
+        <hr class="border-gray-600"/>
+    </div>
+</li>
+
+<li>
+    <div tabindex="0" class="collapse collapse-arrow">
+        <input type="checkbox">
+        <div class="@Html.ActiveClass("", "") collapse-title text-gray-400 px-5 font-medium w-full flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 mr-2" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
+                <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
+            </svg>
+            <span>Energy Usage</span>
+            <hr class="border-gray-600"/>
+        </div>
+        <div class="collapse-content text-gray-400">
+            <ul>
+                <li class="@Html.ActiveClass("EnergyUsage", "Index") relative hover:bg-highlight hover:text-gray-700 ease-in duration-300">
+                    <a class="hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer"
+                       asp-controller="EnergyUsage" asp-action="Index">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 mr-2" viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
+                            <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
+                        </svg>
+                        <span>Energy Usage</span>
+                    </a>
+                </li>
+                <li class="@Html.ActiveClass("", "") relative hover:bg-highlight hover:text-gray-700 ease-in duration-300">
+                    <a
+                        class="hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer"
+                        asp-controller="EnergyUsageAnalysis" asp-action="Index">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/>
+                        </svg>
+                        <span>Analysis</span>
+                    </a>
+                </li>
+                <li class="@Html.ActiveClass("", "") relative hover:bg-highlight hover:text-gray-700 ease-in duration-300">
+                    <a
+                        class="hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer"
+                        asp-controller="EnergyUsageComparison" asp-action="Index">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/>
+                        </svg>
+                        <span>Comparison</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</li>
+
+<li>
+    <div class="@Html.ActiveClass("", "") collapse-title text-gray-400 px-5 font-medium  w-full flex items-center">
+        <a
+            class="hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer"
+            asp-controller="ManualLogs" asp-action="Index">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/>
+            </svg>
+            <span>My Logs</span>
+        </a>
+        <hr class="border-gray-600"/>
+    </div>
+</li>
+
+<li>
+    <div tabindex="0" class="collapse collapse-arrow">
+        <input type="checkbox">
+        <div class="@Html.ActiveClass("", "") collapse-title text-gray-400 px-5 font-medium  w-full flex items-center">
+            Manage Users
+            <hr class="border-gray-600"/>
+        </div>
+        <div class="collapse-content text-gray-400">
+            <ul>
+                <li>
+                    <a
+                        class="@Html.ActiveClass("UserManagement", "UserOverview") hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer"
+                        asp-controller="UserManagement" asp-action="UserAccounts" asp-route-userId="@userId">
+                        <span>Users Overview</span>
+                    </a>
+                </li>
+                <li>
+                    <a
+                        class="@Html.ActiveClass("Account", "Register") hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer"
+                        asp-controller="Account" asp-action="Register">
+                        <span>Add Users</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</li>
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <li>
+        <div class="@Html.ActiveClass("", "") collapse-title text-gray-400 px-5 font-medium w-full flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"></path>
+            </svg>
+            <span>
+                <a asp-controller="Account" asp-action="Settings">Notification Settings</a>
+            </span>
             <hr class="border-gray-600"/>
         </div>
     </li>
-
-    <li>
-        <div tabindex="0" class="collapse collapse-arrow">
-            <input type="checkbox">
-            <div class="@Html.ActiveClass("", "") collapse-title text-gray-400 px-5 font-medium  w-full flex items-center">
-                Manage Bookings
-                <hr class="border-gray-600"/>
-            </div>
-            <div class="collapse-content text-gray-400">
-                <ul>
-                    <li>
-                        <a
-                            class="hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer"
-                            asp-controller="LabBooking" asp-action="BookingsOverview">
-                            <span>Lab Availability</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            class="hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer"
-                            asp-controller="LabBooking" asp-action="Register">
-                            <span>Create Booking</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            class="hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer"
-                            asp-controller="LabBooking" asp-action="ViewAllBookings">
-                            <span>View Bookings</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </li>
-
-    <li>
-        <div tabindex="0" class="collapse collapse-arrow">
-            <input type="checkbox">
-            <div class="@Html.ActiveClass("", "") collapse-title text-gray-400 px-5 font-medium  w-full flex items-center">
-                Manage Lab
-                <hr class="border-gray-600"/>
-            </div>
-            <div class="collapse-content text-gray-400">
-                <ul>
-                    <li class="@Html.ActiveClass("", "") relative hover:bg-highlight hover:text-gray-700 ease-in duration-300">
-                        <a
-                            class="hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer"
-                            asp-controller="LabProfile" asp-action="ViewLab">
-                            <span>View Labs</span>
-                        </a>
-                    </li>
-                    <div>
-                        <li>
-                            <a class="hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer"asp-controller="LabProfile" asp-action="LabProfile" asp-route-labLocation="NYP-SR7A">
-                                <span>NYP-SR7A</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer"asp-controller="LabProfile" asp-action="LabProfile" asp-route-labLocation="NYP-SR7B">
-                                <span>NYP-SR7B</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer"asp-controller="LabProfile" asp-action="LabProfile" asp-route-labLocation="NYP-SR7C">
-                                <span>NYP-SR7C</span>
-                            </a>
-                        </li>
-                    </div>
-                </ul>
-            </div>
-        </div>
-    </li>
-    @*@if (SignInManager.IsSignedIn(User) && User.IsInRole("labtech")){*@
     <li>
         <div class="@Html.ActiveClass("", "") collapse-title text-gray-400 px-5 font-medium  w-full flex items-center">
-            <a asp-controller="Equipment" asp-action="ReviewEquipment" asp-route-labLocation="NYP-SR7A">
-                Review Equipment
-            </a>
+            <a asp-controller="Home" asp-action="Logout">Logout</a>
             <hr class="border-gray-600"/>
         </div>
     </li>
-
-    <li>
-        <div tabindex="0" class="collapse collapse-arrow">
-            <input type="checkbox">
-            <div class="@Html.ActiveClass("", "") collapse-title text-gray-400 px-5 font-medium w-full flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 mr-2" viewBox="0 0 24 24" fill="none"
-                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
-                    <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
-                </svg>
-                <span>Energy Usage</span>
-                <hr class="border-gray-600"/>
-            </div>
-            <div class="collapse-content text-gray-400">
-                <ul>
-                    <li class="@Html.ActiveClass("EnergyUsage", "Index") relative hover:bg-highlight hover:text-gray-700 ease-in duration-300">
-                        <a class="hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer"
-                           asp-controller="EnergyUsage" asp-action="Index">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 mr-2" viewBox="0 0 24 24" fill="none"
-                                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
-                                <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
-                            </svg>
-                            <span>Energy Usage</span>
-                        </a>
-                    </li>
-                    <li class="@Html.ActiveClass("", "") relative hover:bg-highlight hover:text-gray-700 ease-in duration-300">
-                        <a
-                            class="hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer"
-                            asp-controller="EnergyUsageAnalysis" asp-action="Index">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/>
-                            </svg>
-                            <span>Analysis</span>
-                        </a>
-                    </li>
-                    <li class="@Html.ActiveClass("", "") relative hover:bg-highlight hover:text-gray-700 ease-in duration-300">
-                        <a
-                            class="hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer"
-                            asp-controller="EnergyUsageComparison" asp-action="Index">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/>
-                            </svg>
-                            <span>Comparison</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </li>
-
-    <li>
-        <div class="@Html.ActiveClass("", "") collapse-title text-gray-400 px-5 font-medium  w-full flex items-center">
-            <a
-                class="hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer"
-                asp-controller="ManualLogs" asp-action="Index">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/>
-                </svg>
-                <span>My Logs</span>
-            </a>
-            <hr class="border-gray-600"/>
-        </div>
-    </li>
-
-    <li>
-        <div tabindex="0" class="collapse collapse-arrow">
-            <input type="checkbox">
-            <div class="@Html.ActiveClass("", "") collapse-title text-gray-400 px-5 font-medium  w-full flex items-center">
-                Manage Users
-                <hr class="border-gray-600"/>
-            </div>
-            <div class="collapse-content text-gray-400">
-                <ul>
-                    <li>
-                        <a
-                            class="@Html.ActiveClass("UserManagement", "UserOverview") hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer"
-                            asp-controller="UserManagement" asp-action="UserAccounts" asp-route-userId="@userId">
-                            <span>Users Overview</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            class="@Html.ActiveClass("Account", "Register") hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer"
-                            asp-controller="Account" asp-action="Register">
-                            <span>Add Users</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </li>
-
-    @if (SignInManager.IsSignedIn(User))
-    {
-        <li>
-            <div class="@Html.ActiveClass("", "") collapse-title text-gray-400 px-5 font-medium w-full flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                    <path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"></path>
-                                                </svg>
-                <span><a asp-controller="Account" asp-action="Settings">Notification Settings</a></span>
-                            <hr class="border-gray-600"/>
-                        </div>
-        </li>
-        <li>
-            <div class="@Html.ActiveClass("", "") collapse-title text-gray-400 px-5 font-medium  w-full flex items-center">
-                <a asp-controller="Home" asp-action="Logout">Logout</a>
-                <hr class="border-gray-600"/>
-            </div>
-        </li>
-    }
+}
 
 </ul>
 </div>
