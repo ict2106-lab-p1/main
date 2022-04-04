@@ -26,6 +26,7 @@ public class LabProfileController: Controller
         _userManager = userManager;
     }
     
+    [Authorize(Roles = "Users,Admin,Labtech")]
     public async Task<IActionResult> ViewLab(MultiModel model)
     {
         model.info = await _labProfileService.GetAllLabAccounts();
@@ -33,7 +34,7 @@ public class LabProfileController: Controller
     }
     
     
-    // [Authorize(Roles="Admin")]
+    [Authorize(Roles="Admin")]
     /*Redirect to lab view*/
     [HttpGet]
     public async Task<IActionResult> LabRegister()
@@ -41,10 +42,10 @@ public class LabProfileController: Controller
         return View("LabRegister");
     }
 
-    /*[Authorize(Roles="Admin")]*/
+    [Authorize(Roles="Admin")]
     /*Create labs by admins*/
     [HttpPost]
-    public async Task<IActionResult> LabRegisterPost(LabRegisterViewModel labform)
+    public async Task<IActionResult> LabRegister(LabRegisterViewModel labform)
     {
         if (ModelState.IsValid)
         {

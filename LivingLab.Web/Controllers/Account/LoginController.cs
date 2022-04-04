@@ -81,7 +81,7 @@ public class LoginController : Controller
                     }
                     else
                     {
-                        return RedirectToAction("Dashboard", "LivingLabDashboard");
+                        return RedirectToAction("Dashboard", "Home");
                     }
                 }
                 else
@@ -103,7 +103,6 @@ public class LoginController : Controller
     
     [Authorize]
     /*User routes to verify code*/
-    [Route("verifycodeemail")]
     public IActionResult VerifyCodeEmail()
     {
         return View("VerifyCodeEmail");
@@ -111,7 +110,6 @@ public class LoginController : Controller
 
     [HttpPost]
     /* User has to go to their email to verify 6 digit code */
-    [Route("verifycodeemail")]
     public async Task<ActionResult> VerifyCodeEmail(VerifyViewModel inputDetails)
     {
         // Get the User after the user has logged in
@@ -119,7 +117,7 @@ public class LoginController : Controller
         var result = await _accountService.VerifyCode(user.Id, inputDetails);
         if (result)
         {
-            return RedirectToAction("Dashboard", "LivingLabDashboard");
+            return RedirectToAction("Dashboard", "Home");
         }
         else
         {
@@ -131,7 +129,6 @@ public class LoginController : Controller
     
     [Authorize]
     /*User routes to verify code*/
-    [Route("newcodeemail")]
     public async Task<RedirectToActionResult> NewCodeEmail()
     {
         ApplicationUser user = await _userManager.GetUserAsync(User);
@@ -162,7 +159,7 @@ public class LoginController : Controller
         var result = await _accountService.VerifyCode(user.Id, inputDetails);
         if (result)
         {
-            return RedirectToAction("Dashboard", "LivingLabDashboard");
+            return RedirectToAction("Dashboard", "Home");
         }
         else
         {
@@ -189,7 +186,6 @@ public class LoginController : Controller
 
     [HttpGet]
     [AllowAnonymous]
-    [Route("resetpassword")]
     /*User can change their password on this page after clicking on their email link*/
     public IActionResult ResetPassword(string token, string email)
     {
@@ -202,7 +198,6 @@ public class LoginController : Controller
     }
 
     [HttpPost]
-    [Route("resetpassword")]
     /*Allow users to change their password*/
     public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
     {
@@ -232,7 +227,6 @@ public class LoginController : Controller
     }
 
     [HttpGet]
-    [Route("forgotpassword")]
     /*Goes to the password recovery page*/
     public async Task<ViewResult> ForgotPassword()
     {
@@ -241,7 +235,6 @@ public class LoginController : Controller
 
     [HttpPost]
     [AllowAnonymous]
-    [Route("forgotpassword")]
     /*Users can send a reset link using this post function*/
     public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
     {
@@ -270,7 +263,6 @@ public class LoginController : Controller
     }
     
     [AllowAnonymous]
-    [Route("contactadmin")]
     /*Contact admin page if user lost their email / phone number*/
     public async Task<ViewResult> ContactAdmin()
     {

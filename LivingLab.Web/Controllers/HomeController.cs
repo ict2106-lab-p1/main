@@ -1,5 +1,7 @@
 using LivingLab.Core.Entities.Identity;
+using LivingLab.Web.Models.ViewModels.LivingLabDashboard;
 using LivingLab.Web.UIServices.LabProfile;
+using LivingLab.Web.UIServices.LivingLabDashboard;
 
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -16,13 +18,15 @@ public class HomeController : Controller
     private readonly ILogger<HomeController> _logger;
     private readonly SignInManager<ApplicationUser> _signInManager;
     private readonly ILabProfileService _labProfileService;
+    private readonly ILivingLabDashboardService _dashboardService;
 
 
-    public HomeController(ILogger<HomeController> logger, SignInManager<ApplicationUser> signInManager, ILabProfileService labProfileService)
+    public HomeController(ILogger<HomeController> logger, SignInManager<ApplicationUser> signInManager, ILabProfileService labProfileService, ILivingLabDashboardService dashboardService)
     {
         _logger = logger;
         _signInManager = signInManager;
         _labProfileService = labProfileService;
+        _dashboardService = dashboardService;
     }
 
     /*Reroute the users to the login page*/
@@ -35,10 +39,10 @@ public class HomeController : Controller
 
     /*Reroute the users to the main dashboard*/
     [Authorize(Roles = "User,Labtech,Admin")]
-    public IActionResult Dashboard()
+    public async Task<IActionResult> Dashboard()
     {
-        //TODO: RedirectToLivingLab, for now its directing to lab profile
-        return RedirectToAction("ViewLab", "LabProfile");
+        LivingLabDashboardViewModel viewLabs = await _dashboardService.GetAllLabs();
+        return View("Dashboard", viewLabs);
     }
 
     /*Privacy page which was built in*/

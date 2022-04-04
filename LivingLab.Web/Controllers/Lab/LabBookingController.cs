@@ -2,6 +2,7 @@ using LivingLab.Core.Entities.Identity;
 using LivingLab.Web.Models.ViewModels.Booking;
 using LivingLab.Web.UIServices.LabBooking;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,6 +28,7 @@ public class LabBookingController: Controller
 
 
     }
+    [Authorize]
     /*Admin can see this page and register*/
     public IActionResult Register(int labid = 0)
     {
@@ -34,6 +36,7 @@ public class LabBookingController: Controller
         return View("Register", newForm);
     }
     
+    [Authorize(Roles = "User,Admin,Labtech")]
     [HttpGet]
     public async Task<IActionResult> BookingsOverview(BookingManagementViewModel listOfBookings)
     {    
@@ -42,6 +45,7 @@ public class LabBookingController: Controller
          return View("Index", listOfBookings);
     }
     
+    [Authorize(Roles = "User,Admin,Labtech")]
     [HttpGet]
     public async Task<IActionResult> ViewAllBookings(BookingTableManagementViewModel listOfBookings)
     {
@@ -52,6 +56,7 @@ public class LabBookingController: Controller
         return View("ViewBooking", listOfBookings);
     }
 
+    [Authorize(Roles = "User,Admin,Labtech")]
     [HttpPost]
        public async Task<IActionResult> BookRegister(BookFormModel labModel)
     {
