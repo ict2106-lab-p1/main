@@ -11,12 +11,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace LivingLab.Web.Controllers;
+namespace LivingLab.Web.Controllers.Account;
 
 /// <remarks>
 /// Author: Team P1-5
 /// </remarks>
-[Route("login")]
 public class LoginController : Controller
 {
     private readonly ILogger<LoginController> _logger;

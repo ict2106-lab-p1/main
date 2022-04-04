@@ -13,7 +13,6 @@ namespace LivingLab.Web.Controllers;
 /// <remarks>
 /// Author: Team P1-5
 /// </remarks>
-[Route("LabProfile")]
 public class LabProfileController: Controller
 {
     private readonly ILabProfileService _labProfileService;
@@ -27,39 +26,38 @@ public class LabProfileController: Controller
         _userManager = userManager;
     }
     
-    [Route("viewlab")]
     public async Task<IActionResult> ViewLab(MultiModel model)
     {
         model.info = await _labProfileService.GetAllLabAccounts();
         return View("Index", model); 
     }
     
+    
     // [Authorize(Roles="Admin")]
     /*Redirect to lab view*/
-    [Route("labregister")]
+    [HttpGet]
     public async Task<IActionResult> LabRegister()
     {
-        /*var labform = new LabRegisterViewModel() {LabICList = await _userManager.GetUsersInRoleAsync("labtech")};*/
         return View("LabRegister");
     }
 
     /*[Authorize(Roles="Admin")]*/
-    [HttpPost]
     /*Create labs by admins*/
-    public async Task<IActionResult> LabRegisterPost(LabRegisterViewModel labModel)
+    [HttpPost]
+    public async Task<IActionResult> LabRegisterPost(LabRegisterViewModel labform)
     {
         if (ModelState.IsValid)
         {
-            await _labProfileService.NewLab(labModel);
+            await _labProfileService.NewLab(labform);
             return View("_CompleteRegister");
         }
-        return View(nameof(LabRegister));
-        
+        return View("LabRegister");
     }
     
-    [Route("view/{labLocation}")]
-    public async Task<ViewResult> LabProfile(MultiModel combinedModels, string labLocation)
+    [Route("ViewLab/{labLocation}")]
+    public async Task<ViewResult> LabProfile(string labLocation)
     {
+        MultiModel combinedModels = new MultiModel();
         var labModel = await _labProfileService.GetLabProfileDetails(labLocation);
         var devicestype = await _labProfileService.ViewDeviceType(labLocation);
         var accessoriestype = await _labProfileService.ViewAccessoryType(labLocation);
