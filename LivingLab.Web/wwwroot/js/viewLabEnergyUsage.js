@@ -82,10 +82,10 @@ function initMedian(data) {
         duration: 1500,
         easing: 'linear',
         step: function() {
-            $median.text(Math.floor(this.countNum));
+            $median.text(Math.floor(this.countNum).toFixed(2));
         },
         complete: function() {
-            $median.text(median);
+            $median.text(median.toFixed(2));
         }
     });
 }

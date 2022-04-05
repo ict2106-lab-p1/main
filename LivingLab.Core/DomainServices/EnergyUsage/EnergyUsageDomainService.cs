@@ -33,7 +33,7 @@ public class EnergyUsageDomainService : IEnergyUsageDomainService
             .Select(log => new EnergyUsageLog
             {
                 LoggedDate = log.Key,
-                EnergyUsage = log.Sum(l => l.EnergyUsage),
+                EnergyUsage = log.Sum(l => l.EnergyUsage) / 1000,
                 Device = log.First().Device,
                 Lab = log.First().Lab
             })
