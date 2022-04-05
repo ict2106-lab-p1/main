@@ -16,13 +16,11 @@ namespace LivingLab.Web.Controllers.EnergyUsage;
 public class EnergyUsageAnalysisController : Controller
 {
     private readonly ILogger<EnergyUsageAnalysisController> _logger;
-    private readonly IEnergyUsageRepository _repository;
     private readonly IEnergyUsageAnalysisUIService _analysisService;
     
-    public EnergyUsageAnalysisController(ILogger<EnergyUsageAnalysisController> logger, IEnergyUsageRepository repository, IEnergyUsageAnalysisUIService analysisService)
+    public EnergyUsageAnalysisController(ILogger<EnergyUsageAnalysisController> logger, IEnergyUsageAnalysisUIService analysisService)
     {
         _logger = logger;
-        _repository = repository;
         _analysisService = analysisService;
     }
     public async Task<IActionResult> Index(string? LabLocation = "NYP-SR7C")
@@ -30,7 +28,7 @@ public class EnergyUsageAnalysisController : Controller
         return View(GetData());
     }
 
-    public IActionResult DeviceMoreData()
+    public IActionResult DeviceMoreDetail()
     {
         ViewBag.Logs = "-";
         return View();
