@@ -66,6 +66,7 @@ public class LabProfileController: Controller
 
         combinedModels.eachlab = new LabInformationModel()
         {
+            LabId = labModel.LabId,
             LabLocation = labModel.LabLocation,
             LabInCharge = labModel.LabInCharge,
             Capacity = labModel.Capacity,
