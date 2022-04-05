@@ -142,6 +142,11 @@ function getLineChart(data, start = null, end = null) {
         options: {
             plugins: {
                 zoom: getZoomOptions(),
+                scales: {
+                    x: {
+                        min: 100
+                    }
+                }
             },
             responsive: true
         }
@@ -167,7 +172,7 @@ function getZoomOptions() {
             pinch: {
                 enabled: true
             },
-            mode: 'x'
+            mode: 'x',
         }
     }
 }
