@@ -1,14 +1,7 @@
-using System.Diagnostics;
-
 using LivingLab.Core.Entities.Identity;
-using LivingLab.Web.Models.ViewModels;
-using LivingLab.Web.Models.ViewModels.LabProfile;
-using LivingLab.Web.Models.ViewModels.UserManagement;
+using LivingLab.Web.Models.ViewModels.LivingLabDashboard;
 using LivingLab.Web.UIServices.LabProfile;
-using LivingLab.Web.UIServices.UserManagement;
-using LivingLab.Web.Models.ViewModels.Login;
-using LivingLab.Web.UIServices.Account;
-using LivingLab.Web.UIServices.NotificationManagement;
+using LivingLab.Web.UIServices.LivingLabDashboard;
 
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -23,15 +16,17 @@ namespace LivingLab.Web.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
-    private readonly ILabProfileService _labProfileService;
     private readonly SignInManager<ApplicationUser> _signInManager;
+    private readonly ILabProfileService _labProfileService;
+    private readonly ILivingLabDashboardService _dashboardService;
 
 
-    public HomeController(ILogger<HomeController> logger, SignInManager<ApplicationUser> signInManager,  ILabProfileService labProfileService)
+    public HomeController(ILogger<HomeController> logger, SignInManager<ApplicationUser> signInManager, ILabProfileService labProfileService, ILivingLabDashboardService dashboardService)
     {
         _logger = logger;
         _signInManager = signInManager;
         _labProfileService = labProfileService;
+        _dashboardService = dashboardService;
     }
 
     /*Reroute the users to the login page*/
@@ -44,16 +39,14 @@ public class HomeController : Controller
 
     /*Reroute the users to the main dashboard*/
     [Authorize(Roles = "User,Labtech,Admin")]
-    [Route ("dashboard")]
-    public IActionResult Dashboard()
+    public async Task<IActionResult> Dashboard()
     {
-        //TODO: RedirectToLivingLab, for now its directing to lab profile
-        return RedirectToAction("ViewLab", "LabProfile");
+        LivingLabDashboardViewModel viewLabs = await _dashboardService.GetAllLabs();
+        return View("Dashboard", viewLabs);
     }
 
     /*Privacy page which was built in*/
     [Authorize(Roles = "Admin")]
-    [Route("privacy")]
     public IActionResult Privacy()
     {
         return View("Privacy");
@@ -61,7 +54,6 @@ public class HomeController : Controller
     
     /*Can be called to remove the user*/
     [Authorize(Roles = "User,Labtech,Admin")]
-    [Route("logout")]
     public IActionResult Logout()
     {
         _logger.LogInformation("Logging out");
@@ -72,19 +64,31 @@ public class HomeController : Controller
         return RedirectToAction("Index", "Login");
     }
 
+    [AllowAnonymous]
+    /*Simple access denied page*/
+    public IActionResult AccessDenied()
+    {
+        return View("_AccessDenied");
+    }
+    
+    /*Navigation bar population of data information*/
+    public async Task<IActionResult> GetLabs()
+    {
+        /*var renderList = "";*/
+        var listOfLabs = await _labProfileService.GetAllLabAccounts();
+        /*foreach (var lab in listOfLabs)
+        {
+            renderList += "<li><a class=\"@Html.ActiveClass(\"LabBooking\", \"BookingsOverview\") hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer\"asp-controller=\"LabProfile\" asp-action=\"LabProfile\" asp-route-labLocation=\""+lab.LabLocation+"\"><span>"+lab.LabLocation+"</span></a></li>";
+        }*/
+        //query database, and get the data.
+        return Json(listOfLabs);
+    }
+
     /*Not in use, just an example*/
     [Route("/example")]
     public IActionResult ExamplePage()
     {
         return View("ExamplePage");
     }
-
-    // [Route("/Index")]
-    // public async Task<IActionResult> Labs()
-    // {
-    //     ViewLabProfileViewModel viewLabProfileViewModel = await _labProfileService.GetAllLabAccounts();
-    //     Console.WriteLine("test");
-    //     return View("Index", viewLabProfileViewModel); 
-    // }
 
 }
