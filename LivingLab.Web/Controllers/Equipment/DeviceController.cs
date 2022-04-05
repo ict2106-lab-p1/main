@@ -1,16 +1,14 @@
 using System.Diagnostics;
 
-using LivingLab.Core.Entities;
 using LivingLab.Core.Entities.Identity;
-
-using Microsoft.AspNetCore.Mvc;
 using LivingLab.Web.Models.ViewModels;
 using LivingLab.Web.Models.ViewModels.Device;
 using LivingLab.Web.UIServices.Device;
 
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 
-namespace LivingLab.Web.Controllers;
+namespace LivingLab.Web.Controllers.Equipment;
 /// <remarks>
 /// Author: Team P1-3
 /// </remarks>

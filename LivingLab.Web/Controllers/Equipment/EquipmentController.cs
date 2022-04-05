@@ -7,7 +7,7 @@ using LivingLab.Web.UIServices.Equipment;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace LivingLab.Web.Controllers;
+namespace LivingLab.Web.Controllers.Equipment;
 
 
 [Authorize(Roles = "Labtech")]
