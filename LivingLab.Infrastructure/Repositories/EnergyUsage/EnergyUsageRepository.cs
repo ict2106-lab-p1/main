@@ -67,8 +67,11 @@ public class EnergyUsageRepository : Repository<EnergyUsageLog>, IEnergyUsageRep
     {
         var now = DateTime.Now;
         
-        start ??= now.AddDays(-30).Date + new TimeSpan(0, 0, 0);;
-        end ??= now.Date + new TimeSpan(23, 59, 59);
+        start ??= now.AddDays(-30).Date;
+        end ??= now.Date;
+
+        start += new TimeSpan(0, 0, 0);
+        end += new TimeSpan(23, 59, 59);
         
         var logsForLabInDateRange = await IncludeReferences(
                 _context.EnergyUsageLogs
@@ -84,8 +87,11 @@ public class EnergyUsageRepository : Repository<EnergyUsageLog>, IEnergyUsageRep
     {
         var now = DateTime.Now;
         
-        start ??= now.AddDays(-30).Date + new TimeSpan(0, 0, 0);;
-        end ??= now.Date + new TimeSpan(23, 59, 59);
+        start ??= now.AddDays(-30).Date;
+        end ??= now.Date;
+
+        start += new TimeSpan(0, 0, 0);
+        end += new TimeSpan(23, 59, 59);
         
         Console.WriteLine("START: " + start);
         Console.WriteLine("END: " + end);
@@ -103,8 +109,11 @@ public class EnergyUsageRepository : Repository<EnergyUsageLog>, IEnergyUsageRep
     {
         var now = DateTime.Now;
         
-        start ??= now.AddDays(-30).Date + new TimeSpan(0, 0, 0);;
-        end ??= now.Date + new TimeSpan(23, 59, 59);
+        start ??= now.AddDays(-30).Date;
+        end ??= now.Date;
+
+        start += new TimeSpan(0, 0, 0);
+        end += new TimeSpan(23, 59, 59);
         
         var logsForLabInDateRange = await IncludeReferences(
                 _context.EnergyUsageLogs

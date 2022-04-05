@@ -141,7 +141,7 @@ function getLineChart(data, start = null, end = null) {
         },
         options: {
             plugins: {
-                zoom: getZoomOptions()
+                zoom: getZoomOptions(),
             }
         }
     })
