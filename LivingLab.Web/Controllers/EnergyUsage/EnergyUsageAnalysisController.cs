@@ -30,13 +30,13 @@ public class EnergyUsageAnalysisController : Controller
         return View(GetData());
     }
 
-    public IActionResult DMoreData()
+    public IActionResult DeviceMoreData()
     {
         ViewBag.Logs = "-";
         return View();
     }
 
-    public IActionResult LMoreData()
+    public IActionResult LabMoreDetail()
     {
         ViewBag.Logs = "-";
         return View();
