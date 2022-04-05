@@ -17,14 +17,16 @@ public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
     private readonly SignInManager<ApplicationUser> _signInManager;
+    private readonly UserManager<ApplicationUser> _userManager;
     private readonly ILabProfileService _labProfileService;
     private readonly ILivingLabDashboardService _dashboardService;
 
 
-    public HomeController(ILogger<HomeController> logger, SignInManager<ApplicationUser> signInManager, ILabProfileService labProfileService, ILivingLabDashboardService dashboardService)
+    public HomeController(ILogger<HomeController> logger, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ILabProfileService labProfileService, ILivingLabDashboardService dashboardService)
     {
         _logger = logger;
         _signInManager = signInManager;
+        _userManager = userManager;
         _labProfileService = labProfileService;
         _dashboardService = dashboardService;
     }
@@ -74,14 +76,42 @@ public class HomeController : Controller
     /*Navigation bar population of data information*/
     public async Task<IActionResult> GetLabs()
     {
-        /*var renderList = "";*/
+        var renderList = "";
         var listOfLabs = await _labProfileService.GetAllLabAccounts();
-        /*foreach (var lab in listOfLabs)
+        foreach (var lab in listOfLabs)
         {
-            renderList += "<li><a class=\"@Html.ActiveClass(\"LabBooking\", \"BookingsOverview\") hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer\"asp-controller=\"LabProfile\" asp-action=\"LabProfile\" asp-route-labLocation=\""+lab.LabLocation+"\"><span>"+lab.LabLocation+"</span></a></li>";
-        }*/
+            renderList += "<li><a href=\"/ViewLab/" + lab.LabLocation +
+                          "\" class=\"hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer\"><span>" +
+                          lab.LabLocation + "</span></a></li>\n";
+        }
         //query database, and get the data.
-        return Json(listOfLabs);
+        return Json(renderList);
+    }
+    
+    /*Navigation bar populate review equipment for labtechs*/
+    public async Task<IActionResult> GetReviewEquipment()
+    {
+        var renderList = "";
+        var user = await _userManager.GetUserAsync(User);
+        var listOfLabs = await _labProfileService.GetAllLabAccounts();
+        foreach (var lab in listOfLabs)
+        {
+            if (user.Id == lab.LabInCharge)
+            {
+                renderList += "<li><a href=\"/Equipment/ReviewEquipment/" + lab.LabLocation +
+                              "\" class=\"hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer\"><span>" +
+                              lab.LabLocation + "</span></a></li>\n";
+            }
+            
+        }
+
+        if (renderList == "")
+        {
+            renderList =
+                "<a class=\"hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer\"><span>Not Lab In Charge</span></a>";
+        }
+        //query database, and get the data.
+        return Json(renderList);
     }
 
     /*Not in use, just an example*/
