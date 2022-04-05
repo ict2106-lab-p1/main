@@ -79,6 +79,51 @@ function deleteRow() {
 }
 
 /**
+ * Save the data to the database.
+ */
+function submit(e) {
+    e.preventDefault();
+    disableUploadBtn();
+    const file = $("#fileUpload")[0].files[0];
+    const formData = new FormData();
+    formData.append("file", file);
+
+    $("#progressBarContainer").removeClass("hidden")
+    const $progressBar = $("#progressBar");
+    $progressBar.show();
+
+    $.ajax({
+        url: "/ManualLogs/Upload",
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(count) {
+            $progressBar.removeClass("w-0");
+            $progressBar.addClass("w-full");
+            setTimeout(() => {
+                Swal.fire({
+                    title: "Success!",
+                    text: `${count} logs saved successfully!`,
+                    icon: "success",
+                    confirmButtonColor: "#363740",
+                }).then(function() {
+                    window.location.href = "/ManualLogs/FileUpload";
+                });
+            }, 1000)
+        },
+        error: function(response) {
+            Swal.fire({
+                title: "Error!",
+                text: "Something went wrong!",
+                icon: "error",
+            });
+            enableUploadBtn()
+        },
+    });
+}
+
+/**
  * Disable the submit button
  */
 function disableUploadBtn() {
@@ -200,5 +245,9 @@ function getData() {
             LoggedDate: loggedAt,
         });
     });
-    return data;
-}
+    return data; <<
+    << << < HEAD
+} ===
+=== =
+} >>>
+>>> > 1394 b666b773c608c36352663c0b539da6a431c0

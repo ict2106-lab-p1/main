@@ -1,13 +1,10 @@
-using System.Diagnostics;
-
-using LivingLab.Core.Entities;
-using LivingLab.Web.Models.ViewModels;
 using LivingLab.Web.Models.ViewModels.SessionStats;
 using LivingLab.Web.UIServices.SessionStats;
 
-namespace LivingLab.Web.Controllers;
-
 using Microsoft.AspNetCore.Mvc;
+
+namespace LivingLab.Web.Controllers.Account;
+
 /// <remarks>
 /// Author: Team P1-3
 /// </remarks>
