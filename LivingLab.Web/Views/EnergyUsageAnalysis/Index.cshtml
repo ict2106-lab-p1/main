@@ -32,7 +32,7 @@
             <div class="flex items-end">
                 <div class="relative inline-flex">
                     <select id="selectLabLocation" class="input-border border-gray-300 text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
-                        @* should for loop this part to get all avail (can see viewlabEU)  *@
+                        @* TODO: should for loop this part to get all available lab*@
                         <option>NYP-SR7C</option>
                         <option>NYP-SR2A</option>
                     </select>
@@ -62,7 +62,10 @@
     </div>
 </div>
 
+<div class=" my-8">
 <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" asp-controller="EnergyUsageAnalysis" asp-action="Export">Export</a>
+</div>
+
 <div class="flex flex-col">
     <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="inline-block py-2 min-w-full sm:px-6 lg:px-8">
@@ -95,7 +98,7 @@
                                 @item.DeviceType
                             </td>
                             <td class="py-4 px-6 text-sm text-gray-900 whitespace-nowrap dark:text-gray-400">
-                                @item.TotalEnergyUsage Wh
+                                @item.TotalEnergyUsage kWh
                             </td>
                             <td class="py-4 px-6 text-sm text-gray-900 whitespace-nowrap dark:text-gray-400">
                                 $ @item.EnergyUsageCost
@@ -143,7 +146,7 @@
                                 $ @item.EnergyUsageCost
                             </td>
                             <td class="py-4 px-6 text-sm text-gray-900 whitespace-nowrap dark:text-gray-400">
-                                @item.EnergyUsageIntensity kW/m<sup>2</sup>
+                                @item.EnergyUsageIntensity kWh/m<sup>2</sup>
                             </td>
                         </tr>
                     }
@@ -156,13 +159,14 @@
 
 @section Scripts
 {
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
     <script src="~/lib/jquery-ui-1.13.1/jquery-ui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
     <script src="~/js/viewEnergyUsageTrendAllLab.js"></script>
     <script src="~/js/viewEnergyUsageTrendSelectedLab.js"></script>
-
+    <script src="~/js/labAndDeviceTable.js"></script>
     <script>
-$(document).ready(function() {
+        $(document).ready(function() {
+    console.log("imhere");
     $('#device').DataTable( {
         initComplete: function () {
             this.api().columns().every( function () {
@@ -208,5 +212,5 @@ $(document).ready(function() {
         }
     } );
 } );
-</script>
+    </script>
 }
