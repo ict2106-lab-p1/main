@@ -27,9 +27,7 @@
                     <div>
                         <p class="font-semibold text-base ml-12 mb-4">@Html.Raw(Model.eachlab.Occupied) / @Html.Raw(Model.eachlab.Capacity) people</p>
                     </div>
-
                 </div>
-
 
                 <div class="flex">
                     <div class="w-6/12 flex flex-col">
@@ -46,7 +44,7 @@
 
 
                         <div class="flex justify-end mr-12">
-                            <a class="no-underline hover:underline" asp-controller="Device" asp-action="ViewType" asp-route-labLocation="@Model.eachlab.LabLocation">See more</a>
+                            <a class="no-underline hover:underline text-primary font-semibold mt-2" asp-controller="Device" asp-action="ViewType" asp-route-labLocation="@Model.eachlab.LabLocation">See more</a>
                         </div>
 
                     </div>
@@ -62,7 +60,7 @@
                         </div>
 
                         <div class="flex justify-end mr-12">
-                            <a class="no-underline hover:underline" asp-controller="Accessory" asp-action="ViewAccessoryType" asp-route-labLocation="@Model.eachlab.LabLocation">See more</a>
+                            <a class="no-underline hover:underline text-primary font-semibold mt-2" asp-controller="Accessory" asp-action="ViewAccessoryType" asp-route-labLocation="@Model.eachlab.LabLocation">See more</a>
                         </div>
                     </div>
                 </div>
@@ -73,8 +71,8 @@
                         <div class="bg-gray-200 mx-12 mt-4 p-4 rounded-lg border border-gray-300 ">
                              <p class="font-bold text-xl text-center">Lab User Usage</p>
                         </div>
-                        <div class="flex justify-end mr-12">
-                            <a class=" no-underline hover:underline" asp-controller="LabProfile" asp-action="">See more</a>
+                        <div class="flex justify-center">
+                            <a class="no-underline hover:underline text-primary font-semibold mt-2" asp-controller="LabProfile" asp-action="">See more</a>
                         </div>
 
                     </div>
@@ -82,23 +80,19 @@
                         <div class="bg-gray-200 mx-12 mt-4 p-4 rounded-lg border border-gray-300 ">
                              <p class="font-bold text-xl text-center">Lab Device Usage</p>
                         </div>
-                        <div class="flex justify-end mr-12">
-                            <a class=" no-underline hover:underline" asp-controller="LabProfile" asp-action="">See more</a>
+                        <div class="flex justify-center">
+                            <a class="no-underline hover:underline text-primary font-semibold mt-2" asp-controller="LabProfile" asp-action="">See more</a>
                         </div>
-                    
                     </div>
                     <div class="mt-4 mb-24 flex flex-col w-4/12">
                         <div class="bg-gray-200 mx-12 mt-4 p-4 rounded-lg border border-gray-300 ">
                             <p class="font-bold text-xl text-center">Lab Energy Usage</p>
                         </div>
-                        <div class="flex justify-end mr-12">
-                            <a class=" no-underline hover:underline" asp-controller="LabProfile" asp-action="">See more</a>
+                        <div class="flex justify-center">
+                            <a class="no-underline hover:underline text-primary font-semibold mt-2" asp-controller="LabProfile" asp-action="">See more</a>
                         </div>
-                                        
                     </div>
-                    
-                    
-                    </div>
+                </div>
             </div>
         </div>
     </div>
