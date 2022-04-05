@@ -13,6 +13,7 @@ public class EnergyUsageDomainService : IEnergyUsageDomainService
 {
     private readonly ILabProfileRepository _labRepository;
     private readonly IEnergyUsageRepository _energyUsageRepository;
+    private const int OneThousand = 1000;
     public EnergyUsageDomainService(ILabProfileRepository labRepository, IEnergyUsageRepository energyUsageRepository)
     {
         _labRepository = labRepository;
@@ -33,7 +34,7 @@ public class EnergyUsageDomainService : IEnergyUsageDomainService
             .Select(log => new EnergyUsageLog
             {
                 LoggedDate = log.Key,
-                EnergyUsage = log.Sum(l => l.EnergyUsage) / 1000,
+                EnergyUsage = log.Sum(l => l.EnergyUsage) / OneThousand,
                 Device = log.First().Device,
                 Lab = log.First().Lab
             })

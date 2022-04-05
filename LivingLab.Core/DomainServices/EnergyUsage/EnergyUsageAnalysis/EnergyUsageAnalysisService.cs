@@ -21,7 +21,8 @@ public class EnergyUsageAnalysisService : IEnergyUsageAnalysisService
 {
     private readonly IEnergyUsageRepository _repository;
     private readonly ILabProfileRepository _labRepository;
-    
+    private const int OneThousand = 1000;
+
     private readonly IEnergyUsageCalculationService _calculator = new EnergyUsageCalculationService();
 
     private double cost = 0.2544;
@@ -82,7 +83,7 @@ public class EnergyUsageAnalysisService : IEnergyUsageAnalysisService
             .Select(log => new EnergyUsageLog
             {
                 LoggedDate = log.Key,
-                EnergyUsage = log.Sum(l => l.EnergyUsage),
+                EnergyUsage = log.Sum(l => l.EnergyUsage) / OneThousand,
                 Device = log.First().Device,
                 Lab = log.First().Lab
             })
@@ -114,7 +115,7 @@ public class EnergyUsageAnalysisService : IEnergyUsageAnalysisService
             .Select(log => new EnergyUsageLog
             {
                 LoggedDate = log.Key,
-                EnergyUsage = log.Sum(l => l.EnergyUsage),
+                EnergyUsage = log.Sum(l => l.EnergyUsage) / OneThousand,
                 Device = log.First().Device,
                 Lab = log.First().Lab
             })
