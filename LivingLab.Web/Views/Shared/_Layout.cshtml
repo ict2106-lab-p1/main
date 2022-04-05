@@ -11,7 +11,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>@ViewData["Title"] - Living Lab Dashboard</title>
+    <title>@ViewData["Title"] | Living Lab Dashboard</title>
 
     <link rel="stylesheet" href="~/dist/site.css" asp-append-version="true"/>
     <link
@@ -53,9 +53,9 @@
     class="z-100 side-bar w-60 lg:block bg-dark space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out">
 <div
     class="w-full flex px-4 pr-6 my-auto items-center justify-start ">
-    <img src="/images/logo.png" class="h-12 w-12"/>
-    <a class="font-semibold text-2xl text-gray-400 pl-4" asp-action="" asp-controller="Home">
-        Living Lab
+    @*<img src="/images/logo.png" class="h-12 w-12"/>*@
+    <a class="font-semibold text-2xl text-white" asp-action="" asp-controller="Home">
+        Living Lab Dashboard
     </a>
 </div>
 <ul class="relative">
@@ -176,7 +176,7 @@
         </div>
         <div class="collapse-content text-gray-400">
             <ul>
-                <li class="@Html.ActiveClass("EnergyUsage", "Index") relative hover:bg-highlight hover:text-gray-700 ease-in duration-300">
+                <li class="@Html.ActiveClass("", "") relative hover:bg-highlight hover:text-gray-700 ease-in duration-300">
                     <a class="hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer"
                        asp-controller="EnergyUsage" asp-action="Index">
                         <span>Energy Usage</span>
@@ -219,14 +219,14 @@
             <ul>
                 <li>
                     <a
-                        class="@Html.ActiveClass("UserManagement", "UserOverview") hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer"
+                        class="@Html.ActiveClass("", "") hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer"
                         asp-controller="UserManagement" asp-action="UserAccounts" asp-route-userId="@userId">
                         <span>Users Overview</span>
                     </a>
                 </li>
                 <li>
                     <a
-                        class="@Html.ActiveClass("Account", "Register") hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer"
+                        class="@Html.ActiveClass("", "") hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer"
                         asp-controller="Account" asp-action="Register">
                         <span>Add Users</span>
                     </a>
