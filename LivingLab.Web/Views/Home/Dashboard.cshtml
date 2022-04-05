@@ -180,17 +180,20 @@
                                         <td class="px-12 py-4 text-sm text-gray-900">
                                             @if (lab.LabStatus == "Available")
                                             {
-                                                <span class="rounded-full badge badge-xs bg-green-500"></span> @lab.LabStatus
+                                                <span class="rounded-full badge badge-xs badge-success"></span> @lab.LabStatus
                                             }
                                             else
                                             {
-                                                <span class="rounded-full badge badge-xs bg-red-500"></span> @lab.LabStatus
+                                                <span class="rounded-full badge badge-xs badge-error"></span> @lab.LabStatus
                                             }
                                         </td>
                                         <td class="px-12 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <label class="btn" data-id="@lab.LabId">View Profile</label>
+                                        <label class="btn btn-primary" data-id="@lab.LabId">
+                                            <a asp-controller="LabProfile" asp-action="ViewLab" asp-route-labLocation="@lab.LabLocation">
+                                                View Profile
+                                            </a> 
+                                        </label>
                                         </td>
-
                                     </tr>
                                 }
                                 <tr/>
