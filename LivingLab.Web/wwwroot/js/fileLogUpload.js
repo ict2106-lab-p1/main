@@ -83,14 +83,11 @@ function deleteRow() {
  */
 function submit(e) {
     e.preventDefault();
-    disableUploadBtn();
+    const $uploadBtn = $(this);
+    $uploadBtn.hide();
     const file = $("#fileUpload")[0].files[0];
     const formData = new FormData();
     formData.append("file", file);
-
-    $("#progressBarContainer").removeClass("hidden")
-    const $progressBar = $("#progressBar");
-    $progressBar.show();
 
     $.ajax({
         url: "/ManualLogs/Upload",
@@ -99,18 +96,14 @@ function submit(e) {
         processData: false,
         contentType: false,
         success: function(count) {
-            $progressBar.removeClass("w-0");
-            $progressBar.addClass("w-full");
-            setTimeout(() => {
-                Swal.fire({
-                    title: "Success!",
-                    text: `${count} logs saved successfully!`,
-                    icon: "success",
-                    confirmButtonColor: "#363740",
-                }).then(function() {
-                    window.location.href = "/ManualLogs/FileUpload";
-                });
-            }, 1000)
+            Swal.fire({
+                title: "Success!",
+                text: `${count} logs saved successfully!`,
+                icon: "success",
+                confirmButtonColor: "#363740",
+            }).then(function() {
+                window.location.href = "/ManualLogs/FileUpload";
+            });
         },
         error: function(response) {
             Swal.fire({
@@ -118,7 +111,7 @@ function submit(e) {
                 text: "Something went wrong!",
                 icon: "error",
             });
-            enableUploadBtn()
+            $uploadBtn.show();
         },
     });
 }
@@ -245,9 +238,5 @@ function getData() {
             LoggedDate: loggedAt,
         });
     });
-    return data; <<
-    << << < HEAD
-} ===
-=== =
-} >>>
->>> > 1394 b666b773c608c36352663c0b539da6a431c0
+    return data;
+}
