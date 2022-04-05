@@ -124,19 +124,19 @@
                         <span>Create New Lab</span>
                     </a>
                 </li>
-                <div>
+                <div id="returnlabs">
                     <li>
-                        <a class="hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer"asp-controller="LabProfile" asp-action="LabProfile" asp-route-labLocation="NYP-SR7A">
+                        <a class="hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer" asp-controller="LabProfile" asp-action="LabProfile" asp-route-labLocation="NYP-SR7A">
                             <span>NYP-SR7A</span>
                         </a>
                     </li>
                     <li>
-                        <a class="hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer"asp-controller="LabProfile" asp-action="LabProfile" asp-route-labLocation="NYP-SR7B">
+                        <a class="hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer" asp-controller="LabProfile" asp-action="LabProfile" asp-route-labLocation="NYP-SR7B">
                             <span>NYP-SR7B</span>
                         </a>
                     </li>
                     <li>
-                        <a class="hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer"asp-controller="LabProfile" asp-action="LabProfile" asp-route-labLocation="NYP-SR7C">
+                        <a class="hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer" asp-controller="LabProfile" asp-action="LabProfile" asp-route-labLocation="NYP-SR7C">
                             <span>NYP-SR7C</span>
                         </a>
                     </li>
@@ -147,11 +147,23 @@
 </li>
 @*@if (SignInManager.IsSignedIn(User) && User.IsInRole("labtech")){*@
 <li>
-    <div class="@Html.ActiveClass("", "") collapse-title text-gray-400 px-5 font-medium  w-full flex items-center">
-        <a asp-controller="Equipment" asp-action="ReviewEquipment" asp-route-labLocation="NYP-SR7A">
+    <div tabindex="0" class="collapse collapse-arrow">
+        <input type="checkbox">
+        <div class="@Html.ActiveClass("", "") collapse-title text-gray-400 px-5 font-medium  w-full flex items-center">
             Review Equipment
-        </a>
-        <hr class="border-gray-600"/>
+            <hr class="border-gray-600"/>
+        </div>
+        <div class="collapse-content text-gray-400">
+            <ul>
+                <div id="returnequipment">
+                    <li>
+                        <a class="hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer">
+                            <span>Not Lab In Charge</span>
+                        </a>
+                    </li>
+                </div>
+            </ul>
+        </div>
     </div>
 </li>
 

@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace LivingLab.Web.Controllers;
+namespace LivingLab.Web.Controllers.Lab;
 /// <remarks>
 /// Author: Team P1-5
 /// </remarks>
@@ -18,14 +18,13 @@ public class LabProfileController: Controller
     private readonly ILabProfileService _labProfileService;
     private readonly ILogger<LabProfileController> _logger;
     private readonly IUserManagementService _accountService;
-    private readonly UserManager<ApplicationUser> _userManager;
 
-    public LabProfileController(ILabProfileService labProfileService, ILogger<LabProfileController> logger, UserManager<ApplicationUser> userManager)
+    public LabProfileController(ILabProfileService labProfileService, ILogger<LabProfileController> logger)
     {  _labProfileService = labProfileService;
         _logger = logger;
-        _userManager = userManager;
     }
     
+    [HttpGet]
     [Authorize(Roles = "Users,Admin,Labtech")]
     public async Task<IActionResult> ViewLab(MultiModel model)
     {
@@ -42,6 +41,7 @@ public class LabProfileController: Controller
         return View("LabRegister");
     }
 
+    [HttpPost]
     [Authorize(Roles="Admin")]
     /*Create labs by admins*/
     [HttpPost]
@@ -55,6 +55,7 @@ public class LabProfileController: Controller
         return View("LabRegister");
     }
     
+    [HttpGet]
     [Route("ViewLab/{labLocation}")]
     public async Task<ViewResult> LabProfile(string labLocation)
     {
