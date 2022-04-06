@@ -9,6 +9,8 @@
 
 @{
     ViewData["Title"] = "Home Page";
+    var listofusers = await UserManager.GetUsersInRoleAsync("labtech");
+
 }
 
 
@@ -103,12 +105,20 @@
                                         <td class="px-12 py-4 whitespace-nowrap">
                                             <div class="flex items-center">
                                                 <div class="">
-                                                    <div class="text-sm text-gray-900">@lab.LabId</div>
+                                                    <div class="text-sm text-gray-900">Lab @lab.LabId</div>
                                                 </div>
                                             </div>
                                         </td>
                                         <td class="px-12 py-4 text-sm text-gray-900">@lab.LabLocation</td>
-                                        <td class="px-12 py-4 text-sm text-gray-900">@lab.LabInCharge</td>
+                                        <td class="px-12 py-4 text-sm text-gray-900">
+                                            @foreach (var user in @listofusers)
+                                            {
+                                                @if (@user.Id == lab.LabInCharge)
+                                                {
+                                                    @user.Email
+                                                }
+                                            }
+                                        </td>
                                         <td class="px-12 py-4 text-sm text-gray-900">
                                             @if (lab.LabStatus == "Available")
                                             {
