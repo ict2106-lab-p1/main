@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 
-namespace LivingLab.Web.Models.ViewModels.Login;
+namespace LivingLab.Web.Models.ViewModels.Account;
 /// <remarks>
 /// Author: Team P1-5
 /// </remarks>

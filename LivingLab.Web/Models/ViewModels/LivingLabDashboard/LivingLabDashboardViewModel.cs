@@ -1,3 +1,5 @@
+using LivingLab.Web.Models.ViewModels.LabProfile;
+
 namespace LivingLab.Web.Models.ViewModels.LivingLabDashboard;
 ///<summary> What is a ViewModel
 ///The View Model refers to the objects which hold the data that needs to be shown to the user.
@@ -8,5 +10,7 @@ namespace LivingLab.Web.Models.ViewModels.LivingLabDashboard;
 /// </remarks>
 public class LivingLabDashboardViewModel
 {
-    public List<Core.Entities.Lab> LabList { get; set; }
+    public List<LabInformationModel>? LabList { get; set; }
+    
+    public List<string> Usages { get; set; }
 }
