@@ -20,20 +20,24 @@ public class BookingDomainService: IBookingDomainService
     {
         _BookingRepository = BookingRepository;
         _logger = logger;
+        //initalise Bookingrepository
     }
 
     public async Task<Booking> NewBook(Booking book)
     {
         Console.WriteLine("Booking Domain Services");
           return await _BookingRepository.AddAsync(book);
+          //Using function of Repository class to add Book
     }
     public Task<List<Booking>> ViewBooks()
     {
         return _BookingRepository.GetAllBooking();
+        //Retrevie all the database of booking in book table
     } 
       public async Task<Booking> DeleteBook(int bookid)
     {
         return await _BookingRepository.DeleteAsync(bookid);
+       //delete book with the input bookid
     }
 
    
