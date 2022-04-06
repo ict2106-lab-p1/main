@@ -72,7 +72,7 @@
                              <p class="font-bold text-xl text-center">Lab User Usage</p>
                         </div>
                         <div class="flex justify-center">
-                            <a class="no-underline hover:underline text-primary font-semibold mt-2" asp-controller="LabProfile" asp-action="">See more</a>
+                            <a class="no-underline hover:underline text-primary font-semibold mt-2" asp-controller="SessionStats" asp-action="ViewSessionStats" asp-route-labLocation="@Model.eachlab.LabLocation">See more</a>
                         </div>
 
                     </div>
