@@ -13,7 +13,7 @@ public static class EnergyLogDataSeeder
     {
         var logs = new List<EnergyUsageLog>();
         var logId = 1;
-        var now = DateTime.Now;
+        var now = DateTime.Now.AddDays(-1);
         var random = new Random();
 
         for (var labId = 1; labId <= 3; labId++)
