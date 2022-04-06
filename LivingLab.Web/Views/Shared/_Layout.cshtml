@@ -196,11 +196,18 @@
                         <span>Comparison</span>
                     </a>
                 </li>
-                 <li class="@Html.ActiveClass("", "") relative hover:bg-highlight hover:text-gray-700 ease-in duration-300">
+                <li class="@Html.ActiveClass("", "") relative hover:bg-highlight hover:text-gray-700 ease-in duration-300">
                     <a
                         class="hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer"
                         asp-controller="ManualLogs" asp-action="Index">
                         <span>Logs</span>
+                    </a>
+                </li>
+                 <li class="@Html.ActiveClass("", "") relative hover:bg-highlight hover:text-gray-700 ease-in duration-300">
+                    <a
+                        class="hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer"
+                        asp-controller="Notifications" asp-action="Index">
+                        <span>Notification Preferences</span>
                     </a>
                 </li>
             </ul>
