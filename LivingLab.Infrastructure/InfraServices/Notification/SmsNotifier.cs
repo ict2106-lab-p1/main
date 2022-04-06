@@ -40,6 +40,7 @@ public class SmsNotifier : ISmsNotifier
         TwilioClient.Init(accountSid, authToken);
 
         var messageOptions = new CreateMessageOptions(new PhoneNumber(phone));   
+        // messageOptions.MessagingServiceSid = _config.GetSection("LivingLab:TWILIO_MSG_SERVICE_ID").Value;  
         messageOptions.MessagingServiceSid = _config["LivingLab:TWILIO_MSG_SERVICE_ID"];  
         messageOptions.Body = msgBody;   
  
