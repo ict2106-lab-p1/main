@@ -27,7 +27,6 @@ $(document).ready(function () {
                 document.getElementById("user-id").value = data.id
                 document.getElementById("user-email").value = data.email
                 document.getElementById("user-faculty").value = data.userFaculty
-                
             });
     }
     function clickDelete(e) {

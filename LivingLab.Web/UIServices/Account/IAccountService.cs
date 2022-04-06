@@ -1,7 +1,5 @@
-using LivingLab.Core.Entities;
 using LivingLab.Core.Entities.Identity;
-using LivingLab.Web.Models.DTOs.Todo;
-using LivingLab.Web.Models.ViewModels.LabProfile;
+using LivingLab.Web.Models.ViewModels.Account;
 using LivingLab.Web.Models.ViewModels.Login;
 
 namespace LivingLab.Web.UIServices.Account;
