@@ -4,6 +4,7 @@ using LivingLab.Core.Entities.DTO.EnergyUsage;
 using LivingLab.Core.Repositories.EnergyUsage;
 using LivingLab.Core.Repositories.Equipment;
 using LivingLab.Core.Repositories.Lab;
+using LivingLab.Core.DomainServices.EnergyUsage.EnergyUsageTemplate;
 
 namespace LivingLab.Core.DomainServices.EnergyUsage.EnergyUsageComparison;
 /// <remarks>
@@ -31,6 +32,7 @@ public class EnergyUsageComparisonService : IEnergyUsageComparisonService
 
     public List<EnergyComparisonLabTableDTO> GetEnergyUsageByLabNameTable(string labName, DateTime start, DateTime end)
     {
+        TopLabEnergyUsageConstructor labEUCon = new TopLabEnergyUsageConstructor();
         List<EnergyUsageLog> result = _repository.GetLabEnergyUsageByLabNameAndDate(labName, start, end).Result;
         int LabEU = 0;
         double LabEUCost = 0;

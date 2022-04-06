@@ -3,6 +3,7 @@ using AutoMapper;
 using LivingLab.Core.DomainServices.EnergyLog;
 using LivingLab.Core.Entities;
 using LivingLab.Web.Models.DTOs;
+using LivingLab.Web.Models.ViewModels.EnergyUsage;
 
 namespace LivingLab.Web.UIServices.EnergyLog;
 
@@ -24,5 +25,11 @@ public class EnergyLogService : IEnergyLogService
     {
         var map = _mapper.Map<EnergyUsageLog>(log);
         return _energyLogDomainService.Log(map);
+    }
+
+    public async Task<List<EnergyUsageLogViewModel>> GetLogs(int size)
+    {
+        var logs = await _energyLogDomainService.GetLogs(size);
+        return _mapper.Map<List<EnergyUsageLogViewModel>>(logs);
     }
 } 
