@@ -19,6 +19,23 @@ public class EnergyLogApiController : BaseApiController
         _logger = logger;
     }
     
+    
+
+    [HttpGet("{size}")]
+    public async Task<IActionResult> GetLogs(int size)
+    {
+        try
+        {
+            var logs = await _energyLogService.GetLogs(size);
+            return Json(logs);
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e.Message);
+            return BadRequest(e.Message);
+        }
+    }
+    
     [HttpPost]
     public async Task<IActionResult> Log(EnergyUsageLogDTO usage)
     {

@@ -55,6 +55,10 @@ public class EnergyLogDomainService : IEnergyLogDomainService
         return _energyUsageRepository.AddAsync(log).Result;
     }
 
+    public Task<List<EnergyUsageLog>> GetLogs(int size)
+    {
+        return _energyUsageRepository.GetLatestLogs(size);
+    }
     
     /*
      * Check if the device has exceeded the threshold set
@@ -64,7 +68,7 @@ public class EnergyLogDomainService : IEnergyLogDomainService
         var thresholdSet = _deviceRepository.GetDeviceDetails(deviceId).Result.Threshold;
         return (currentEnergyUsage > thresholdSet);
     }
-    
+
     private void Notify(NotificationType preference, int deviceId, double? threshold)
     {
         string message = $"Device ID {deviceId} has exceeded the set threshold of {threshold}.";

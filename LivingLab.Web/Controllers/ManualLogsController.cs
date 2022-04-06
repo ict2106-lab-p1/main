@@ -2,6 +2,7 @@ using System.Diagnostics;
 
 using LivingLab.Web.Models.ViewModels;
 using LivingLab.Web.Models.ViewModels.EnergyUsage;
+using LivingLab.Web.UIServices.EnergyLog;
 using LivingLab.Web.UIServices.LabProfile;
 using LivingLab.Web.UIServices.ManualLogs;
 

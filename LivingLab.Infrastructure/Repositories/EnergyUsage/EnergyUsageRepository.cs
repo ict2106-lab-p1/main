@@ -63,6 +63,16 @@ public class EnergyUsageRepository : Repository<EnergyUsageLog>, IEnergyUsageRep
         return logsForTypeInDateRange;
     }
 
+    public Task<List<EnergyUsageLog>> GetLatestLogs(int size)
+    {
+        return _context.EnergyUsageLogs
+            .Include(l => l.Lab)
+            .Include(l => l.Device)
+            .OrderByDescending(l => l.LoggedDate)
+            .Take(size)
+            .ToListAsync();
+    }
+
     public async Task<List<EnergyUsageLog>> GetDeviceEnergyUsageByLabAndDate(int labId, DateTime? start, DateTime? end)
     {
         var now = DateTime.Now;
