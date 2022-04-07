@@ -37,7 +37,7 @@ public class SessionStatsRepository : Repository<SessionStats>, ISessionStatsRep
     /// </summary>
     /// <param name="labId"> Lab ID e.g "1" </param>
     /// <param name="fileSize"> File size in kb </param>
-    public async void LogFileUpload(string labId, double fileSize)
+    public async void LogFileUpload(int labId, double fileSize)
     {
         SessionStats device = (await _context.SessionStats.Where(s => s.Id == Convert.ToInt32(labId)).FirstOrDefaultAsync())!;
         if (device.DataUploaded != fileSize)
