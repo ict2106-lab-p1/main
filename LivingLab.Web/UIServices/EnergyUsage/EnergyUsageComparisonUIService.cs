@@ -16,7 +16,7 @@ public class EnergyUsageComparisonUIService : IEnergyUsageComparisonUIService
     }
 
     /// <summary>
-    /// 1. retrieve lab energy usage according to the labName, start and end date
+    /// Retrieve lab energy usage according to the labName, start and end date
     /// </summary>
     /// <param>lab names</param>
     /// <param>start date</param>
@@ -28,7 +28,7 @@ public class EnergyUsageComparisonUIService : IEnergyUsageComparisonUIService
     }
 
     /// <summary>
-    /// 2. retrieve device energy usage according to the deviceType, start and end date
+    /// Retrieve device energy usage according to the deviceType, start and end date
     /// </summary>
     /// <param>devices type</param>
     /// <param>start date</param>
@@ -40,7 +40,7 @@ public class EnergyUsageComparisonUIService : IEnergyUsageComparisonUIService
     }
 
     /// <summary>
-    /// 3. retrieve lab energy usage according to the labName, start and end date
+    /// Retrieve lab energy usage according to the labName, start and end date
     /// </summary>
     /// <param>lab names</param>
     /// <param>start date</param>
@@ -52,7 +52,7 @@ public class EnergyUsageComparisonUIService : IEnergyUsageComparisonUIService
     }
 
     /// <summary>
-    /// 4. retrieve energy usage benchmark for the lab according to the labName, start and end date
+    /// Retrieve energy usage benchmark for the lab according to the labName, start and end date
     /// </summary>
     /// <param>list of lab names</param>
     /// <param>start date</param>
@@ -64,7 +64,7 @@ public class EnergyUsageComparisonUIService : IEnergyUsageComparisonUIService
     }
 
     /// <summary>
-    /// 5. retrieve list of device types
+    /// Retrieve list of device types
     /// </summary>
     /// <returns>array list</returns>
     public List<string> GetAllDeviceType()
@@ -73,7 +73,7 @@ public class EnergyUsageComparisonUIService : IEnergyUsageComparisonUIService
     }
 
     /// <summary>
-    /// 6. retrieve list of labs location
+    /// Retrieve list of labs location
     /// </summary>
     /// <returns>array list</returns>
     public List<string> GetAllLabLocation()
