@@ -15,7 +15,11 @@ public class LabProfileRepository : Repository<Core.Entities.Lab>, ILabProfileRe
     {
         _context = context;
     }
-
+    
+    /// <summary>
+    /// Get all labs details and store it as a list
+    /// </summary>
+    /// <returns>List of lab details</returns>
     public async Task<List<Core.Entities.Lab>> GetAllLabs()
     {
         var labGroup = await _context.LabProfile.ToListAsync();
@@ -61,21 +65,5 @@ public class LabProfileRepository : Repository<Core.Entities.Lab>, ILabProfileRe
             )
             .ToListAsync();
     }
-
-    // public async Task<Lab> EditUserDetail(Lab editUser)
-    // {
-    //     ApplicationUser currentUser = (await _context.LabProfile.SingleOrDefaultAsync(d => d.Id == editUser.Id))!;
-    //     currentUser.Email = editUser.Email;
-    //     currentUser.UserFaculty  = editUser.UserFaculty;
-    //     currentUser.LabAccesses  = editUser.LabAccesses;
-    //     await _context.SaveChangesAsync();       
-    //     return editUser;
-    // }
-    // public async Task<Lab> DeleteAccount(Lab deleteUser)
-    // {
-    //     ApplicationUser currentUser = (await _context.LabProfile.SingleOrDefaultAsync(d => d.Id == deleteUser.Id))!;
-    //     _context.Users.Remove(currentUser);
-    //     await _context.SaveChangesAsync();
-    //     return deleteUser;    
-    // }
+    
 }
