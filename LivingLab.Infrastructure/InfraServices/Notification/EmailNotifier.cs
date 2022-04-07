@@ -14,7 +14,6 @@ namespace LivingLab.Infrastructure.InfraServices.Notification;
 /// <remarks>
 /// Author: Team P1-1
 /// </remarks>
-///
 public class EmailNotifier : IEmailNotifier
 {
     private readonly INotificationDomainService _notificationDomainService;

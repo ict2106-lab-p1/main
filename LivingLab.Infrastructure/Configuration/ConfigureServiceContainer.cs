@@ -17,6 +17,10 @@ namespace LivingLab.Infrastructure.Configuration;
 /// Team P1-1 & P1-2: Inject into ConfigureEnergyMonitoringServices.cs
 /// Team P1-3 & P1-5: Inject into ConfigureManagementServices.cs
 /// </summary>
+///
+/// <remarks>
+/// Author: Team P1-1
+/// </remarks>
 public static class ConfigureServiceContainer
 {
     public static void ConfigurePasswordPolicy(this IServiceCollection services) =>

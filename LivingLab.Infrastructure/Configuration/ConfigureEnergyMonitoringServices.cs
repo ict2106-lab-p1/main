@@ -19,6 +19,10 @@ namespace LivingLab.Infrastructure.Configuration;
 /// <summary>
 /// Team P1-1 & P1-2 to add dependency injections for mod 2 here.
 /// </summary>
+///
+/// <remarks>
+/// Author: Team P1-1
+/// </remarks>
 public static class ConfigureEnergyMonitoringServices
 {
     public static IServiceCollection AddEnergyMonitoringServices(this IServiceCollection services)

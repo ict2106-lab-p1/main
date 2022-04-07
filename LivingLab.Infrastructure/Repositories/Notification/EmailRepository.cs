@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 namespace LivingLab.Infrastructure.Repositories.Notification;
 
 /// <remarks>
-/// Author: Team P1-1
+/// Author: Team P1-5
 /// </remarks>
 public class EmailRepository : Repository<EmailLog>,IEmailRepository
 {

@@ -7,6 +7,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LivingLab.Infrastructure.Data;
 
+/// <remarks>
+/// Author: Team P1-5
+/// </remarks>
 public static class DataSeeder
 {
     /// <summary>
@@ -20,19 +23,6 @@ public static class DataSeeder
         // You can add seed data for specific tables here if you need to.
         // You can also create entities and add them directly here if you need to.
         // modelBuilder.Entity<YourEntity>().HasData(new YourEntity { Id = 1, Name = "Your New Entity" });
-        //Add Dummy Data
-        // Devices and Device Types
-        // modelBuilder.Entity<Labs>().HasData(
-        // new { Id = 1, Location = "NYP-SR7C", PersonInCharge = "David", LabStatus ="Available"}
-        // );
-
-        // modelBuilder.Entity<ApplicationUser>().HasData(
-        //
-        //     new { Id = "DefaultAdmin1", UserId = 3, FirstName = "Sexy", LastName = "Sotong", UserName = "nghanyi1997@gmail.com", NormalizedUserName = "nghanyi1997@gmail.com", NormalizedEmail = "nghanyi1997@gmail.com", PhoneNumber = "To Be Changed", Email = "nghanyi1997@gmail.com", TwoFactorEnabled = false, AuthenticationType = "None", PasswordHash = "testtesttest", SMSExpiry = new DateTime(2022, 7, 19, hour: 12, minute: 00, second: 00), UserFaculty = "SE", AccessFailedCount = 0, LockoutEnabled = true, EmailConfirmed = true, PhoneNumberConfirmed = false, PreferredNotification = NotificationType.EMAIL },
-        //     new { Id = "DefaultAdmin2", UserId = 1, FirstName = "Ji Pyeong", LastName = "Han", UserName = "mailstohenry@gmail.com", NormalizedUserName = "mailstohenry@gmail.com", NormalizedEmail = "mailstohenry@gmail.com", PhoneNumber = "To Be Changed", Email = "mailstohenry@gmail.com", TwoFactorEnabled = false, AuthenticationType = "None", PasswordHash = "testtesttest", SMSExpiry = new DateTime(2022, 7, 19, hour: 12, minute: 00, second: 00), UserFaculty = "SE", AccessFailedCount = 0, LockoutEnabled = true, EmailConfirmed = true, PhoneNumberConfirmed = false, PreferredNotification = NotificationType.NONE },
-        //     new { Id = "DefaultAdmin3", UserId = 2, FirstName = "Do San", LastName = "Nam", UserName = "shengyu98@hotmail.com", NormalizedUserName = "shengyu98@hotmail.com", NormalizedEmail = "shengyu98@hotmail.com", PhoneNumber = "To Be Changed", Email = "shengyu98@hotmail.com", TwoFactorEnabled = false, AuthenticationType = "None", PasswordHash = "testtesttest", SMSExpiry = new DateTime(2022, 7, 19, hour: 12, minute: 00, second: 00), UserFaculty = "SE", AccessFailedCount = 0, LockoutEnabled = true, EmailConfirmed = true, PhoneNumberConfirmed = false, PreferredNotification = NotificationType.NONE },
-        //     new { Id = "DefaultAdmin4", UserId = 3, FirstName = "Test", LastName = "Test", UserName = "test@gmail.com", NormalizedUserName = "test@gmail.com", PhoneNumber = "00000000", Email = "test@gmail.com", TwoFactorEnabled = false, AuthenticationType = "None", PasswordHash = "testtesttest", SMSExpiry = new DateTime(2022, 7, 19, hour: 12, minute: 00, second: 00), UserFaculty = "ICT", AccessFailedCount = 0, LockoutEnabled = true, EmailConfirmed = false, PhoneNumberConfirmed = false, PreferredNotification = NotificationType.NONE }
-        // );
 
         var user1 = new ApplicationUser { Id = "DefaultAdmin1", FirstName = "Default", LastName = "Sotong", UserName = "nghanyi1997@gmail.com", NormalizedUserName = "nghanyi1997@gmail.com", NormalizedEmail = "nghanyi1997@gmail.com", PhoneNumber = "To Be Changed", Email = "nghanyi1997@gmail.com", TwoFactorEnabled = false, AuthenticationType = "None", SMSExpiry = new DateTime(2022, 7, 19, hour: 12, minute: 00, second: 00), UserFaculty = "SE", AccessFailedCount = 0, LockoutEnabled = true, EmailConfirmed = true, PhoneNumberConfirmed = false, PreferredNotification = NotificationType.EMAIL };
         var user2 = new ApplicationUser { Id = "DefaultAdmin2", FirstName = "Ji Pyeong", LastName = "Han", UserName = "mailstohenry@gmail.com", NormalizedUserName = "mailstohenry@gmail.com", NormalizedEmail = "mailstohenry@gmail.com", PhoneNumber = "To Be Changed", Email = "mailstohenry@gmail.com", TwoFactorEnabled = false, AuthenticationType = "None", SMSExpiry = new DateTime(2022, 7, 19, hour: 12, minute: 00, second: 00), UserFaculty = "SE", AccessFailedCount = 0, LockoutEnabled = true, EmailConfirmed = true, PhoneNumberConfirmed = false, PreferredNotification = NotificationType.NONE };
@@ -131,8 +121,6 @@ public static class DataSeeder
                 new { Id = 10, Date = new DateTime(2021, 7, 12), LoginTime = new DateTime(2021, 7, 11, 9, 0, 0), LogoutTime = new DateTime(2021, 7, 12, 12, 0, 0), DataUploaded = 120.0, LabId = 1 },
                 new { Id = 11, Date = new DateTime(2021, 7, 13), LoginTime = new DateTime(2021, 7, 12, 10, 0, 0), LogoutTime = new DateTime(2021, 7, 13, 15, 0, 0), DataUploaded = 117.0, LabId = 1 },
                 new { Id = 12, Date = new DateTime(2021, 7, 14), LoginTime = new DateTime(2021, 7, 14, 13, 0, 0), LogoutTime = new DateTime(2021, 7, 14, 18, 0, 0), DataUploaded = 68.0, LabId = 1 },
-
-                
                 new { Id = 13, Date = new DateTime(2021, 7, 3), LoginTime = new DateTime(2021, 7, 3, 9, 0, 0), LogoutTime = new DateTime(2021, 7, 3, 12, 0, 0), DataUploaded = 58.0, LabId = 2 },
                 new { Id = 14, Date = new DateTime(2021, 7, 4), LoginTime = new DateTime(2021, 7, 4, 10, 0, 0), LogoutTime = new DateTime(2021, 7, 4, 15, 0, 0), DataUploaded = 64.0, LabId = 2 },
                 new { Id = 15, Date = new DateTime(2021, 7, 5), LoginTime = new DateTime(2021, 7, 5, 13, 0, 0), LogoutTime = new DateTime(2021, 7, 5, 18, 0, 0), DataUploaded = 78.0, LabId = 2 },
@@ -145,8 +133,6 @@ public static class DataSeeder
                 new { Id = 22, Date = new DateTime(2021, 7, 12), LoginTime = new DateTime(2021, 7, 11, 9, 0, 0), LogoutTime = new DateTime(2021, 7, 12, 12, 0, 0), DataUploaded = 120.0, LabId = 2 },
                 new { Id = 23, Date = new DateTime(2021, 7, 13), LoginTime = new DateTime(2021, 7, 12, 10, 0, 0), LogoutTime = new DateTime(2021, 7, 13, 15, 0, 0), DataUploaded = 117.0, LabId = 2 },
                 new { Id = 24, Date = new DateTime(2021, 7, 14), LoginTime = new DateTime(2021, 7, 14, 13, 0, 0), LogoutTime = new DateTime(2021, 7, 14, 18, 0, 0), DataUploaded = 68.0, LabId = 2 },
-
-                
                 new { Id = 25, Date = new DateTime(2021, 7, 3), LoginTime = new DateTime(2021, 7, 3, 9, 0, 0), LogoutTime = new DateTime(2021, 7, 3, 12, 0, 0), DataUploaded = 58.0, LabId = 3 },
                 new { Id = 26, Date = new DateTime(2021, 7, 4), LoginTime = new DateTime(2021, 7, 4, 10, 0, 0), LogoutTime = new DateTime(2021, 7, 4, 15, 0, 0), DataUploaded = 64.0, LabId = 3 },
                 new { Id = 27, Date = new DateTime(2021, 7, 5), LoginTime = new DateTime(2021, 7, 5, 13, 0, 0), LogoutTime = new DateTime(2021, 7, 5, 18, 0, 0), DataUploaded = 78.0, LabId = 3 },

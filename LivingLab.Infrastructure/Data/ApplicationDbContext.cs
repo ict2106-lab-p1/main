@@ -9,6 +9,9 @@ using Microsoft.VisualBasic;
 
 namespace LivingLab.Infrastructure.Data;
 
+/// <remarks>
+/// Author: Team P1-5
+/// </remarks>
 public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 {
     // Add new DB tables here

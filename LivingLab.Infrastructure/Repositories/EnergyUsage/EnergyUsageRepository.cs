@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 namespace LivingLab.Infrastructure.Repositories.EnergyUsage;
 
 /// <remarks>
-/// Author: Team P1-1
+/// Author: Team P1-5
 /// </remarks>
 public class EnergyUsageRepository : Repository<EnergyUsageLog>, IEnergyUsageRepository
 {
