@@ -24,7 +24,11 @@ public class LivingLabDashboardService : ILivingLabDashboardService
         _energyLogService = energyLogService;
     }
 
-    public async Task<List<string>> GetUsages()
+/// <summary>
+/// Get energy usage (yesterday, last week, last month)
+/// </summary>
+/// <returns>usages</returns>
+public async Task<List<string>> GetUsages()
     {
         var usages = new List<string>();
 
