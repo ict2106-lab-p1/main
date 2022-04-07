@@ -4,12 +4,12 @@
 
 ## Login Credentials
 ### ADMIN:
-Email: chuashengyu98@gmail.com  
-Password: P@ssw0rd
+Email: `chuashengyu98@gmail.com`  
+Password: `P@ssw0rd`
 
 ### LAB TECHNICIAN:
-Email: hanyi.hyng@gmail.com  
-Password: P@ssw0rd
+Email: `hanyi.hyng@gmail.com`  
+Password: `P@ssw0rd`
 
 ---
 
