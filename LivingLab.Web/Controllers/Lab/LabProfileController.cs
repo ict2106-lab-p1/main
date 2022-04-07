@@ -32,15 +32,22 @@ public class LabProfileController: Controller
         return View("Index", model); 
     }
     
-    
+    /// <summary>
+    /// Reroute to lab register view
+    /// </summary>
+    /// <returns>Lab Register Page</returns>
     [Authorize(Roles="Admin")]
-    /*Redirect to lab view*/
     [HttpGet]
     public async Task<IActionResult> LabRegister()
     {
         return View("LabRegister");
     }
 
+    /// <summary>
+    /// 1. Check if viewModel is filled
+    /// </summary>
+    /// <param name="labform">Parse labRegisterViewModel form</param>
+    /// <returns>Complete Register Page if successful</returns>
     [HttpPost]
     [Authorize(Roles="Admin")]
     /*Create labs by admins*/
