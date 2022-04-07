@@ -30,8 +30,9 @@ public class LabBookingController: Controller
     }
     [Authorize]
     /*User can see this page and register a new Booking*/
-    public IActionResult Register(int labid = 0)
-    {   //Function which navigate to a book register form  page named Register with a preset value labid. 
+     //Function which navigate to a book register form  page named Register with a preset value labid. 
+         public IActionResult Register(int labid = 0)
+    {  
         BookFormModel newForm = new BookFormModel() {LabId = labid};
         
         return View("Register", newForm);
@@ -64,7 +65,7 @@ public class LabBookingController: Controller
         return View("ViewBooking", listOfBookings);
     }
 
-
+   
    /*Everyone can register a new booking*/
     [Authorize(Roles = "User,Admin,Labtech")]
     [HttpPost]

@@ -49,19 +49,6 @@ public class LabBookingService : ILabBookingService
         return listOfBooking;
     }
 
-    // public async Task<ViewDeviceViewModel> viewDevice()
-    // {
-    //     //retrieve data from db
-    //     List<Core.Entities.Device> deviceList = await _deviceRepository.GetAllAsync();
-    //             
-    //     //map entity model to view model
-    //     List<DeviceViewModel> devices = _mapper.Map<List<Core.Entities.Device>, List<DeviceViewModel>> (deviceList);
-    //         
-    //     //add list of device view model to the view device view model
-    //     ViewDeviceViewModel viewDevices = new ViewDeviceViewModel();
-    //     viewDevices.DeviceList = devices;
-    //     return viewDevices;
-    // }
 
     /*Retriving lab data from lab table in database*/
     public async Task<List<BookingDashboardViewModel>> RetrieveList()
@@ -85,6 +72,7 @@ public class LabBookingService : ILabBookingService
         return listOfLab;
     }
   /*Function to insert a new booking in database*/
+  
        public async Task<Booking?> CreateBook(BookFormModel Book, string userid)
     {
       var bookWrapper = new Booking

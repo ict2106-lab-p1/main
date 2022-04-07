@@ -32,6 +32,10 @@ public class BookingDomainService: IBookingDomainService
     }
 
     //function to get current booking data 
+    /// <summary>
+    /// 1. Call Booking repo to get all book data
+    /// </summary>
+    /// <returns>Booking</returns>
     public Task<List<Booking>> ViewBooks()
     {
         return _BookingRepository.GetAllBooking();
