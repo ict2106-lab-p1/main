@@ -23,21 +23,38 @@ public class EnergyUsageAnalysisUIService : IEnergyUsageAnalysisUIService
         _analysis = analysis;
         _labProfileService = labProfileService;
     }
+
+    /// <summary>
+    /// 1. get the colname 
+    /// 2. store the col name and data in byte format
+    /// </summary>
+    /// <param name="content">List of data to be export</param>
+    /// <returns>byte string of the data</returns>
     public byte[] Export(List<DeviceEnergyUsageDTO> content)
     {
         return _analysis.ExportDeviceEU(content);
     }
+
+    /// <summary>
+    /// 1. retrieve device energy usage log according to data
+    /// </summary>
+    /// <param name="start">start date</param>
+    /// <param name="end">end date</param>
+    /// <returns>list of DeviceEnergyUsageDTO</returns>
     public List<DeviceEnergyUsageDTO> GetDeviceEnergyUsageByDate(DateTime start, DateTime end)
     {
         return _analysis.GetDeviceEnergyUsageByDate(start,end);
     }
+
+    /// <summary>
+    /// 1. retrieve lab energy usage log according to data
+    /// </summary>
+    /// <param name="start">start date</param>
+    /// <param name="end">end date</param>
+    /// <returns>list of LabEnergyUsageDTO</returns>
     public List<LabEnergyUsageDTO> GetLabEnergyUsageByDate(DateTime start, DateTime end)
     {
         return _analysis.GetLabEnergyUsageByDate(start,end);
-    }
-    public async Task<TopSevenLabEnergyUsageDTO> GetTopSevenLabEnergyUsage(DateTime start, DateTime end)
-    {
-        throw new NotImplementedException();
     }
     
     public async Task<EnergyUsageTrendSelectedLabViewModel> GetEnergyUsageTrendSelectedLab(EnergyUsageFilterViewModel filter)
@@ -67,13 +84,4 @@ public class EnergyUsageAnalysisUIService : IEnergyUsageAnalysisUIService
         return _labProfileService.GetAllLabAccounts(); 
     }
 
-    // weijie
-    public List<DeviceInLabDTO> GetEnergyUsageLabDistribution(DateTime start, DateTime end, string deviceType)
-    {
-        throw new NotImplementedException();
-    }
-    public List<DeviceInLabDTO> GetEnergyUsageDeviceDistribution(DateTime start, DateTime end, int labID)
-    {
-        throw new NotImplementedException();
-    }
 }
