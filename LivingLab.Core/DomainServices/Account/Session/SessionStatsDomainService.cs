@@ -17,8 +17,8 @@ public class SessionStatsDomainService : ISessionStatsDomainService
     /// <summary>
     /// This function calls SessionStatsRepository to retrieve a list of SessionStats of each lab.
     /// </summary>
-    /// <param name="labLocation"></param>
-    /// <returns></returns>
+    /// <param name="labLocation">lab's location</param>
+    /// <returns>a list of session stats</returns>
     public Task<List<SessionStats>> ViewSessionStats(string labLocation)
     {
         return _sessionStatsRepository.GetSessionStatsView(labLocation);
