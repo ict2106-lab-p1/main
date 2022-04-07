@@ -3,7 +3,6 @@ using System.Text;
 using LivingLab.Core.DomainServices.EnergyUsage.EnergyUsageBuilder;
 using LivingLab.Core.DomainServices.EnergyUsage.EnergyUsageCalculation;
 using LivingLab.Core.DomainServices.EnergyUsage.EnergyUsageTemplate;
-using LivingLab.Core.DomainServices.Equipment;
 using LivingLab.Core.DomainServices.Equipment.Device;
 using LivingLab.Core.Entities;
 using LivingLab.Core.Entities.DTO.EnergyUsage;
@@ -13,10 +12,10 @@ using LivingLab.Core.Repositories.Lab;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LivingLab.Core.DomainServices.EnergyUsage.EnergyUsageAnalysis;
-/// <remarks>
-/// Author: Team P1-2
-/// </remarks>
 
+/// <remarks>
+///     Author: Team P1-2
+/// </remarks>
 public class EnergyUsageAnalysisService : IEnergyUsageAnalysisService
 {
     private readonly IEnergyUsageRepository _repository;
@@ -34,66 +33,70 @@ public class EnergyUsageAnalysisService : IEnergyUsageAnalysisService
     }
 
     /// <summary>
-    /// 1. get the colname 
-    /// 2. store the col name and data in byte format
+    ///     1. get the colname
+    ///     2. store the col name and data in byte format
     /// </summary>
     /// <param name="DeviceEUList">List of data to be export</param>
     /// <returns>byte string of the data</returns>
-    public byte[] ExportDeviceEU(List<DeviceEnergyUsageDTO> DeviceEUList) 
+    public byte[] ExportDeviceEU(List<DeviceEnergyUsageDTO> DeviceEUList)
     {
         var builder = new StringBuilder();
         var ColNames = "";
-        foreach(var propertyInfo in typeof(DeviceEnergyUsageDTO).GetProperties())
+        foreach (var propertyInfo in typeof(DeviceEnergyUsageDTO).GetProperties())
         {
             ColNames = ColNames + propertyInfo.Name + ",";
         }
+
         builder.AppendLine(ColNames);
         foreach (var item in DeviceEUList)
         {
-            builder.AppendLine($"{item.DeviceSerialNo},{item.DeviceType},{item.TotalEnergyUsage},{item.EnergyUsageCost}");
+            builder.AppendLine(
+                $"{item.DeviceSerialNo},{item.DeviceType},{item.TotalEnergyUsage},{item.EnergyUsageCost}");
         }
+
         return Encoding.UTF8.GetBytes(builder.ToString());
     }
-    
+
     /// <summary>
-    /// 1. retrieve device energy usage log according to data
+    ///     1. retrieve device energy usage log according to data
     /// </summary>
     /// <param name="start">start date</param>
     /// <param name="end">end date</param>
     /// <returns>list of DeviceEnergyUsageDTO</returns>
-    public List<DeviceEnergyUsageDTO> GetDeviceEnergyUsageByDate(DateTime start, DateTime end) 
+    public List<DeviceEnergyUsageDTO> GetDeviceEnergyUsageByDate(DateTime start, DateTime end)
     {
-        List<EnergyUsageLog> result = _repository.GetDeviceEnergyUsageByDateTime(start,end).Result;
+        var result = _repository.GetDeviceEnergyUsageByDateTime(start, end).Result;
 
         //builder
-        DeviceDirector director = new DeviceDirector();
+        var director = new DeviceDirector();
         var builder = new DeviceEnergyUsageBuilder(result);
         director.Builder = builder;
         director.BuildDeviceEU();
         return builder.GetProduct();
-
     }
 
     /// <summary>
-    /// 1. retrieve lab energy usage log according to data
+    ///     1. retrieve lab energy usage log according to data
     /// </summary>
     /// <param name="start">start date</param>
     /// <param name="end">end date</param>
     /// <returns>list of LabEnergyUsageDTO</returns>
-    public List<LabEnergyUsageDTO> GetLabEnergyUsageByDate(DateTime start, DateTime end) 
+    public List<LabEnergyUsageDTO> GetLabEnergyUsageByDate(DateTime start, DateTime end)
     {
-        List<EnergyUsageLog> result = _repository.GetDeviceEnergyUsageByDateTime(start,end).Result;
-        LabEnergyUsageConstructor labEUCon = new LabEnergyUsageConstructor();
+        var result = _repository.GetDeviceEnergyUsageByDateTime(start, end).Result;
+        var labEUCon = new LabEnergyUsageConstructor();
         var LabEUList = labEUCon.MergeIntoCollection(result);
         return LabEUList;
     }
-    // joey
-    public List<TopSevenLabEnergyUsageDTO> GetTopSevenLabEnergyUsage(DateTime start, DateTime end) 
-    {
-        throw new NotImplementedException();
-    }
-               
-    public async Task<MonthlyEnergyUsageDTO> GetEnergyUsageTrendAllLab(EnergyUsageFilterDTO filter) 
+
+    /// <summary>
+    ///     1. get the lab energy usage according to start and end date
+    ///     2. get lab repository by lab Id
+    ///     3. init MonthlyEnergyUsageDTO
+    /// </summary>
+    /// <param name="filter">filter start and end date</param>
+    /// <returns>MonthlyEnergyUsageDTO</returns>
+    public async Task<MonthlyEnergyUsageDTO> GetEnergyUsageTrendAllLab(EnergyUsageFilterDTO filter)
     {
         // Grouping done here because SQLite doesn't support it
         var logs = _repository
@@ -109,28 +112,34 @@ public class EnergyUsageAnalysisService : IEnergyUsageAnalysisService
             })
             .OrderBy(log => log.LoggedDate).ToList();
 
-        // get by date
         var lab = await _labRepository.GetByIdAsync(filter.LabId);
-        
-        var dto = new MonthlyEnergyUsageDTO
-        {
-            Logs = logs,
-            Lab = lab
-        };
+        var dto = new MonthlyEnergyUsageDTO {Logs = logs, Lab = lab};
         return dto;
     }
 
+    /// <summary>
+    ///     1. get the lab energy benchmark using lab Id
+    /// </summary>
+    /// <param name="labid">lab id</param>
+    /// <returns>Lab Id from Lab entity</returns>
     public Task<Entities.Lab> GetLabEnergyBenchmark(int labId)
     {
-        // add benchmark calculation
         return _labRepository.GetByIdAsync(labId);
     }
 
-    public async Task<IndividualLabMonthlyEnergyUsageDTO> GetEnergyUsageTrendSelectedLab([FromBody] EnergyUsageFilterDTO filter)
+    /// <summary>
+    ///     1. get the selected lab energy usage according to lab location, start and end date
+    ///     2. get lab repository by lab location
+    ///     3. init MonthlyEnergyUsageDTO
+    /// </summary>
+    /// <param name="filter">filter start and end date</param>
+    /// <returns>IndividualLabMonthlyEnergyUsageDTO</returns>
+    public async Task<IndividualLabMonthlyEnergyUsageDTO> GetEnergyUsageTrendSelectedLab(
+        [FromBody] EnergyUsageFilterDTO filter)
     {
         // Grouping done here because SQLite doesn't support it
         var logs = (await _repository
-            .GetLabEnergyUsageByLocationAndDate(filter.LabLocation, filter.Start, filter.End))
+                .GetLabEnergyUsageByLocationAndDate(filter.LabLocation, filter.Start, filter.End))
             .GroupBy(log => log.LoggedDate.Date)
             .Select(log => new EnergyUsageLog
             {
@@ -142,21 +151,16 @@ public class EnergyUsageAnalysisService : IEnergyUsageAnalysisService
             .OrderBy(log => log.LoggedDate).ToList();
 
         var lab = await _labRepository.GetByIdAsync(filter.LabId);
-
-        var dto = new IndividualLabMonthlyEnergyUsageDTO
-        {
-            Logs = logs,
-            Lab = lab
-        };
+        var dto = new IndividualLabMonthlyEnergyUsageDTO {Logs = logs, Lab = lab};
         return dto;
     }
-    
 }
 
 /// <summary>
-/// data class store energy usage in watt
+///     data class store energy usage in watt
 /// </summary>
-public class EUWatt{
-    public string id  {get; set;}
-    public int EU {get; set;}
+public class EUWatt
+{
+    public string id { get; set; }
+    public int EU { get; set; }
 }

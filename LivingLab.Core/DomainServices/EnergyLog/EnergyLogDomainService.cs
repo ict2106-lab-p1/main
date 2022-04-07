@@ -9,7 +9,7 @@ using LivingLab.Core.Repositories.Lab;
 namespace LivingLab.Core.DomainServices.EnergyLog;
 
 /// <remarks>
-/// Author: Team P1-1
+///     Author: Team P1-1
 /// </remarks>
 public class EnergyLogDomainService : IEnergyLogDomainService
 {
@@ -19,8 +19,7 @@ public class EnergyLogDomainService : IEnergyLogDomainService
     private readonly NotifierFactory _notifierFactory;
     private readonly IAccountRepository _accountRepository;
 
-
-    public EnergyLogDomainService(IEnergyUsageRepository energyUsageRepository, IDeviceRepository deviceRepository, 
+    public EnergyLogDomainService(IEnergyUsageRepository energyUsageRepository, IDeviceRepository deviceRepository,
         ILabProfileRepository labRepository, NotifierFactory notifierFactory, IAccountRepository accountRepository)
     {
         _energyUsageRepository = energyUsageRepository;
@@ -37,7 +36,7 @@ public class EnergyLogDomainService : IEnergyLogDomainService
         var lab = await _labRepository.GetLabByLocation(log.Lab.LabLocation);
         log.Device = device;
         log.Lab = lab;
-        
+
         /*
         * Get the details of the Lab Technician in-charge and notification preference
         */
@@ -51,7 +50,7 @@ public class EnergyLogDomainService : IEnergyLogDomainService
         {
             Notify(notificationSetting, device.Id, device.Threshold);
         }
-        
+
         return _energyUsageRepository.AddAsync(log).Result;
     }
 
@@ -59,19 +58,19 @@ public class EnergyLogDomainService : IEnergyLogDomainService
     {
         return _energyUsageRepository.GetLatestLogs(size);
     }
-    
+
     /*
      * Check if the device has exceeded the threshold set
      */
     public bool ExceedThreshold(int deviceId, double currentEnergyUsage)
     {
         var thresholdSet = _deviceRepository.GetDeviceDetails(deviceId).Result.Threshold;
-        return (currentEnergyUsage > thresholdSet);
+        return currentEnergyUsage > thresholdSet;
     }
 
     private void Notify(NotificationType preference, int deviceId, double? threshold)
     {
-        string message = $"Device ID {deviceId} has exceeded the set threshold of {threshold}.";
+        var message = $"Device ID {deviceId} has exceeded the set threshold of {threshold}.";
         _notifierFactory.CreateNotifier(preference).Notify(message);
     }
 }
