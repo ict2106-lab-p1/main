@@ -59,7 +59,7 @@ public class AccountDomainService: IAccountDomainService
     {
         _accountRepository.DeleteAccount(deletedUser);
     }
-
+    
     /*Function to update user information one by one*/
     /// <summary>
     /// 1. Call on account repository UpdateAsync function

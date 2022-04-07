@@ -1,11 +1,9 @@
 using System.Diagnostics;
-
 using LivingLab.Core.Entities.Identity;
 using LivingLab.Core.Notifications;
 using LivingLab.Web.Models.ViewModels;
 using LivingLab.Web.Models.ViewModels.Account;
 using LivingLab.Web.UIServices.Account;
-
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -20,7 +18,7 @@ public class AccountController: Controller
     private readonly ILogger<AccountController> _logger;
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly IEmailNotifier _emailSender;
-
+    
     public AccountController( IEmailNotifier emailSender, IAccountService accountService, ILogger<AccountController> logger, UserManager<ApplicationUser> userManager)
     {
         _accountService = accountService;
@@ -69,7 +67,6 @@ public class AccountController: Controller
                         protocol: Request.Scheme);
 
                     await _userManager.AddToRoleAsync(model, registration.Role);
-
                     await _emailSender.SendEmailAsync(registration.Email, 
                         "Confirm Living Lab Account", 
                         "Dear "+registration.FirstName+", <br> Living Lab Admin "+model.FirstName+" has registered an account on your behalf. <br>" +

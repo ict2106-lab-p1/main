@@ -1,7 +1,6 @@
 ﻿@* /// <remarks> *@
 @* /// Author: Team P1-5 *@
- @* /// </remarks> *@
- @using LivingLab.Web.Models.ViewModels.UserManagement 
+@using LivingLab.Web.Models.ViewModels.UserManagement 
 @using Microsoft.AspNetCore.Identity
 @using LivingLab.Core.Entities.Identity
 
@@ -47,7 +46,7 @@
                        </thead>
                        <tbody class="bg-white divide-y divide-gray-200">
                        <tr class="hover:bg-blue-100">
-                       @foreach (var user in Model.userList)
+                       @foreach (var user in Model.UserList)
                        {
                            <tr>
                                <td class="px-6 py-4 whitespace-nowrap">
@@ -97,7 +96,7 @@
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
                         <tr class="hover:bg-blue-100">
-                        @foreach (var user in Model.userList)
+                        @foreach (var user in Model.UserList)
                         {
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap">
@@ -170,7 +169,6 @@
          </div>
      </div>
  </div>
- 
 
 @section Scripts
 {

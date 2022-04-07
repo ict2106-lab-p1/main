@@ -24,8 +24,8 @@ public class AccountRepository : Repository<ApplicationUser>, IAccountRepository
     /// <returns>Return list of all users</returns>
     public async Task<List<ApplicationUser>?> GetAllAccount()
     {
-        var accountGroup = await _context.Users.ToListAsync();
-        return accountGroup;
+        var AccountGroup = await _context.Users.ToListAsync();
+        return AccountGroup;
     }
 
     /// <summary>
@@ -38,7 +38,7 @@ public class AccountRepository : Repository<ApplicationUser>, IAccountRepository
     {
         return await _context.Set<ApplicationUser>().FindAsync(id);
     }
-    
+
     //// <summary>
     /// 1. Search for user by id
     /// 2. Delete user from database
@@ -46,8 +46,8 @@ public class AccountRepository : Repository<ApplicationUser>, IAccountRepository
     /// <param name="deleteUser">ApplicationUser of user to be deleted</param>
     public async Task DeleteAccount(ApplicationUser deleteUser)
     {
-        ApplicationUser currentUser = (await _context.Users.SingleOrDefaultAsync(d => d.Id == deleteUser.Id))!;
-        _context.Users.Remove(currentUser);
+        ApplicationUser CurrentUser = (await _context.Users.SingleOrDefaultAsync(d => d.Id == deleteUser.Id))!;
+        _context.Users.Remove(CurrentUser);
         await _context.SaveChangesAsync();
     }
 }
