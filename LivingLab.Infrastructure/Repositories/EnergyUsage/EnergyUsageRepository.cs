@@ -35,6 +35,12 @@ public class EnergyUsageRepository : Repository<EnergyUsageLog>, IEnergyUsageRep
         await _context.SaveChangesAsync();
     }
 
+    /// <summary>
+    /// get logs for energy usage that occurred within a certain period
+    /// </summary>
+    /// <param name="start">start of selected period</param>
+    /// <param name="start">end of selected period</param>
+    /// <returns>list of energy usage logs that match the criteria</returns>
     public async Task<List<EnergyUsageLog>> GetDeviceEnergyUsageByDateTime(DateTime start, DateTime end)
     {
         var logsForDateRange = await IncludeReferences(
@@ -45,6 +51,13 @@ public class EnergyUsageRepository : Repository<EnergyUsageLog>, IEnergyUsageRep
         return logsForDateRange;
     }
 
+    /// <summary>
+    /// get logs for energy usage by devices of a specified type that occurred within a certain period
+    /// </summary>
+    /// <param name="deviceType">device type/category</param>
+    /// <param name="start">start of selected period</param>
+    /// <param name="start">end of selected period</param>
+    /// <returns>list of energy usage logs that match the criteria</returns>
     public async Task<List<EnergyUsageLog>> GetDeviceEnergyUsageByDeviceTypeAndDate(string deviceType, DateTime start, DateTime end)
     {
         var logsForTypeInDateRange = await IncludeReferences(
@@ -56,6 +69,13 @@ public class EnergyUsageRepository : Repository<EnergyUsageLog>, IEnergyUsageRep
         return logsForTypeInDateRange;
     }
 
+    /// <summary>
+    /// get logs for energy usage by devices within a specified lab that occurred within a certain period
+    /// </summary>
+    /// <param name="labName">name of the lab with devices</param>
+    /// <param name="start">start of selected period</param>
+    /// <param name="start">end of selected period</param>
+    /// <returns>list of energy usage logs that match the criteria</returns>
     public async Task<List<EnergyUsageLog>> GetLabEnergyUsageByLabNameAndDate(string labName, DateTime start, DateTime end)
     {
         var logsForTypeInDateRange = await IncludeReferences(
@@ -67,6 +87,11 @@ public class EnergyUsageRepository : Repository<EnergyUsageLog>, IEnergyUsageRep
         return logsForTypeInDateRange;
     }
 
+    /// <summary>
+    /// get the most recently received n logs
+    /// </summary>
+    /// <param name="size">number of logs to retrieve</param>
+    /// <returns>list of [size] most recent energy usage logs</returns>
     public Task<List<EnergyUsageLog>> GetLatestLogs(int size)
     {
         return _context.EnergyUsageLogs
@@ -77,6 +102,13 @@ public class EnergyUsageRepository : Repository<EnergyUsageLog>, IEnergyUsageRep
             .ToListAsync();
     }
 
+    /// <summary>
+    /// get logs for energy usage by devices within a specified lab that occurred within a certain period
+    /// </summary>
+    /// <param name="labName">id of the lab with devices</param>
+    /// <param name="start">start of selected period</param>
+    /// <param name="start">end of selected period</param>
+    /// <returns>list of energy usage logs that match the criteria</returns>
     public async Task<List<EnergyUsageLog>> GetDeviceEnergyUsageByLabAndDate(int labId, DateTime? start, DateTime? end)
     {
         var now = DateTime.Now;
@@ -139,6 +171,11 @@ public class EnergyUsageRepository : Repository<EnergyUsageLog>, IEnergyUsageRep
 
     // JOEY: end
 
+    /// <summary>
+    /// get logs for energy usage from a specified device
+    /// </summary>
+    /// <param name="id">id of device</param>
+    /// <returns>list of energy usage logs that match the criteria</returns>
     public async Task<List<EnergyUsageLog>> GetUsageByDeviceId(int id)
     {
         var logsForDevice = await IncludeReferences(
@@ -149,6 +186,11 @@ public class EnergyUsageRepository : Repository<EnergyUsageLog>, IEnergyUsageRep
         return logsForDevice;
     }
 
+    /// <summary>
+    /// get logs for energy usage from devices of a specified type
+    /// </summary>
+    /// <param name="deviceType">device type/category</param>
+    /// <returns>list of energy usage logs that match the criteria</returns>
     public async Task<List<EnergyUsageLog>> GetUsageByDeviceType(string deviceType)
     {
         var logsForType = await IncludeReferences(
@@ -159,6 +201,11 @@ public class EnergyUsageRepository : Repository<EnergyUsageLog>, IEnergyUsageRep
         return logsForType;
     }
 
+    /// <summary>
+    /// get logs for energy usage by devices within a specified lab
+    /// </summary>
+    /// <param name="labName">id of the lab with devices</param>
+    /// <returns>list of energy usage logs that match the criteria</returns>
     public async Task<List<EnergyUsageLog>> GetUsageByLabId(int id)
     {
         var logsForLab = await IncludeReferences(
