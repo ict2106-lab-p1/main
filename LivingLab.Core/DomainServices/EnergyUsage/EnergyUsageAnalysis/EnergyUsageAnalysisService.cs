@@ -33,6 +33,12 @@ public class EnergyUsageAnalysisService : IEnergyUsageAnalysisService
         _labRepository = labRepository;
     }
 
+    /// <summary>
+    /// 1. get the colname 
+    /// 2. store the col name and data in byte format
+    /// </summary>
+    /// <param name="DeviceEUList">List of data to be export</param>
+    /// <returns>byte string of the data</returns>
     public byte[] ExportDeviceEU(List<DeviceEnergyUsageDTO> DeviceEUList) 
     {
         var builder = new StringBuilder();
@@ -48,6 +54,13 @@ public class EnergyUsageAnalysisService : IEnergyUsageAnalysisService
         }
         return Encoding.UTF8.GetBytes(builder.ToString());
     }
+    
+    /// <summary>
+    /// 1. retrieve device energy usage log according to data
+    /// </summary>
+    /// <param name="start">start date</param>
+    /// <param name="end">end date</param>
+    /// <returns>list of DeviceEnergyUsageDTO</returns>
     public List<DeviceEnergyUsageDTO> GetDeviceEnergyUsageByDate(DateTime start, DateTime end) 
     {
         List<EnergyUsageLog> result = _repository.GetDeviceEnergyUsageByDateTime(start,end).Result;
@@ -60,6 +73,13 @@ public class EnergyUsageAnalysisService : IEnergyUsageAnalysisService
         return builder.GetProduct();
 
     }
+
+    /// <summary>
+    /// 1. retrieve lab energy usage log according to data
+    /// </summary>
+    /// <param name="start">start date</param>
+    /// <param name="end">end date</param>
+    /// <returns>list of LabEnergyUsageDTO</returns>
     public List<LabEnergyUsageDTO> GetLabEnergyUsageByDate(DateTime start, DateTime end) 
     {
         List<EnergyUsageLog> result = _repository.GetDeviceEnergyUsageByDateTime(start,end).Result;
@@ -133,6 +153,9 @@ public class EnergyUsageAnalysisService : IEnergyUsageAnalysisService
     
 }
 
+/// <summary>
+/// data class store energy usage in watt
+/// </summary>
 public class EUWatt{
     public string id  {get; set;}
     public int EU {get; set;}

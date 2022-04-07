@@ -6,41 +6,38 @@ namespace LivingLab.Core.DomainServices.EnergyUsage.EnergyUsageCalculation;
 /// </remarks>
 public class EnergyUsageCalculationService : IEnergyUsageCalculationService 
 {
+    /// <summary>
+    /// Calculate the energy usage in watt
+    /// </summary>
+    /// <param name="totalEU">total EU used</param>
+    /// <param name="totalEUTime">total usage time</param>
+    /// <returns>energy usage in watt</returns>
     public int CalculateEnergyUsageInWatt(int totalEU, int totalEUTime)
     {
         double EU = totalEU / (totalEUTime*60);
         return (int) EU;
     }
 
-    public int CalculateEnergyUsagePerHour(double totalEU, int totalEUTime) 
-    {
-        double hour = (double)totalEUTime / (double)60;
-        double EUPerHour = totalEU / hour;
-        return (int)EUPerHour;
-    }
+    /// <summary>
+    /// Calculate the energy usage cost
+    /// </summary>
+    /// <param name="cost">cost of ernergy per kWh</param>
+    /// <param name="totalEUT">total EU used</param>
+    /// <returns>energy usage in watt</returns>
     public double CalculateEnergyUsageCost(double cost, double totalEU) 
     {
         double total = Math.Round((cost * (double)totalEU /1000),2);
         return total;
     }
+
+    /// <summary>
+    /// Calculate the energy usage intensity
+    /// </summary>
+    /// <param name="area">area of the lab</param>
+    /// <param name="totalEUTime">end date</param>
+    /// <returns>energy usage per sqaure meter</returns>
     public double CalculateEnergyIntensity(int area, int totalEU) 
     {
         return Math.Round(((double)totalEU / (double)area),2);
-    }
-    public double CalculateDeviceEUInLab(List<EnergyUsageLog> logs) 
-    {
-        throw new NotImplementedException();
-    }
-    public int CalculateBenchMarkForLab(int totalEU, int labCount) 
-    {
-        throw new NotImplementedException();
-    }
-    public int CalculateBenchMarkForDeviceType(int totalEU, int deviceCount) 
-    {
-        throw new NotImplementedException();
-    }
-    public int CalculateCarbonFootPrint(int totalEU)
-    {
-        throw new NotImplementedException();
     }
 }

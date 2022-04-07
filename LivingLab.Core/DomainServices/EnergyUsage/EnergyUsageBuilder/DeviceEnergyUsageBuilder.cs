@@ -25,6 +25,9 @@ public class DeviceEnergyUsageBuilder: IEnergyUsageBuilder
          this.Reset();
     }
 
+    /// <summary>
+    /// build the index/identifier of the object
+    /// </summary>
     public void BuildDistinctIdentifier ()
     {
         foreach (var item in _logs)
@@ -38,6 +41,10 @@ public class DeviceEnergyUsageBuilder: IEnergyUsageBuilder
 
         }
     }
+
+    /// <summary>
+    /// build the energy usage from joules to watt and store the device id and EU amount
+    /// </summary>
     public void BuildEUInWatt()
     {
         foreach (var item in _logs)
@@ -60,6 +67,10 @@ public class DeviceEnergyUsageBuilder: IEnergyUsageBuilder
             }
         }
     }
+
+    /// <summary>
+    /// To build the cost of the energy usage 
+    /// </summary>
     public void BuildEUCost ()
     {
         for (int i = 0; i < this._unqiueList.Count; i++)
@@ -67,6 +78,10 @@ public class DeviceEnergyUsageBuilder: IEnergyUsageBuilder
              this._totalCost.Add(_calculator.CalculateEnergyUsageCost(this._cost,this._eUList[i]));
         }
     }
+
+    /// <summary>
+    /// To build each component string into object
+    /// </summary>
     public void BuildEUList()
     {
         for (int i = 0; i < this._unqiueList.Count; i++)
@@ -80,11 +95,18 @@ public class DeviceEnergyUsageBuilder: IEnergyUsageBuilder
         }
     }
 
+    /// <summary>
+    /// reset the product class to null when initial created
+    /// </summary>
     public void Reset()
     {
         this._deviceEUList = new DeviceEU();
     }
 
+    /// <summary>
+    /// retrieve the product that was built
+    /// </summary>
+    /// <returns>DeviceEU</returns>
     public List<DeviceEnergyUsageDTO> GetProduct()
     {
         DeviceEU result = this._deviceEUList;
