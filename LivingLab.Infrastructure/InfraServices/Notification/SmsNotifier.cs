@@ -24,6 +24,7 @@ public class SmsNotifier : ISmsNotifier
         _notificationDomainService = notificationDomainService;
         _config = config;
     }
+    
     /// <summary>send sms</summary>
     /// <param name="phone">recipient phone number</param>
     /// <param name="msgBody">content body of SMS, strictly plaintext only</param>
@@ -50,6 +51,7 @@ public class SmsNotifier : ISmsNotifier
 
     /// <summary>send notification via sms</summary>
     /// <param name="message">notification message text</param>
+    [Obsolete]
     public async Task Notify(string message)
     {
         foreach (var labTechnicianDetails in GetPhoneNumber().Result)
@@ -59,8 +61,6 @@ public class SmsNotifier : ISmsNotifier
                              + ", " + message;
             await SendSmsAsync("+65" + labTechnicianDetails.PhoneNumber, msgBody);
         }
-
-
     }
 
     /// <summary>

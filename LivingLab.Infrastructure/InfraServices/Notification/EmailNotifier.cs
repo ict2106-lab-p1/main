@@ -55,6 +55,7 @@ public class EmailNotifier : IEmailNotifier
 
     /// <summary>send notification via email</summary>
     /// <param name="message">email message text</param>
+    [Obsolete]
     public async Task Notify(string message)
     {
         foreach (var labTechnicianDetails in GetEmail().Result)
