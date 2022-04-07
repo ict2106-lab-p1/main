@@ -29,16 +29,24 @@ public class HomeController : Controller
         _labProfileService = labProfileService;
         _dashboardService = dashboardService;
     }
-
-    /*Reroute the users to the login page*/
+    
+    /// <summary>
+    /// Reroute the users to the login page
+    /// </summary>
+    /// <returns>Redirects to login</returns>
     [AllowAnonymous]
     [Route("/")]
     public IActionResult Index()
     {
         return RedirectToAction("Index", "Login");
     }
-
-    /*Reroute the users to the main dashboard*/
+    
+    /// <summary>
+    /// 1. Retrieve data needed for main dashboard
+    /// 2. Direct all users to the main dashboard
+    /// 3. Populate information on dashboard
+    /// </summary>
+    /// <returns>Populate LivingLabDashboardViewModel into the dashboard</returns>
     [Authorize(Roles = "User,Labtech,Admin")]
     public async Task<IActionResult> Dashboard()
     {
@@ -51,15 +59,13 @@ public class HomeController : Controller
         };
         return View("Dashboard", viewLabs);
     }
-
-    /*Privacy page which was built in*/
-    [Authorize(Roles = "Admin")]
-    public IActionResult Privacy()
-    {
-        return View("Privacy");
-    }
     
-    /*Can be called to remove the user*/
+    /// <summary>
+    /// 1. Logouts the user
+    /// 2. Remove credentials from http context
+    /// 3. Redirects to login page
+    /// </summary>
+    /// <returns>Login Page</returns>
     [Authorize(Roles = "User,Labtech,Admin")]
     public IActionResult Logout()
     {
@@ -71,14 +77,21 @@ public class HomeController : Controller
         return RedirectToAction("Index", "Login");
     }
 
+    /// <summary>
+    /// 1. Simple redirect to access denied page
+    /// </summary>
+    /// <returns>Access Denied Page</returns>
     [AllowAnonymous]
-    /*Simple access denied page*/
     public IActionResult AccessDenied()
     {
         return View("_AccessDenied");
     }
     
-    /*Navigation bar population of data information*/
+    /// <summary>
+    /// 1. Retrieve lab lists
+    /// 2. Generate the HTML for the navigation bar to populate lab list
+    /// </summary>
+    /// <returns>Return list of HTML elements for creating labs</returns>
     public async Task<IActionResult> GetLabs()
     {
         var renderList = "";
@@ -93,7 +106,12 @@ public class HomeController : Controller
         return Json(renderList);
     }
     
-    /*Navigation bar populate review equipment for labtechs*/
+    /// <summary>
+    /// 1. Retrieve lab lists
+    /// 2. Check if the labstechs are in charge of that particular lab
+    /// 3. Generate the HTML for the navigation bar to populate review equipment
+    /// </summary>
+    /// <returns>Return list of HTML elements for creating review equipments</returns>
     public async Task<IActionResult> GetReviewEquipment()
     {
         var renderList = "";
@@ -117,13 +135,6 @@ public class HomeController : Controller
         }
         //query database, and get the data.
         return Json(renderList);
-    }
-
-    /*Not in use, just an example*/
-    [Route("/example")]
-    public IActionResult ExamplePage()
-    {
-        return View("ExamplePage");
     }
 
 }

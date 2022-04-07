@@ -15,7 +15,11 @@ public class LabProfileRepository : Repository<Core.Entities.Lab>, ILabProfileRe
     {
         _context = context;
     }
-
+    
+    /// <summary>
+    /// Get all labs details and store it as a list
+    /// </summary>
+    /// <returns>List of lab details</returns>
     public async Task<List<Core.Entities.Lab>> GetAllLabs()
     {
         var labGroup = await _context.LabProfile.ToListAsync();

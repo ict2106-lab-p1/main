@@ -16,6 +16,7 @@ namespace LivingLab.Web.UIServices.LivingLabDashboard;
 /// </remarks>
 public class LivingLabDashboardService : ILivingLabDashboardService
 {
+
     private readonly IEnergyLogService _energyLogService;
 
     public LivingLabDashboardService(IEnergyLogService energyLogService)
@@ -23,9 +24,14 @@ public class LivingLabDashboardService : ILivingLabDashboardService
         _energyLogService = energyLogService;
     }
 
-    public async Task<List<string>> GetUsages()
+/// <summary>
+/// Get energy usage (yesterday, last week, last month)
+/// </summary>
+/// <returns>usages</returns>
+public async Task<List<string>> GetUsages()
     {
         var usages = new List<string>();
+
         DateTime previousMonth = DateTime.Now.AddDays(-30);
         DateTime previousWeek = DateTime.Now.AddDays(-7);
         DateTime previousDay = DateTime.Now.AddDays(-1);

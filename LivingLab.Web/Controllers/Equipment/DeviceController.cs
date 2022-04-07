@@ -111,7 +111,11 @@ public class DeviceController : Controller
         
         // Send email to labTech in charge for approval
         string scheme = this.Request.Scheme;
-        string url = scheme + "://" + HostString.FromUriComponent("livinglab.amatsuka.me");
+        if (Url.IsLocalUrl(Request.Headers["Referer"].ToString()))
+        {
+            HttpContext.Request.Host = HostString.FromUriComponent("livinglab.amatsuka.me");
+        }
+        string url = scheme + "://" + HttpContext.Request.Host;
 
         var user = await _userManager.GetUserAsync(User);
         await _deviceService.SendReviewerEmail(url, addedDevice.Device.Lab.LabLocation, user);

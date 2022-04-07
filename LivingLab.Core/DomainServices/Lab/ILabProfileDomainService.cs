@@ -6,6 +6,11 @@ namespace LivingLab.Core.DomainServices.Lab;
 /// <remarks>
 /// Author: Team P1-5
 /// </remarks>
+
+
+/// <summary>
+/// Consist of Interfaces for lab profile domain service
+/// </summary>
 public interface ILabProfileDomainService
 {
     Task<List<Entities.Lab>> ViewLabs();

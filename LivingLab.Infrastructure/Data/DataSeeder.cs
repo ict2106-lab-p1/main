@@ -70,10 +70,6 @@ public static class DataSeeder
             new Lab { LabId = 3, LabLocation = "NYP-SR7C", LabInCharge = "DefaultAdmin1", LabStatus = "Available", Occupied = 0, Capacity = 20, EnergyUsageBenchmark = 111.5, Area = 200 }
         );
 
-        modelBuilder.Entity<LabAccess>().HasData(
-            new { UserId = "DefaultAdmin2", LabId = 1, InitiatorId = "DefaultAdmin1" }
-        );
-
         modelBuilder.Entity<Booking>().HasData(
             new { BookingId = 1, StartDateTime = new DateTime(2022, 7, 19, hour: 10, minute: 00, second: 00), EndDateTime = new DateTime(2022, 7, 19, hour: 12, minute: 00, second: 00), LabId = 1, UserId = "DefaultAdmin3" }
         );

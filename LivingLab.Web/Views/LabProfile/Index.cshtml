@@ -3,12 +3,11 @@
 
 @using LivingLab.Web.Models.ViewModels.LabProfile
 @model LivingLab.Web.Models.ViewModels.LabProfile.MultiModel
-
-
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
-
-
+@* /// <remarks> *@
+@* /// Author: Team P1-5 *@
+@* /// </remarks> *@
 @{
     ViewData["Title"] = "Home Page";
     var listofusers = await UserManager.GetUsersInRoleAsync("labtech");

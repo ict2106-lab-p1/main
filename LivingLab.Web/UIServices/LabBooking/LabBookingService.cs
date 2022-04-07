@@ -21,13 +21,16 @@ public class LabBookingService : ILabBookingService
         _mapper = mapper;
         _labProfileDomainService = labProfileDomainService;
         _BookingDomainService=BookingDomainService;
+        //initial mapper, Labdomainservice and bookingdomainservice
     }
 
 
     public async Task<List<BookingTableViewModel>> RetrieveBookTableList()
     {
                 var listOfBooks = await _BookingDomainService.ViewBooks();
-                    List<BookingTableViewModel> listOfBooking = new List<BookingTableViewModel>();
+                //Store the book data list in the variable listofbook .
+                List<BookingTableViewModel> listOfBooking = new List<BookingTableViewModel>();
+                //Create list of BookingTableViewModel object to store the data
                  foreach (Booking Book in listOfBooks)
         {
             listOfBooking.Add(new BookingTableViewModel()
@@ -37,7 +40,7 @@ public class LabBookingService : ILabBookingService
                 EndTime=Book.EndDateTime.ToString(),
                 Description=Book.Description,
                 BookId=Book.BookingId
-
+               //match the data to the variable of BookingTableViewModel object
                 
             });
             Console.WriteLine(Book.BookingId);
@@ -46,25 +49,14 @@ public class LabBookingService : ILabBookingService
         return listOfBooking;
     }
 
-    // public async Task<ViewDeviceViewModel> viewDevice()
-    // {
-    //     //retrieve data from db
-    //     List<Core.Entities.Device> deviceList = await _deviceRepository.GetAllAsync();
-    //             
-    //     //map entity model to view model
-    //     List<DeviceViewModel> devices = _mapper.Map<List<Core.Entities.Device>, List<DeviceViewModel>> (deviceList);
-    //         
-    //     //add list of device view model to the view device view model
-    //     ViewDeviceViewModel viewDevices = new ViewDeviceViewModel();
-    //     viewDevices.DeviceList = devices;
-    //     return viewDevices;
-    // }
 
-
+    /*Retriving lab data from lab table in database*/
     public async Task<List<BookingDashboardViewModel>> RetrieveList()
     {
         var listOfLabs = await _labProfileDomainService.ViewLabs();
+        //Store the lab data list in the variable listofbook .
         List<BookingDashboardViewModel> listOfLab = new List<BookingDashboardViewModel>();
+         //Create list of BookingDashboardViewModel object to store the data
         foreach (Lab lab in listOfLabs)
         {
             listOfLab.Add(new BookingDashboardViewModel()
@@ -74,11 +66,13 @@ public class LabBookingService : ILabBookingService
                 LabState = lab.LabStatus,
                 LabOccupancy = lab.Occupied,
                 LabLocation = lab.LabLocation
+                //match the data to the variable of BookingDashboardViewModel object
             });
         }
         return listOfLab;
     }
-
+  /*Function to insert a new booking in database*/
+  
        public async Task<Booking?> CreateBook(BookFormModel Book, string userid)
     {
       var bookWrapper = new Booking
@@ -89,22 +83,22 @@ public class LabBookingService : ILabBookingService
             LabId = Book.LabId,
             UserId = userid
          
-            // Area = labinput.Area,
-            // Capacity = labinput.Capacity,
-            // EnergyUsageBenchmark = labinput.EnergyUsageBenchmark
+            //create new Booking object which is same as the schema in database to store data of user input 
         };
         Console.WriteLine("Booking Services");
         return await _BookingDomainService.NewBook(bookWrapper);
+        //pass the object to domain service
     }
 
+
+    /*Function to delete a exist booking in database*/
        public async Task<Booking?> DeleteBook(int bookid)
     {
       
-            // Area = labinput.Area,
-            // Capacity = labinput.Capacity,
-            // EnergyUsageBenchmark = labinput.EnergyUsageBenchmark
-   
+           
+
         return await _BookingDomainService.DeleteBook(bookid);
+        //pass the variable of bookid to domain service
     }
     
 }
