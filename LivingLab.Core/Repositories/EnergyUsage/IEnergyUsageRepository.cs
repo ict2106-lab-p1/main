@@ -15,6 +15,5 @@ public interface IEnergyUsageRepository : IRepository<EnergyUsageLog>
     Task<List<EnergyUsageLog>> GetLabEnergyUsageByLocationAndDate(string labLocation, DateTime? start, DateTime? end);
     Task<List<EnergyUsageLog>> GetLabEnergyUsageByDate(DateTime? start, DateTime? end);
     Task<List<EnergyUsageLog>> GetLabEnergyUsageByLabNameAndDate(string labName, DateTime start, DateTime end);
-
     Task<List<EnergyUsageLog>> GetLatestLogs(int size);
 }
