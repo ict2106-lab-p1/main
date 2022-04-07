@@ -21,14 +21,14 @@ public interface IDeviceDomainService
     Task<List<Entities.Device>> ViewDevice(string deviceType, string labLocation);
     
     /// <summary>
-    /// function to get a list of available devices to populate in the lablocation
+    /// Get the devices type by lab Location
     /// </summary>
     /// <param name="labLocation"></param>
     /// <returns></returns>
     Task<List<Entities.Device>> GetDevicesForLabProfile(string labLocation);
     
     /// <summary>
-    /// function to update the review status
+    /// Update review status of the device
     /// </summary>
     /// <param name="deviceId"></param>
     /// <param name="deviceReviewStatus"></param>
@@ -56,12 +56,36 @@ public interface IDeviceDomainService
     Task<Entities.Device> ViewDeviceDetails(int id);
     
     /// <summary>
-    /// 
+    /// function to get the last row of the device
     /// </summary>
     /// <returns></returns>
     Task<Entities.Device> GetDeviceLastRow();
+    
+    /// <summary>
+    /// function to add device 
+    /// </summary>
+    /// <param name="addedDevice"></param>
+    /// <returns></returns>
     Task<Entities.Device> AddDevice(Entities.Device addedDevice);
+    
+    /// <summary>
+    /// function to populate edit device details
+    /// </summary>
+    /// <param name="editedDevice"></param>
+    /// <returns></returns>
     Task<Entities.Device> EditDeviceDetails(Entities.Device editedDevice);
+    
+    /// <summary>
+    /// function to delete device
+    /// </summary>
+    /// <param name="deleteDevice"></param>
+    /// <returns></returns>
     Task<Entities.Device> DeleteDevice(Entities.Device deleteDevice);
+    
+    /// <summary>
+    /// function to get all device types
+    /// </summary>
+    /// <param name="deleteDevice"></param>
+    /// <returns></returns>
     Task<List<String>> GetDeviceTypes();
 }
