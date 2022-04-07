@@ -21,7 +21,6 @@ public class HomeController : Controller
     private readonly ILabProfileService _labProfileService;
     private readonly ILivingLabDashboardService _dashboardService;
 
-
     public HomeController(ILogger<HomeController> logger, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ILabProfileService labProfileService, ILivingLabDashboardService dashboardService)
     {
         _logger = logger;
@@ -43,7 +42,13 @@ public class HomeController : Controller
     [Authorize(Roles = "User,Labtech,Admin")]
     public async Task<IActionResult> Dashboard()
     {
-        LivingLabDashboardViewModel viewLabs = await _dashboardService.GetAllLabs();
+        var labLists = await _labProfileService.GetAllLabAccounts();
+        var usageList = await _dashboardService.GetUsages();
+        LivingLabDashboardViewModel viewLabs = new LivingLabDashboardViewModel()
+        {
+            LabList = labLists,
+            Usages = usageList
+        };
         return View("Dashboard", viewLabs);
     }
 
