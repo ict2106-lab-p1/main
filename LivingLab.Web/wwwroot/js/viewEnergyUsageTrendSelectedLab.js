@@ -146,6 +146,7 @@ function getBenchmark(data) {
     for (let i = 0; i < getDates().length; i++) {
         benchmark.push(data.selectedLabEnergyUsage.lab.energyUsageBenchmark);
     }
+    console.log(benchmark)
     return benchmark;
 }
 
