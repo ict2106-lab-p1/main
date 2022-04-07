@@ -33,7 +33,14 @@ public class LabProfileRepository : Repository<Core.Entities.Lab>, ILabProfileRe
         return user;
     }
 
-    // Added by Team P1-1
+    /// <remarks>
+    /// Added by Team P1-1
+    /// </remarks>
+    /// <summary>
+    /// set the benchmark energy value of a lab for insight purposes
+    /// </summary>
+    /// <param name="labId">id of the lab to set</param>
+    /// <param name="energyBenchmark">benchmark energy usage value</param>
     public Task SetLabEnergyBenchmark(int labId, double energyBenchmark)
     {
         var lab = _context.Labs.FirstOrDefault(l => l.LabId == labId);
@@ -45,14 +52,24 @@ public class LabProfileRepository : Repository<Core.Entities.Lab>, ILabProfileRe
         return _context.SaveChangesAsync();
     }
 
-    // Added by P1-1
+    /// <remarks>Added by P1-1</remarks>
+    /// <summary>
+    /// get the benchmark energy value of a lab for insight purposes
+    /// </summary>
+    /// <param name="labId">id of the lab</param>
+    /// <returns>benchmark energy usage value</returns>
     public Task<double> GetLabEnergyBenchmark(int labId)
     {
         var lab = _context.Labs.FirstOrDefault(l => l.LabId == labId);
         return Task.FromResult(lab != null ? lab.EnergyUsageBenchmark!.Value : 0.0);
     }
 
-    // Added by P1-1
+    /// <remarks>Added by P1-1</remarks>
+    /// <summary>
+    /// get the lab that resides at a given location
+    /// </summary>
+    /// <param name="location">location of the lab</param>
+    /// <returns>the respective lab</returns>
     public Task<Core.Entities.Lab?> GetLabByLocation(string location)
     {
         return _context.Labs.FirstOrDefaultAsync(l => l.LabLocation == location);
@@ -65,5 +82,4 @@ public class LabProfileRepository : Repository<Core.Entities.Lab>, ILabProfileRe
             )
             .ToListAsync();
     }
-    
 }

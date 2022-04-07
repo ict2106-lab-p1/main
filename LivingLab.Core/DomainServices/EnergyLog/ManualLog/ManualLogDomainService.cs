@@ -34,7 +34,7 @@ public class ManualLogDomainService : IManualLogDomainService
     {
         if (fileSizeBytes != null)
         {
-            // _sessionStatsRepo.LogFileUpload(data.First().Lab.LabId, fileSizeBytes.Value);
+             _sessionStatsRepo.LogFileUpload(data.First().Lab.LabId, fileSizeBytes.Value);
         }
         return  _energyUsageRepo.BulkInsertAsync(data);
     }
