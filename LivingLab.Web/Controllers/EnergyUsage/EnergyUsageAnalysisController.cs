@@ -29,7 +29,7 @@ public class EnergyUsageAnalysisController : Controller
     ///     Index page of analysisDomain
     /// </summary>
     /// <returns>view with tables and graphs</returns>
-    public async Task<IActionResult> Index()
+    public IActionResult Index()
     {
         return View(GetData());
     }
