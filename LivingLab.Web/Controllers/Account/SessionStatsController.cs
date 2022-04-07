@@ -21,6 +21,11 @@ public class SessionStatsController : Controller
         _sessionStatsService = sessionStatsService;
     }
     
+    /// <summary>
+    /// 1. Call Session Stats service to get all Session Stats according to the labLocation eg. NYP-SR7A
+    /// </summary>
+    /// <param name="labLocation"></param>
+    /// <returns>ViewSessionStatsViewModel</returns>
     public async Task<IActionResult> ViewSessionStats(string labLocation)
     {
         ViewSessionStatsViewModel viewSessionStats = await _sessionStatsService.ViewSessionStats(labLocation);

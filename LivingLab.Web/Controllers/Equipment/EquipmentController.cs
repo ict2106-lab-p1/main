@@ -9,6 +9,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LivingLab.Web.Controllers.Equipment;
 
+/// <remarks>
+/// Author: Team P1-3
+/// </remarks>
 
 [Authorize(Roles = "Labtech")]
 [Route("Equipment")]
@@ -22,6 +25,11 @@ public class EquipmentController: Controller
         _logger = logger;
         _equipmentService = equipmentService;
     }
+    /// <summary>
+    /// 1. Call equipment service to get all devices and accessories according to the labLocation eg. NYP-SR7A
+    /// </summary>
+    /// <param name="labLocation"></param>
+    /// <returns>EquipmentViewModel</returns>
     [Route("ReviewEquipment/{labLocation}")]
     public async Task<IActionResult> ReviewEquipment(string labLocation)
     {
@@ -29,6 +37,13 @@ public class EquipmentController: Controller
         return View("ReviewEquipment", equipmentViewModel);
     }
 
+    /// <summary>
+    /// 1. Call equipment service to update device status according to the labLocation eg. NYP-SR7A
+    /// </summary>
+    /// <param name="deviceId"></param>
+    ///<param name="deviceReviewStatus"></param>
+    /// <param name="labLocation"></param>
+    /// <returns></returns>
     [HttpPost("UpdateDevice")]
     public IActionResult UpdateDevice(string deviceId, string deviceReviewStatus, string labLocation)
     {
@@ -36,6 +51,13 @@ public class EquipmentController: Controller
         return Redirect($"ReviewEquipment/{labLocation}#device");
     }
     
+    /// <summary>
+    /// 1. Call equipment service to update accessory status according to the labLocation eg. NYP-SR7A
+    /// </summary>
+    /// <param name="accessoryId"></param>
+    ///<param name="accessoryReviewStatus"></param>
+    /// <param name="labLocation"></param>
+    /// <returns></returns>
     [HttpPost("UpdateAccessory")]
     public IActionResult UpdateAccessory(string accessoryId, string accessoryReviewStatus, string labLocation)
     {

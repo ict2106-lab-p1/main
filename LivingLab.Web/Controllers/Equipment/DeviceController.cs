@@ -25,12 +25,24 @@ public class DeviceController : Controller
         _userManager = userManager;
     }
 
+    /// <summary>
+    /// 1. Call device service to get all devices according to the labLocation eg. NYP-SR7A and devices type chosen
+    /// </summary>
+    /// <param name="labLocation"></param>
+    /// <returns>ViewDeviceTypeViewModel</returns>
     [Route("ViewType/{labLocation}")]
     public async Task<IActionResult> ViewType(string labLocation)
     {
         ViewDeviceTypeViewModel viewDeviceTypeViewModel = await _deviceService.ViewDeviceType(labLocation);
         return View("ViewDeviceType", viewDeviceTypeViewModel);
     }
+    
+    /// <summary>
+    /// 1. Call device service to get all devices type according to the labLocation eg. NYP-SR7A
+    /// </summary>
+    /// <param name="deviceType"></param>
+    /// <param name="labLocation"></param>
+    /// <returns>ViewDeviceViewModel</returns>
     [HttpPost("View")]
     public async Task<IActionResult> ViewAll(string deviceType, string labLocation)
     {
@@ -38,7 +50,11 @@ public class DeviceController : Controller
         return View("ViewDevice", viewDevices);
     }
 
-
+    /// <summary>
+    /// 1. Call device service to get all devices details based on device Id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns>DeviceViewModel</returns>
     [Route("View/{id}")]
     public async Task<DeviceViewModel> ViewDeviceDetails(int id)
     {
@@ -49,6 +65,11 @@ public class DeviceController : Controller
         // return View("_DeviceDetails", device);
     }
 
+    /// <summary>
+    /// 1. Call device service to add a device to db
+    /// </summary>
+    /// <param></param>
+    /// <returns>AddDeviceViewModel</returns>
     [Route("ViewAddDetails")]
     public async Task<AddDeviceViewModel> ViewAddDetails()
     {
@@ -56,9 +77,13 @@ public class DeviceController : Controller
         AddDeviceViewModel device = await _deviceService.ViewAddDetails();
 
         return device;
-        // return View("_DeviceDetails", device);
     }
 
+    /// <summary>
+    /// 1. Call device service to edit a device to db and display ViewAll after editing
+    /// </summary>
+    /// <param name="editedDevice"></param>
+    /// <returns>ViewDeviceViewModel</returns>
     [HttpPost("View/Edit")]
     public async Task<IActionResult> EditDevice(DeviceViewModel editedDevice)
     {
@@ -71,6 +96,11 @@ public class DeviceController : Controller
         return View("ViewDevice", viewDevices);
     }
     
+    /// <summary>
+    /// 1. Call device service to request approval for addition of devices using email
+    /// </summary>
+    /// <param name="addedDevice"></param>
+    /// <returns></returns>
     [HttpGet]
     [HttpPost("ViewAdd")]
     public async Task<IActionResult> AddDevice(AddDeviceViewModel addedDevice)
@@ -87,7 +117,11 @@ public class DeviceController : Controller
         
         return Redirect($"ViewType/{addedDevice.Device.Lab.LabLocation}");
     }
-
+    /// <summary>
+    /// 1. Delete device based on device Id
+    /// </summary>
+    /// <param name="deleteDevice"></param>
+    /// <returns></returns>
     [HttpPost("View/Delete")]
     public async Task<IActionResult> DeleteDevice(DeviceViewModel deleteDevice)
     {
@@ -97,13 +131,6 @@ public class DeviceController : Controller
         ViewDeviceViewModel viewDevices = await _deviceService.ViewDevice(deleteDevice.Type, deleteDevice.Lab.LabLocation);
         return View("ViewDevice", viewDevices);
     }
-
-    // [HttpGet]
-    // public async Task<IActionResult> GetAll()
-    // {
-    //     List<Device> deviceList = await _deviceRepository.GetAllAsync();
-    //     return Ok(deviceList);
-    // }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
