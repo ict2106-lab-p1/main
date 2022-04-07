@@ -4,10 +4,6 @@ using LivingLab.Core.Repositories.Account;
 using Microsoft.Extensions.Logging;
 
 namespace LivingLab.Core.DomainServices.Account;
-/// <summary>
-/// Domain service implementations belongs here.
-/// Domain service are classes that are responsible for business logic.
-/// </summary>
 /// <remarks>
 /// Author: Team P1-5
 /// </remarks>
@@ -21,33 +17,50 @@ public class AccountDomainService: IAccountDomainService
         _accountRepository = accountRepository;
         _logger = logger;
     }    
-    //initialise repository 
     public AccountDomainService(IAccountRepository accountRepository)
     {
         _accountRepository = accountRepository;
     }
 
+    /// <summary>
+    /// 1. Call account repo to get all accounts
+    /// </summary>
     public Task<List<ApplicationUser>> ViewAccounts()
     {
         return _accountRepository.GetAllAccount();
     } 
  
-    
-    public Task<ApplicationUser> ViewAccountDetails(string id)
+    /// <summary>
+    /// 1. Call account repo to get account by Id function
+    /// </summary>
+    /// <param name="Id">Filtered account by Id</param>
+    /// <returns>Account with matching Id</returns>
+    public Task<ApplicationUser> ViewAccountDetails(string Id)
     {
-        return _accountRepository.GetAccountById(id);
+        return _accountRepository.GetAccountById(Id);
     }
 
-
-    public Task<ApplicationUser> EditAccount(ApplicationUser editAccount)
+    /// <summary>
+    /// 1. Call account repo to edit account function
+    /// </summary>
+    /// <param name="EditAccount">Edit account by Id</param>
+    /// <returns>Edited account with matching Id</returns>
+    public Task<ApplicationUser> EditAccount(ApplicationUser EditAccount)
     {
-        return _accountRepository.EditAccount(editAccount);
+        return _accountRepository.EditAccount(EditAccount);
     } 
-    public Task<ApplicationUser> DeleteAccount(ApplicationUser deletedUser)
+    
+    /// <summary>
+    /// 1. Call account repo to delete account function
+    /// </summary>
+    /// <param name="EditAccount">Delete account by Id</param>
+    /// <returns>Deleted account with matching Id</returns>
+    public Task<ApplicationUser> DeleteAccount(ApplicationUser DeletedAccount)
     {
-        return _accountRepository.DeleteAccount(deletedUser);
+        return _accountRepository.DeleteAccount(DeletedAccount);
     }
 
+    
     /*Function to update user information one by one*/
     public async Task<ApplicationUser?> UpdateUser(ApplicationUser user)
     {

@@ -1,6 +1,5 @@
 using LivingLab.Web.Models.ViewModels.UserManagement;
 using LivingLab.Web.UIServices.UserManagement;
-
 using Microsoft.AspNetCore.Mvc;
 
 namespace LivingLab.Web.Controllers.Account;
