@@ -1,7 +1,5 @@
 using System.ComponentModel.DataAnnotations;
-
 using LivingLab.Core.Enums;
-
 using Microsoft.AspNetCore.Identity;
 
 namespace LivingLab.Core.Entities.Identity;

@@ -1,3 +1,6 @@
+/// <remarks>
+/// Author: Team P1-5
+/// </remarks>
 $(document).ready(function () {
     $(document).on('click', '.editUserBtn', function () {
         clickEditUser(this)
@@ -22,7 +25,7 @@ $(document).ready(function () {
     }
 
     function clickEditUser(e) {
-        $.get('/UserManagement/View/'+e.getAttribute('data-id'),  // url
+        $.get('/UserManagement/View/'+e.getAttribute('data-id'), 
             function (data, textStatus, jqXHR) {  // success 
                 document.getElementById("user-id").value = data.id
                 document.getElementById("user-email").value = data.email
@@ -31,7 +34,7 @@ $(document).ready(function () {
             });
     }
     function clickDelete(e) {
-        $.get('/UserManagement/View/'+e.getAttribute('data-id'),  // url
+        $.get('/UserManagement/View/'+e.getAttribute('data-id'),  
             function (data, textStatus, jqXHR) {  
                 document.getElementById("del-user-id").value = data.id
                 document.getElementById("userEmail").innerHTML = data.email

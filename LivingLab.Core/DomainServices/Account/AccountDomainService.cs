@@ -1,6 +1,5 @@
 using LivingLab.Core.Entities.Identity;
 using LivingLab.Core.Repositories.Account;
-
 using Microsoft.Extensions.Logging;
 
 namespace LivingLab.Core.DomainServices.Account;

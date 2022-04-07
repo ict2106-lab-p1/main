@@ -1,12 +1,12 @@
 using LivingLab.Web.Models.ViewModels.UserManagement;
 using LivingLab.Web.UIServices.UserManagement;
+
 using Microsoft.AspNetCore.Mvc;
 
 namespace LivingLab.Web.Controllers.Account;
 /// <remarks>
 /// Author: Team P1-5
 /// </remarks>
-
 [Route("userManagement")]
 public class UserManagementController : Controller
 {
@@ -25,10 +25,10 @@ public class UserManagementController : Controller
     ///  <param name="userId">UserID</param>
     ///  </summary>
     [Route("index")]
-    public async Task<IActionResult> UserAccounts(string userId)
+    public async Task<IActionResult> UserAccounts(string Id)
     {
-        ViewUserManagementViewModel ViewUserManagementViewModel = await _userManagementService.GetAllAccounts();
-        return View("Index", ViewUserManagementViewModel); 
+        ViewUserManagementViewModel ViewUserManagementVM = await _userManagementService.GetAllAccounts();
+        return View("Index", ViewUserManagementVM); 
     }
     
     /// <summary>
@@ -38,11 +38,11 @@ public class UserManagementController : Controller
     ///  <param name="userId">UserID</param>
     ///  </summary>
     [Route("View/{id}")]
-    public async Task<UserManagementViewModel> ViewUserDetails(string userId)
+    public async Task<UserManagementViewModel> ViewUserDetails(string Id)
     { 
         //retrieve data from db
-        UserManagementViewModel user = await _userManagementService.ViewUserDetails(userId);
-        return user;
+        UserManagementViewModel User = await _userManagementService.ViewUserDetails(Id);
+        return User;
     }
     
     /// <summary>
@@ -52,12 +52,12 @@ public class UserManagementController : Controller
     ///  <param name="editAccount">Retrieve relevant attributes</param>
     ///  </summary>
     [HttpPost("View/Edit")]
-    public async Task<IActionResult> EditUser(UserManagementViewModel editAccount)
+    public async Task<IActionResult> EditUser(UserManagementViewModel EditAccount)
     {
-        await _userManagementService.EditAccount(editAccount);
+        await _userManagementService.EditAccount(EditAccount);
 
-        ViewUserManagementViewModel viewAccounts = await _userManagementService.GetAllAccounts();
-        return View("Index", viewAccounts);
+        ViewUserManagementViewModel ViewAcconts = await _userManagementService.GetAllAccounts();
+        return View("Index", ViewAcconts);
     }
     
     /// <summary>
@@ -67,10 +67,15 @@ public class UserManagementController : Controller
     ///  <param name="deleteAccount">Delete account</param>
     ///  </summary>
     [HttpPost("View/Delete")]
-    public async Task<IActionResult> DeleteAccount(UserManagementViewModel deleteAccount)
+    public async Task<IActionResult> DeleteAccount(UserManagementViewModel DeleteAccount)
     {
-        await _userManagementService.DeleteAccount(deleteAccount);
-            ViewUserManagementViewModel viewAccounts = await _userManagementService.GetAllAccounts();
-            return View("Index", viewAccounts);
+
+        
+            await _userManagementService.DeleteAccount(DeleteAccount);
+            ViewUserManagementViewModel ViewAcconts = await _userManagementService.GetAllAccounts();
+            return View("Index", ViewAcconts);
+        
+    
+       
     }
 }

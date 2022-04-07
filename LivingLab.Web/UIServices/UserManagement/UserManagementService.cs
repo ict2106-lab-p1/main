@@ -27,7 +27,7 @@ public class UserManagementService : IUserManagementService
         List<UserManagementViewModel> AccountList =
             _mapper.Map<List<ApplicationUser>, List<UserManagementViewModel>>(Account);
         ViewUserManagementViewModel UserManagementVM = new ViewUserManagementViewModel();
-        UserManagementVM.userList = AccountList;
+        UserManagementVM.UserList = AccountList;
         return UserManagementVM;
     }
     /// <summary>
