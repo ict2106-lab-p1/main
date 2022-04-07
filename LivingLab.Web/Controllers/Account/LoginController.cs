@@ -237,6 +237,7 @@ public class LoginController : Controller
             var user = await _userManager.FindByEmailAsync(model.Email);
             if (user != null && await _userManager.IsEmailConfirmedAsync(user))
             {
+                HttpContext.Request.Host = HostString.FromUriComponent("livinglab.amatsuka.me");
                 var token = await _userManager.GeneratePasswordResetTokenAsync(user);
                 var passwordResetLink = Url.Action("ResetPassword", "Login", new {email = model.Email, token = token},
                     Request.Scheme);

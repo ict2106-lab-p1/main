@@ -7,5 +7,5 @@ namespace LivingLab.Web.UIServices.LivingLabDashboard;
 /// </remarks>
 public interface ILivingLabDashboardService
 {
-    Task<LivingLabDashboardViewModel> GetAllLabs();
+    Task<List<String>> GetUsages();
 }
