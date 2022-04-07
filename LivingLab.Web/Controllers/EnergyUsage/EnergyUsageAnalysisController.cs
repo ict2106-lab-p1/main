@@ -23,23 +23,38 @@ public class EnergyUsageAnalysisController : Controller
         _logger = logger;
         _analysisService = analysisService;
     }
+
+    /// <summary>
+    /// Index page of analyiss
+    /// </summary>
+    /// <returns>view with tables and graphs</returns>
     public async Task<IActionResult> Index(string? LabLocation = "NYP-SR7C")
     {
         return View(GetData());
     }
 
+    /// <summary>
+    /// Display the additonal devices detail
+    /// </summary>
+    /// <returns>view</returns>
     public IActionResult DeviceMoreDetail()
     {
-        ViewBag.Logs = "-";
         return View();
     }
 
+    /// <summary>
+    /// Display devices in the lab
+    /// </summary>
+    /// <returns>view of devices</returns>
     public IActionResult LabMoreDetail()
     {
-        ViewBag.Logs = "-";
         return View();
     }
 
+    /// <summary>
+    /// Export the device data in the table
+    /// </summary>
+    /// <returns>csv file of device energy usage</returns>
     [HttpGet]
     public IActionResult Export()
     {
@@ -47,26 +62,15 @@ public class EnergyUsageAnalysisController : Controller
         return File(content, "text/csv", "Device Energy Usage.csv");
     }
 
+    /// <summary>
+    /// Error modal
+    /// </summary>
+    /// <returns>view with error message</returns>
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
-
-    // [HttpPost]
-    // public async Task<IActionResult> ViewUsage([FromBody] EnergyUsageFilterViewModel filter)
-    // {
-    //     try
-    //     {
-    //         var model = await _analysisService.GetEnergyUsageTrendSelectedLab(filter);
-    //         return model.Lab != null ? Json(model) : NotFound();
-    //     }
-    //     catch (Exception e)
-    //     {
-    //         _logger.Log(LogLevel.Error, e.Message);
-    //         return NotFound();
-    //     }
-    // }
     
     [HttpPost]
     public async Task<IActionResult> ViewUsage([FromBody] EnergyUsageFilterViewModel filter)
@@ -88,23 +92,12 @@ public class EnergyUsageAnalysisController : Controller
             return NotFound();
         }
     }
-
-    // [HttpPost]
-    // public async Task<IActionResult> ViewUsage([FromBody] EnergyUsageFilterViewModel filter)
-    // {
-    //     try
-    //     {
-    //         var modelAll = await _analysisService.GetEnergyUsageTrendAllLab(filter);
-    //         return modelAll.Lab != null ? Json(modelAll) : NotFound();
-    //     }
-    //     catch (Exception e)
-    //     {
-    //         _logger.Log(LogLevel.Error, e.Message);
-    //         return NotFound();
-    //     }
-    // }
     
 
+    /// <summary>
+    /// Get the data for lab and device
+    /// </summary>
+    /// <returns>viewmodel with device and lab energy usage data</returns>
     public EnergyUsageAnalysisViewModel GetData() {
         DateTime start = new DateTime(2015, 12, 25);
         DateTime end = new DateTime(2022, 12, 25);

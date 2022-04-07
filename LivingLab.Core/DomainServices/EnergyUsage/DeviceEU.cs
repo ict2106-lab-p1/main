@@ -9,13 +9,21 @@ public class DeviceEU
 {
     private List<DeviceEnergyUsageDTO> _parts = new List<DeviceEnergyUsageDTO>();
 
-        public void Add(DeviceEnergyUsageDTO part)
-        {
-            this._parts.Add(part);
-        }
+    /// <summary>
+    /// Add input into list
+    /// </summary>
+    /// <param name="parts">DeviceEnergyUsageDTO</param>
+    public void Add(DeviceEnergyUsageDTO part)
+    {
+        this._parts.Add(part);
+    }
 
-        public List<DeviceEnergyUsageDTO> product()
-        {
-            return this._parts;
-        }
+    /// <summary>
+    /// return the final product
+    /// </summary>
+    /// <returns>list of LabEnergyUsageDTO</returns>
+    public List<DeviceEnergyUsageDTO> product()
+    {
+        return this._parts;
+    }
 }
