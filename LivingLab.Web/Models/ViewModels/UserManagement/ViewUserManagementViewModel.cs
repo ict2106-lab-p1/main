@@ -4,5 +4,5 @@ namespace LivingLab.Web.Models.ViewModels.UserManagement;
 /// </remarks>
 public class ViewUserManagementViewModel
 {
-    public List<UserManagementViewModel> UserList { get; set; }
+    public List<UserManagementViewModel>? UserList { get; set; }
 }

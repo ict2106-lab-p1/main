@@ -15,7 +15,7 @@ public class LabProfileRepository : Repository<Core.Entities.Lab>, ILabProfileRe
     {
         _context = context;
     }
-    
+
     /// <summary>
     /// Get all labs details and store it as a list
     /// </summary>

@@ -44,7 +44,8 @@ public class EquipmentService : IEquipmentService
             _mapper.Map<List<Core.Entities.Device>, List<DeviceViewModel>>(deviceList);
         return new EquipmentViewModel
         {
-            AccessoryViewModelList = accessoryViewModelList, DeviceViewModelList = deviceViewModelList
+            AccessoryViewModelList = accessoryViewModelList,
+            DeviceViewModelList = deviceViewModelList
         };
     }
 

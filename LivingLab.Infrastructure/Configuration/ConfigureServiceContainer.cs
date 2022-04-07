@@ -2,7 +2,6 @@ using LivingLab.Core.DomainServices.Notifications;
 using LivingLab.Core.Entities.Identity;
 using LivingLab.Core.Notifications;
 using LivingLab.Infrastructure.Data;
-using LivingLab.Infrastructure.InfraServices;
 using LivingLab.Infrastructure.InfraServices.Notification;
 
 using Microsoft.AspNetCore.Identity;

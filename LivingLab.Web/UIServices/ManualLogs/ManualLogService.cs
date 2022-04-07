@@ -20,7 +20,7 @@ public class ManualLogService : IManualLogService
         _mapper = mapper;
         _manualLogDomainService = manualLogDomainService;
     }
-    
+
     /// <summary>
     /// 1. Call Manual Log Domain Service to parse uploaded file into a list
     /// 2. Map logs DTO to Log Item ViewModel

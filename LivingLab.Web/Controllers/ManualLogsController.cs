@@ -2,7 +2,6 @@ using System.Diagnostics;
 
 using LivingLab.Web.Models.ViewModels;
 using LivingLab.Web.Models.ViewModels.EnergyUsage;
-using LivingLab.Web.UIServices.EnergyLog;
 using LivingLab.Web.UIServices.LabProfile;
 using LivingLab.Web.UIServices.ManualLogs;
 
@@ -88,7 +87,7 @@ public class ManualLogsController : Controller
         try
         {
             if (logs.Count == 0) return Error();
-            
+
             await _manualLogService.SaveLogs(logs);
             return Ok();
         }

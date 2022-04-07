@@ -1,5 +1,4 @@
 using LivingLab.Core.Entities;
-using LivingLab.Core.Entities.Identity;
 
 namespace LivingLab.Core.Repositories.EnergyUsage;
 

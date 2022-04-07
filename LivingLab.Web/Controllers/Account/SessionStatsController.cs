@@ -15,13 +15,13 @@ public class SessionStatsController : Controller
 {
     private readonly ILogger<SessionStatsController> _logger;
     private readonly ISessionStatsService _sessionStatsService;
-    
+
     public SessionStatsController(ILogger<SessionStatsController> logger, ISessionStatsService sessionStatsService)
     {
         _logger = logger;
         _sessionStatsService = sessionStatsService;
     }
-    
+
     /// <summary>
     /// 1. Call Session Stats service to get all Session Stats according to the labLocation eg. NYP-SR7A
     /// </summary>
@@ -32,5 +32,5 @@ public class SessionStatsController : Controller
         ViewSessionStatsViewModel viewSessionStats = await _sessionStatsService.ViewSessionStats(labLocation);
         return View("ViewSessionStats", viewSessionStats);
     }
-    
+
 }

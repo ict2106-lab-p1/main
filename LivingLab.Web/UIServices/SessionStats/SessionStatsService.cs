@@ -33,8 +33,8 @@ public class SessionStatsService : ISessionStatsService
         //map entity model to view model
         List<SessionStatsViewModel> sessionstats =
             _mapper.Map<List<Core.Entities.SessionStats>, List<SessionStatsViewModel>>(sessionStatsList);
-        
+
         //add list of sessionStats view model to the view sessionStats view model
-        return new ViewSessionStatsViewModel {SessionStatsList = sessionstats};
+        return new ViewSessionStatsViewModel { SessionStatsList = sessionstats };
     }
 }

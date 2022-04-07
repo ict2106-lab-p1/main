@@ -46,8 +46,6 @@ public class EnergyUsageComparisonController : Controller
 
         var sDate = Convert.ToDateTime(startDate);
         var eDate = Convert.ToDateTime(endDate);
-
-        var compareType = "Lab";
         var compareFactorArray = listOfLabName.Split(",");
 
         var listNumber = new List<string>();
@@ -184,8 +182,6 @@ public class EnergyUsageComparisonController : Controller
 
         var sDate = Convert.ToDateTime(startDate);
         var eDate = Convert.ToDateTime(endDate);
-
-        var compareType = "Device Type";
         var compareFactorArray = listOfDeviceType.Split(",");
 
         var listNumber = new List<string>();
@@ -262,6 +258,6 @@ public class EnergyUsageComparisonController : Controller
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
-        return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
+        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }

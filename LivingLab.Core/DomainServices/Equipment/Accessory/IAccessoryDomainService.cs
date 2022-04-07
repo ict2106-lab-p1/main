@@ -6,7 +6,7 @@ namespace LivingLab.Core.DomainServices.Equipment.Accessory;
 /// Author: Team P1-3
 /// </remarks>
 public interface IAccessoryDomainService
-{   
+{
     Task<List<Entities.Accessory>> ViewAccessory(string accessoryType, string labLocation);
 
     Task<List<Entities.Accessory>> GetAccessoriesForLabProfile(string labLocation);
@@ -23,6 +23,6 @@ public interface IAccessoryDomainService
     Task<Entities.Accessory> DeleteAccessory(Entities.Accessory deleteAccessory);
     Task<AccessoryDetailsDTO> AddAccessoryDetails();
     Task<Entities.Accessory> GetAccessory(int id);
-    
+
     Task<AccessoryDetailsDTO> EditAccessoryDetails(int id);
 }

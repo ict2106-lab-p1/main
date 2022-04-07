@@ -5,7 +5,6 @@ using LivingLab.Web.UIServices.Equipment;
 using LivingLab.Web.UIServices.LabBooking;
 using LivingLab.Web.UIServices.LabProfile;
 using LivingLab.Web.UIServices.LivingLabDashboard;
-using LivingLab.Web.UIServices.ManualLogs;
 using LivingLab.Web.UIServices.NotificationManagement;
 using LivingLab.Web.UIServices.SessionStats;
 

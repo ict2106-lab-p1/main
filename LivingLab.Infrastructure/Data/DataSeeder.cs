@@ -28,13 +28,13 @@ public static class DataSeeder
         var user2 = new ApplicationUser { Id = "DefaultAdmin2", FirstName = "Ji Pyeong", LastName = "Han", UserName = "mailstohenry@gmail.com", NormalizedUserName = "mailstohenry@gmail.com", NormalizedEmail = "mailstohenry@gmail.com", PhoneNumber = "To Be Changed", Email = "mailstohenry@gmail.com", TwoFactorEnabled = false, AuthenticationType = "None", SMSExpiry = new DateTime(2022, 7, 19, hour: 12, minute: 00, second: 00), UserFaculty = "SE", AccessFailedCount = 0, LockoutEnabled = true, EmailConfirmed = true, PhoneNumberConfirmed = false, PreferredNotification = NotificationType.NONE };
         var user3 = new ApplicationUser { Id = "DefaultAdmin3", FirstName = "Do San", LastName = "Nam", UserName = "shengyu98@hotmail.com", NormalizedUserName = "shengyu98@hotmail.com", NormalizedEmail = "shengyu98@hotmail.com", PhoneNumber = "To Be Changed", Email = "shengyu98@hotmail.com", TwoFactorEnabled = false, AuthenticationType = "None", SMSExpiry = new DateTime(2022, 7, 19, hour: 12, minute: 00, second: 00), UserFaculty = "SE", AccessFailedCount = 0, LockoutEnabled = true, EmailConfirmed = true, PhoneNumberConfirmed = false, PreferredNotification = NotificationType.NONE };
         var user4 = new ApplicationUser { Id = "DefaultAdmin4", FirstName = "Test", LastName = "Test", UserName = "test@gmail.com", NormalizedUserName = "test@gmail.com", PhoneNumber = "00000000", Email = "test@gmail.com", TwoFactorEnabled = false, AuthenticationType = "None", SMSExpiry = new DateTime(2022, 7, 19, hour: 12, minute: 00, second: 00), UserFaculty = "ICT", AccessFailedCount = 0, LockoutEnabled = true, EmailConfirmed = false, PhoneNumberConfirmed = false, PreferredNotification = NotificationType.NONE };
-        
+
         var passwordHasher = new PasswordHasher<IdentityUser>();
         user1.PasswordHash = passwordHasher.HashPassword(user1, "P@ssw0rd");
         user2.PasswordHash = passwordHasher.HashPassword(user2, "P@ssw0rd");
         user3.PasswordHash = passwordHasher.HashPassword(user4, "P@ssw0rd");
         user4.PasswordHash = passwordHasher.HashPassword(user3, "P@ssw0rd");
-        
+
         modelBuilder.Entity<ApplicationUser>().HasData(user1, user2, user3, user4);
 
         modelBuilder.Entity<IdentityRole>().HasData(
@@ -65,16 +65,16 @@ public static class DataSeeder
         );
 
         modelBuilder.Entity<Device>().HasData(
-                new { Id = 1, Name = "Surveillance Camera", LastUpdated = new DateTime(2020, 10, 10), SerialNo = "SC1001", LabId = 1, Status = "Available", Type = "Surveillance Camera", Description = "Its purpose is to detect situation in the laboratory", ReviewStatus = "Approved"},
-                new { Id = 2, Name = "Temperature Sensor", LastUpdated = new DateTime(2020, 10, 11), SerialNo = "R1001", LabId = 2, Status = "Available", Type = "Temperature Sensor", Description = "Its purpose is to detect temperature in the laboratory", ReviewStatus = "Approved"},
-                new { Id = 3, Name = "Humidity Sensor", LastUpdated = new DateTime(2020, 9, 9), SerialNo = "S1001", LabId = 2, Status = "Available", Type = "Humidity Sensor", Description = "Its purpose is to detect humidity in the laboratory", ReviewStatus = "Approved"},
-                new { Id = 4, Name = "Light Sensor", LastUpdated = new DateTime(2019, 8, 1), SerialNo = "SL1001", LabId = 3, Status = "Available", Type = "Light Sensor", Description = "Its purpose is to detect light in the laboratory", ReviewStatus = "Rejected"},
-                new { Id = 5, Name = "VR Light Controls", LastUpdated = new DateTime(2019, 7, 3), SerialNo = "VRL1001", LabId = 3, Status = "Unavailable", Type = "VR Light Controls", Description = "It is used to control brightness of the lights in the lab", ReviewStatus = "Approved"},
-                new { Id = 6, Name = "Surveillance Camera", LastUpdated = new DateTime(2020, 10, 10), SerialNo = "SC1001", LabId = 1, Status = "Available", Type = "Surveillance Camera", Description = "Its purpose is to detect situation in the laboratory", ReviewStatus = "Approved"},
-                new { Id = 7, Name = "Temperature Sensor", LastUpdated = new DateTime(2020, 10, 11), SerialNo = "R1001", LabId = 2, Status = "Available", Type = "Temperature Sensor", Description = "Its purpose is to detect temperature in the laboratory", ReviewStatus = "Approved"},
-                new { Id = 8, Name = "Humidity Sensor", LastUpdated = new DateTime(2020, 9, 9), SerialNo = "S1001", LabId = 2, Status = "Available", Type = "Humidity Sensor", Description = "Its purpose is to detect humidity in the laboratory", ReviewStatus = "Approved"},
-                new { Id = 9, Name = "Light Sensor", LastUpdated = new DateTime(2019, 8, 1), SerialNo = "SL1001", LabId = 3, Status = "Available", Type = "Light Sensor", Description = "Its purpose is to detect light in the laboratory", ReviewStatus = "Rejected"},
-                new { Id = 10, Name = "VR Light Controls", LastUpdated = new DateTime(2019, 7, 3), SerialNo = "VRL1001", LabId = 3, Status = "Unavailable", Type = "VR Light Controls", Description = "It is used to control brightness of the lights in the lab", ReviewStatus = "Approved"}
+                new { Id = 1, Name = "Surveillance Camera", LastUpdated = new DateTime(2020, 10, 10), SerialNo = "SC1001", LabId = 1, Status = "Available", Type = "Surveillance Camera", Description = "Its purpose is to detect situation in the laboratory", ReviewStatus = "Approved" },
+                new { Id = 2, Name = "Temperature Sensor", LastUpdated = new DateTime(2020, 10, 11), SerialNo = "R1001", LabId = 2, Status = "Available", Type = "Temperature Sensor", Description = "Its purpose is to detect temperature in the laboratory", ReviewStatus = "Approved" },
+                new { Id = 3, Name = "Humidity Sensor", LastUpdated = new DateTime(2020, 9, 9), SerialNo = "S1001", LabId = 2, Status = "Available", Type = "Humidity Sensor", Description = "Its purpose is to detect humidity in the laboratory", ReviewStatus = "Approved" },
+                new { Id = 4, Name = "Light Sensor", LastUpdated = new DateTime(2019, 8, 1), SerialNo = "SL1001", LabId = 3, Status = "Available", Type = "Light Sensor", Description = "Its purpose is to detect light in the laboratory", ReviewStatus = "Rejected" },
+                new { Id = 5, Name = "VR Light Controls", LastUpdated = new DateTime(2019, 7, 3), SerialNo = "VRL1001", LabId = 3, Status = "Unavailable", Type = "VR Light Controls", Description = "It is used to control brightness of the lights in the lab", ReviewStatus = "Approved" },
+                new { Id = 6, Name = "Surveillance Camera", LastUpdated = new DateTime(2020, 10, 10), SerialNo = "SC1001", LabId = 1, Status = "Available", Type = "Surveillance Camera", Description = "Its purpose is to detect situation in the laboratory", ReviewStatus = "Approved" },
+                new { Id = 7, Name = "Temperature Sensor", LastUpdated = new DateTime(2020, 10, 11), SerialNo = "R1001", LabId = 2, Status = "Available", Type = "Temperature Sensor", Description = "Its purpose is to detect temperature in the laboratory", ReviewStatus = "Approved" },
+                new { Id = 8, Name = "Humidity Sensor", LastUpdated = new DateTime(2020, 9, 9), SerialNo = "S1001", LabId = 2, Status = "Available", Type = "Humidity Sensor", Description = "Its purpose is to detect humidity in the laboratory", ReviewStatus = "Approved" },
+                new { Id = 9, Name = "Light Sensor", LastUpdated = new DateTime(2019, 8, 1), SerialNo = "SL1001", LabId = 3, Status = "Available", Type = "Light Sensor", Description = "Its purpose is to detect light in the laboratory", ReviewStatus = "Rejected" },
+                new { Id = 10, Name = "VR Light Controls", LastUpdated = new DateTime(2019, 7, 3), SerialNo = "VRL1001", LabId = 3, Status = "Unavailable", Type = "VR Light Controls", Description = "It is used to control brightness of the lights in the lab", ReviewStatus = "Approved" }
         );
 
         // Accessory and Accessory Types
@@ -90,22 +90,22 @@ public static class DataSeeder
         );
 
         modelBuilder.Entity<Accessory>().HasData(
-                new { Id = 1, Name = "Sony A7 IV", Status = "Available", LastUpdated = new DateTime(2021, 10, 10), LabId = 1, AccessoryTypeId = 1, ReviewStatus = "Approved"},
-                new { Id = 2, Name = "Sony A8 IV", Status = "Borrowed", LastUpdated = new DateTime(2021, 10, 14), LabId = 1, AccessoryTypeId = 1, LabUserId = "DefaultAdmin1", DueDate = new DateTime(2022, 10, 14), ReviewStatus = "Approved"},
+                new { Id = 1, Name = "Sony A7 IV", Status = "Available", LastUpdated = new DateTime(2021, 10, 10), LabId = 1, AccessoryTypeId = 1, ReviewStatus = "Approved" },
+                new { Id = 2, Name = "Sony A8 IV", Status = "Borrowed", LastUpdated = new DateTime(2021, 10, 14), LabId = 1, AccessoryTypeId = 1, LabUserId = "DefaultAdmin1", DueDate = new DateTime(2022, 10, 14), ReviewStatus = "Approved" },
                 new { Id = 3, Name = "MA300D1-1", Status = "Available", LastUpdated = new DateTime(2021, 10, 17), LabId = 2, AccessoryTypeId = 2, ReviewStatus = "Approved" },
-                new { Id = 4, Name = "MA300D1-2", Status = "Available", LastUpdated = new DateTime(2021, 10, 21), LabId = 2, AccessoryTypeId = 2, ReviewStatus = "Approved"},
-                new { Id = 5, Name = "DHT22", Status = "Borrowed", LastUpdated = new DateTime(2021, 9, 9), LabId = 3, AccessoryTypeId = 3, LabUserId = "DefaultAdmin1", DueDate = new DateTime(2022, 9, 9), ReviewStatus = "Approved"},
-                new { Id = 6, Name = "DHT23", Status = "Available", LastUpdated = new DateTime(2021, 9, 5), LabId = 3, AccessoryTypeId = 3, ReviewStatus = "Approved"},
-                new { Id = 7, Name = "LEFOO LFT2000W", Status = "Available", LastUpdated = new DateTime(2021, 8, 1), LabId = 1, AccessoryTypeId = 4, ReviewStatus = "Approved"},
-                new { Id = 8, Name = "LEFO1 LFT2000W", Status = "Borrowed", LastUpdated = new DateTime(2021, 8, 10), LabId = 1, AccessoryTypeId = 4, LabUserId = "DefaultAdmin1", DueDate = new DateTime(2022, 9, 5), ReviewStatus = "Approved"},
-                new { Id = 9, Name = "RM1802", Status = "Available", LastUpdated = new DateTime(2021, 7, 3), LabId = 2, AccessoryTypeId = 5, ReviewStatus = "Approved"},
-                new { Id = 10, Name = "RM1803", Status = "Borrowed", LastUpdated = new DateTime(2021, 6, 24), LabId = 2, AccessoryTypeId = 5, LabUserId = "DefaultAdmin1", DueDate = new DateTime(2022, 10, 14), ReviewStatus = "Approved"},
-                new { Id = 11, Name = "HC-SR04", Status = "Available", LastUpdated = new DateTime(2021, 7, 25), LabId = 3, AccessoryTypeId = 6, ReviewStatus = "Approved"},
-                new { Id = 12, Name = "HC-SR05", Status = "Available", LastUpdated = new DateTime(2021, 4, 3), LabId = 3, AccessoryTypeId = 6, ReviewStatus = "Approved"},
-                new { Id = 13, Name = "EDGELEC 4Pin LED Diodes", Status = "Borrowed", LastUpdated = new DateTime(2021, 7, 19), LabId = 1, AccessoryTypeId = 7, LabUserId = "DefaultAdmin1", DueDate = new DateTime(2022, 7, 19), ReviewStatus = "Approved"},
-                new { Id = 14, Name = "EDGELEC 6Pin LED Diodes", Status = "Borrowed", LastUpdated = new DateTime(2021, 12, 14), LabId = 1, AccessoryTypeId = 7, LabUserId = "DefaultAdmin1", DueDate = new DateTime(2022, 12, 14), ReviewStatus = "Approved"},
-                new { Id = 15, Name = "TMB09A05", Status = "Available", LastUpdated = new DateTime(2021, 11, 12), LabId = 2, AccessoryTypeId = 8, ReviewStatus = "Approved"},
-                new { Id = 16, Name = "TMB09A06", Status = "Available", LastUpdated = new DateTime(2021, 7, 3), LabId = 2, AccessoryTypeId = 8, ReviewStatus = "Approved"}
+                new { Id = 4, Name = "MA300D1-2", Status = "Available", LastUpdated = new DateTime(2021, 10, 21), LabId = 2, AccessoryTypeId = 2, ReviewStatus = "Approved" },
+                new { Id = 5, Name = "DHT22", Status = "Borrowed", LastUpdated = new DateTime(2021, 9, 9), LabId = 3, AccessoryTypeId = 3, LabUserId = "DefaultAdmin1", DueDate = new DateTime(2022, 9, 9), ReviewStatus = "Approved" },
+                new { Id = 6, Name = "DHT23", Status = "Available", LastUpdated = new DateTime(2021, 9, 5), LabId = 3, AccessoryTypeId = 3, ReviewStatus = "Approved" },
+                new { Id = 7, Name = "LEFOO LFT2000W", Status = "Available", LastUpdated = new DateTime(2021, 8, 1), LabId = 1, AccessoryTypeId = 4, ReviewStatus = "Approved" },
+                new { Id = 8, Name = "LEFO1 LFT2000W", Status = "Borrowed", LastUpdated = new DateTime(2021, 8, 10), LabId = 1, AccessoryTypeId = 4, LabUserId = "DefaultAdmin1", DueDate = new DateTime(2022, 9, 5), ReviewStatus = "Approved" },
+                new { Id = 9, Name = "RM1802", Status = "Available", LastUpdated = new DateTime(2021, 7, 3), LabId = 2, AccessoryTypeId = 5, ReviewStatus = "Approved" },
+                new { Id = 10, Name = "RM1803", Status = "Borrowed", LastUpdated = new DateTime(2021, 6, 24), LabId = 2, AccessoryTypeId = 5, LabUserId = "DefaultAdmin1", DueDate = new DateTime(2022, 10, 14), ReviewStatus = "Approved" },
+                new { Id = 11, Name = "HC-SR04", Status = "Available", LastUpdated = new DateTime(2021, 7, 25), LabId = 3, AccessoryTypeId = 6, ReviewStatus = "Approved" },
+                new { Id = 12, Name = "HC-SR05", Status = "Available", LastUpdated = new DateTime(2021, 4, 3), LabId = 3, AccessoryTypeId = 6, ReviewStatus = "Approved" },
+                new { Id = 13, Name = "EDGELEC 4Pin LED Diodes", Status = "Borrowed", LastUpdated = new DateTime(2021, 7, 19), LabId = 1, AccessoryTypeId = 7, LabUserId = "DefaultAdmin1", DueDate = new DateTime(2022, 7, 19), ReviewStatus = "Approved" },
+                new { Id = 14, Name = "EDGELEC 6Pin LED Diodes", Status = "Borrowed", LastUpdated = new DateTime(2021, 12, 14), LabId = 1, AccessoryTypeId = 7, LabUserId = "DefaultAdmin1", DueDate = new DateTime(2022, 12, 14), ReviewStatus = "Approved" },
+                new { Id = 15, Name = "TMB09A05", Status = "Available", LastUpdated = new DateTime(2021, 11, 12), LabId = 2, AccessoryTypeId = 8, ReviewStatus = "Approved" },
+                new { Id = 16, Name = "TMB09A06", Status = "Available", LastUpdated = new DateTime(2021, 7, 3), LabId = 2, AccessoryTypeId = 8, ReviewStatus = "Approved" }
         );
 
         modelBuilder.Entity<SessionStats>().HasData(
@@ -146,7 +146,7 @@ public static class DataSeeder
                 new { Id = 35, Date = new DateTime(2021, 7, 13), LoginTime = new DateTime(2021, 7, 12, 10, 0, 0), LogoutTime = new DateTime(2021, 7, 13, 15, 0, 0), DataUploaded = 117.0, LabId = 3 },
                 new { Id = 36, Date = new DateTime(2021, 7, 14), LoginTime = new DateTime(2021, 7, 14, 13, 0, 0), LogoutTime = new DateTime(2021, 7, 14, 18, 0, 0), DataUploaded = 68.0, LabId = 3 }
         );
-        
+
         modelBuilder.SeedEnergyLogs();
     }
 }

@@ -71,12 +71,12 @@ public class LoginController : Controller
                     var user = await _userManager.FindByEmailAsync(loginDetails.Email);
 
                     _logger.LogInformation(user.ToString());
-                    
+
                     if (user.AuthenticationType != null && user.AuthenticationType.Contains("SMS"))
                     {
                         _logger.LogInformation("Verify Code");
                         await _accountService.GenerateCodeSMS(user);
-                        
+
                         return RedirectToAction("verifycodesms", "Login");
                     }
                     else if (user.AuthenticationType != null && user.AuthenticationType.Contains("Email"))
@@ -106,7 +106,7 @@ public class LoginController : Controller
 
         return View(nameof(Index));
     }
-    
+
     /// <summary>
     /// Reroutes user to verify OTP via email
     /// </summary>
@@ -140,7 +140,7 @@ public class LoginController : Controller
             return View(validationCode);
         }
     }
-    
+
     /// <summary>
     /// Generate new OTP for user via email
     /// </summary>
@@ -158,7 +158,7 @@ public class LoginController : Controller
             return RedirectToAction(nameof(VerifyCodeEmail));
         }
     }
-    
+
     /// <summary>
     /// 1. Route user to reset password Page
     /// 2. Check if token or email exist
@@ -256,9 +256,9 @@ public class LoginController : Controller
 
     [HttpGet]
     /*Goes to the password recovery page*/
-    public async Task<ViewResult> ForgotPassword()
+    public Task<ViewResult> ForgotPassword()
     {
-        return View("_ForgotPassword");
+        return Task.FromResult(View("_ForgotPassword"));
     }
 
     [HttpPost]
@@ -272,13 +272,13 @@ public class LoginController : Controller
             if (user != null && await _userManager.IsEmailConfirmedAsync(user))
             {
                 var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-                var passwordResetLink = Url.Action("ResetPassword", "Login", new {email = model.Email, token = token},
+                var passwordResetLink = Url.Action("ResetPassword", "Login", new { email = model.Email, token = token },
                     Request.Scheme);
                 _logger.Log(LogLevel.Warning, passwordResetLink);
 
-                await _notificationManagementService.SendTextToEmail(model.Email, 
-                    "Reset Password", 
-                    "Please reset your password by clicking this link: <a href=\"" 
+                await _notificationManagementService.SendTextToEmail(model.Email,
+                    "Reset Password",
+                    "Please reset your password by clicking this link: <a href=\""
                     + passwordResetLink + "\">link</a>");
 
                 return View("_ForgotPasswordConfirmation");
@@ -287,19 +287,19 @@ public class LoginController : Controller
             return View("_ForgotPasswordConfirmation");
         }
 
-        return View("_ForgotPassword",model);
+        return View("_ForgotPassword", model);
     }
-    
+
     [AllowAnonymous]
     /*Contact admin page if user lost their email / phone number*/
-    public async Task<ViewResult> ContactAdmin()
+    public Task<ViewResult> ContactAdmin()
     {
-        return View("_ContactAdmin");
+        return Task.FromResult(View("_ContactAdmin"));
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
-        return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
+        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }

@@ -19,7 +19,7 @@ public class EmailNotifier : IEmailNotifier
     private readonly INotificationDomainService _notificationDomainService;
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly IConfiguration _config;
-    
+
     public EmailNotifier(INotificationDomainService notificationDomainService, UserManager<ApplicationUser> userManager, IConfiguration config)
     {
         _notificationDomainService = notificationDomainService;
@@ -31,18 +31,18 @@ public class EmailNotifier : IEmailNotifier
     /// <param name="email">recipient email address</param>
     /// <param name="subject">subject/title of email</param>
     /// <param name="htmlMessage">content body of email, can be HTML formatted</param>
-    public async Task SendEmailAsync(string email, string subject, string htmlMessage)
+    public Task SendEmailAsync(string email, string subject, string htmlMessage)
     {
-        string fromMail = _config["LivingLab:DEFAULT_SYSTEM_EMAILADDRESS"];
-        string fromPassword = _config["LivingLab:DEFAULT_SYSTEM_PASSWORD"];
- 
-        MailMessage message = new MailMessage();
+        var fromMail = _config["LivingLab:DEFAULT_SYSTEM_EMAILADDRESS"];
+        var fromPassword = _config["LivingLab:DEFAULT_SYSTEM_PASSWORD"];
+
+        var message = new MailMessage();
         message.From = new MailAddress(fromMail);
         message.Subject = subject;
         message.To.Add(new MailAddress(email));
-        message.Body ="<html><body> " + htmlMessage + " </body></html>";
+        message.Body = "<html><body> " + htmlMessage + " </body></html>";
         message.IsBodyHtml = true;
- 
+
         var smtpClient = new SmtpClient("smtp.gmail.com")
         {
             Port = 587,
@@ -50,8 +50,9 @@ public class EmailNotifier : IEmailNotifier
             EnableSsl = true,
         };
         smtpClient.Send(message);
+        return Task.CompletedTask;
     }
-    
+
     /// <summary>send notification via email</summary>
     /// <param name="message">email message text</param>
     public async Task Notify(string message)
@@ -59,18 +60,19 @@ public class EmailNotifier : IEmailNotifier
         foreach (var labTechnicianDetails in GetEmail().Result)
         {
             string subject = "Device(s) exceeded Threshold Limit";
-            
+
             // email message body
             string msgBody = "Hi " + labTechnicianDetails.FirstName + labTechnicianDetails.LastName +
                              ", " + message;
             await SendEmailAsync(labTechnicianDetails.Email, subject, msgBody);
         }
     }
-    
+
     /// <summary>
     /// Retrieve list of Lab Technicians whose Notification Preference is Email
     /// </summary>
     /// <returns>list of lab technicians</returns>
+    [Obsolete]
     public async Task<List<ApplicationUser>> GetEmail()
     {
         var labTechnicians = await

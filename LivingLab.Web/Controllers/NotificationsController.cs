@@ -21,7 +21,7 @@ public class NotificationsController : Controller
         _userManager = userManager;
         _notificationManager = notificationManager;
     }
-    
+
     /// <summary>
     /// Get the user's preferred notification channel (email or sms)
     /// </summary>
@@ -30,12 +30,13 @@ public class NotificationsController : Controller
     public async Task<IActionResult> Index()
     {
         var user = await _userManager.GetUserAsync(User);
-        NotificationPrefViewModel notiPrefViewModel = new NotificationPrefViewModel {
+        NotificationPrefViewModel notiPrefViewModel = new NotificationPrefViewModel
+        {
             PreferredNotification = user.PreferredNotification
         };
         return View("Index", notiPrefViewModel);
     }
-    
+
     /// <summary>
     /// Update the user's notification preference upon selecting a notification mode in the dropdown
     /// </summary>

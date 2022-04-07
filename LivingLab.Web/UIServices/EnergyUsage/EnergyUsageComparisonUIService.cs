@@ -24,7 +24,7 @@ public class EnergyUsageComparisonUIService : IEnergyUsageComparisonUIService
     /// <returns>list of EnergyComparisonLabTableDTO</returns>
     public List<EnergyComparisonLabTableDTO> GetEnergyUsageByLabNameTable(string labName, DateTime start, DateTime end)
     {
-        return _comparison.GetEnergyUsageByLabNameTable(labName, start, end);   
+        return _comparison.GetEnergyUsageByLabNameTable(labName, start, end);
     }
 
     /// <summary>
@@ -48,7 +48,7 @@ public class EnergyUsageComparisonUIService : IEnergyUsageComparisonUIService
     /// <returns>list of EnergyComparisonGraphDTO</returns>
     public List<EnergyComparisonGraphDTO> GetEnergyUsageByLabNameGraph(string labName, DateTime start, DateTime end)
     {
-       return _comparison.GetEnergyUsageByLabNameGraph(labName, start, end);
+        return _comparison.GetEnergyUsageByLabNameGraph(labName, start, end);
     }
 
     /// <summary>

@@ -10,11 +10,11 @@ namespace LivingLab.Web.Models.ViewModels.Booking;
 public class BookingTableViewModel
 {
     public int? LabNo { get; set; }
-    
-    public string? StartTime { get; set;}
-    
-    public string? Description { get; set;}
-    
-    public string? EndTime { get; set;}
-     public int? BookId { get; set;}
+
+    public string? StartTime { get; set; }
+
+    public string? Description { get; set; }
+
+    public string? EndTime { get; set; }
+    public int? BookId { get; set; }
 }

@@ -1,4 +1,5 @@
 using AutoMapper;
+
 using LivingLab.Core.DomainServices.Account;
 using LivingLab.Core.Entities.Identity;
 using LivingLab.Web.Models.ViewModels.UserManagement;
@@ -11,7 +12,7 @@ public class UserManagementService : IUserManagementService
 {
     private readonly IMapper _mapper;
     private readonly IAccountDomainService _accountDomainService;
-    
+
     public UserManagementService(IMapper mapper, IAccountDomainService accountDomainService)
     {
         _mapper = mapper;
@@ -38,8 +39,8 @@ public class UserManagementService : IUserManagementService
     /// <returns>UserManagementVM</returns>
     public async Task<UserManagementViewModel> ViewUserDetails(string Id)
     {
-        ApplicationUser AccountById= await _accountDomainService.ViewAccountDetails(Id);
-        UserManagementViewModel UserManagementVM = _mapper.Map< ApplicationUser, UserManagementViewModel> (AccountById);
+        ApplicationUser AccountById = await _accountDomainService.ViewAccountDetails(Id);
+        UserManagementViewModel UserManagementVM = _mapper.Map<ApplicationUser, UserManagementViewModel>(AccountById);
         return UserManagementVM;
     }
     /// <summary>
@@ -50,22 +51,22 @@ public class UserManagementService : IUserManagementService
     /// <returns>UserManagementVM</returns>
     public async Task<UserManagementViewModel> EditAccount(UserManagementViewModel UserManagementVM)
     {
-        ApplicationUser EditAccount = _mapper.Map<UserManagementViewModel, ApplicationUser> (UserManagementVM);
+        ApplicationUser EditAccount = _mapper.Map<UserManagementViewModel, ApplicationUser>(UserManagementVM);
         await _accountDomainService.EditAccount(EditAccount);
-        return UserManagementVM;    
-        
+        return UserManagementVM;
+
     }
-    
+
     /// <summary>
     /// 1. Call Account domain service to get delete account function
     /// 2. Retrieve user details by Id 
     /// </summary>
     /// <param name="UserManagementVM">Delete account with relevant attributes in ViewModel</param>
     /// <returns>UserManagementVM</returns>
-    public async Task<UserManagementViewModel> DeleteAccount(UserManagementViewModel UserManagementVM)
+    public Task<UserManagementViewModel> DeleteAccount(UserManagementViewModel UserManagementVM)
     {
-        ApplicationUser DeleteAccount = _mapper.Map<UserManagementViewModel, ApplicationUser> (UserManagementVM);
+        ApplicationUser DeleteAccount = _mapper.Map<UserManagementViewModel, ApplicationUser>(UserManagementVM);
         _accountDomainService.DeleteAccount(DeleteAccount);
-        return UserManagementVM;
+        return Task.FromResult(UserManagementVM);
     }
 }

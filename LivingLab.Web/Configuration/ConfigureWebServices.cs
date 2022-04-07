@@ -1,7 +1,7 @@
-using LivingLab.Web.UIServices.ManualLogs;
 using LivingLab.Web.UIServices.Accessory;
 using LivingLab.Web.UIServices.Device;
 using LivingLab.Web.UIServices.LabProfile;
+using LivingLab.Web.UIServices.ManualLogs;
 using LivingLab.Web.UIServices.UserManagement;
 
 namespace LivingLab.Web.Configuration;
@@ -28,7 +28,7 @@ public static class ConfigureWebServices
         services.AddTransient<IAccessoryService, AccessoryService>();
         services.AddTransient<IUserManagementService, UserManagementService>();
         services.AddTransient<ILabProfileService, LabProfileService>();
-        
+
         return services;
     }
 

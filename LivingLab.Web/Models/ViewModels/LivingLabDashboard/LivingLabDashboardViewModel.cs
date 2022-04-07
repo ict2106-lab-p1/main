@@ -12,6 +12,6 @@ namespace LivingLab.Web.Models.ViewModels.LivingLabDashboard;
 public class LivingLabDashboardViewModel
 {
     public List<LabInformationModel>? LabList { get; set; }
-    
-    public List<string> Usages { get; set; }
+
+    public List<string>? Usages { get; set; }
 }

@@ -31,7 +31,7 @@ public class SessionStatsRepository : Repository<SessionStats>, ISessionStatsRep
             .ToListAsync();
         return sessionStats;
     }
-    
+
     /// <summary>
     /// Logs the size of the file uploaded to for a lab
     /// </summary>
@@ -44,8 +44,8 @@ public class SessionStatsRepository : Repository<SessionStats>, ISessionStatsRep
         {
             device.DataUploaded = fileSize;
         }
-        
+
         await _context.SaveChangesAsync();
     }
-    
+
 }

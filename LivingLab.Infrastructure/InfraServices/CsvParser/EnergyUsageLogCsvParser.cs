@@ -41,7 +41,7 @@ public class EnergyUsageLogCsvParser : CsvParserTemplate<EnergyUsageCsvDTO>, IEn
         var result = parser.ReadFromFile(filePath, Encoding.Default);
         return result;
     }
-    
+
     /// <summary>
     /// map all given CSV row objects to EnergyUsageCsvDTO objects
     /// </summary>

@@ -113,7 +113,7 @@ public class EnergyUsageAnalysisDomainDomainService : IEnergyUsageAnalysisDomain
             .OrderBy(log => log.LoggedDate).ToList();
 
         var lab = await _labRepository.GetByIdAsync(filter.LabId);
-        var dto = new MonthlyEnergyUsageDTO {Logs = logs, Lab = lab};
+        var dto = new MonthlyEnergyUsageDTO { Logs = logs, Lab = lab };
         return dto;
     }
 
@@ -151,7 +151,7 @@ public class EnergyUsageAnalysisDomainDomainService : IEnergyUsageAnalysisDomain
             .OrderBy(log => log.LoggedDate).ToList();
 
         var lab = await _labRepository.GetByIdAsync(filter.LabId);
-        var dto = new IndividualLabMonthlyEnergyUsageDTO {Logs = logs, Lab = lab};
+        var dto = new IndividualLabMonthlyEnergyUsageDTO { Logs = logs, Lab = lab };
         return dto;
     }
 }
@@ -161,6 +161,6 @@ public class EnergyUsageAnalysisDomainDomainService : IEnergyUsageAnalysisDomain
 /// </summary>
 public class EUWatt
 {
-    public string id { get; set; }
+    public string? id { get; set; }
     public int EU { get; set; }
 }

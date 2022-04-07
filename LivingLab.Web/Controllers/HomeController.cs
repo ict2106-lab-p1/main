@@ -29,7 +29,7 @@ public class HomeController : Controller
         _labProfileService = labProfileService;
         _dashboardService = dashboardService;
     }
-    
+
     /// <summary>
     /// Reroute the users to the login page
     /// </summary>
@@ -40,7 +40,7 @@ public class HomeController : Controller
     {
         return RedirectToAction("Index", "Login");
     }
-    
+
     /// <summary>
     /// 1. Retrieve data needed for main dashboard
     /// 2. Direct all users to the main dashboard
@@ -59,7 +59,7 @@ public class HomeController : Controller
         };
         return View("Dashboard", viewLabs);
     }
-    
+
     /// <summary>
     /// 1. Logouts the user
     /// 2. Remove credentials from http context
@@ -86,7 +86,7 @@ public class HomeController : Controller
     {
         return View("_AccessDenied");
     }
-    
+
     /// <summary>
     /// 1. Retrieve lab lists
     /// 2. Generate the HTML for the navigation bar to populate lab list
@@ -105,7 +105,7 @@ public class HomeController : Controller
         //query database, and get the data.
         return Json(renderList);
     }
-    
+
     /// <summary>
     /// 1. Retrieve lab lists
     /// 2. Check if the labstechs are in charge of that particular lab
@@ -125,7 +125,7 @@ public class HomeController : Controller
                               "\" class=\"hover:translate-x-2 transition-transform ease-in duration-300 w-full flex items-center h-10 pl-4 cursor-pointer\"><span>" +
                               lab.LabLocation + "</span></a></li>\n";
             }
-            
+
         }
 
         if (renderList == "")

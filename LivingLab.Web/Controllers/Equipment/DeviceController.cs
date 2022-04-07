@@ -38,7 +38,7 @@ public class DeviceController : Controller
         ViewDeviceTypeViewModel viewDeviceTypeViewModel = await _deviceService.ViewDeviceType(labLocation);
         return View("ViewDeviceType", viewDeviceTypeViewModel);
     }
-    
+
     /// <summary>
     /// 1. Call device service to get all devices type according to the labLocation eg. NYP-SR7A
     /// </summary>
@@ -95,7 +95,7 @@ public class DeviceController : Controller
         ViewDeviceViewModel viewDevices = await _deviceService.ViewDevice(editedDevice.Type, editedDevice.Lab.LabLocation);
         return View("ViewDevice", viewDevices);
     }
-    
+
     /// <summary>
     /// 1. Call device service to request approval for addition of devices using email
     /// </summary>
@@ -107,7 +107,7 @@ public class DeviceController : Controller
     {
         await _deviceService.AddDevice(addedDevice);
         ViewDeviceViewModel viewDevices = await _deviceService.ViewDevice(addedDevice.Device.Type, addedDevice.Device.Lab.LabLocation);
-        
+
         // Send email to labTech in charge for approval
         string scheme = this.Request.Scheme;
         if (Url.IsLocalUrl(Request.Headers["Referer"].ToString()))
@@ -118,7 +118,7 @@ public class DeviceController : Controller
 
         var user = await _userManager.GetUserAsync(User);
         await _deviceService.SendReviewerEmail(url, addedDevice.Device.Lab.LabLocation, user);
-        
+
         return Redirect($"ViewType/{addedDevice.Device.Lab.LabLocation}");
     }
     /// <summary>
@@ -130,7 +130,7 @@ public class DeviceController : Controller
     public async Task<IActionResult> DeleteDevice(DeviceViewModel deleteDevice)
     {
         await _deviceService.DeleteDevice(deleteDevice);
-        
+
         // Temp - To display ViewAll after editing
         ViewDeviceViewModel viewDevices = await _deviceService.ViewDevice(deleteDevice.Type, deleteDevice.Lab.LabLocation);
         return View("ViewDevice", viewDevices);

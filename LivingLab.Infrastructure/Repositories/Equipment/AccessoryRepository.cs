@@ -1,6 +1,3 @@
-using System.Reflection.Metadata;
-
-using LivingLab.Core.DomainServices.Equipment.Device;
 using LivingLab.Core.Entities;
 using LivingLab.Core.Entities.DTO.Accessory;
 using LivingLab.Core.Repositories.Equipment;
@@ -39,7 +36,7 @@ public class AccessoryRepository : Repository<Accessory>, IAccessoryRepository
     /// </summary>
     public async void UpdateAccessoryStatus(string accessoryId, string accessoryReviewStatus)
     {
-        Accessory accessory = 
+        Accessory accessory =
             (await _context.Accessories
                 .Where(a => a.Id == Convert.ToInt32(accessoryId))
                 .FirstOrDefaultAsync())!;
@@ -62,7 +59,7 @@ public class AccessoryRepository : Repository<Accessory>, IAccessoryRepository
             .ToListAsync();
         return accessories;
     }
-    
+
     /// <summary>
     /// Gets all accessories type based on lab location and accessory type.
     /// </summary>
@@ -73,9 +70,9 @@ public class AccessoryRepository : Repository<Accessory>, IAccessoryRepository
     {
         // retrieve accessory table together with accessory type details using include to join entities 
         List<Accessory> accessories = await _context.Accessories
-            .Include(l=>l.Lab)
+            .Include(l => l.Lab)
             .Include(a => a.AccessoryType)
-            .Where(t => accessoryType.Contains(t.AccessoryType!.Type) && t.Lab!.LabLocation==labLocation && t.ReviewStatus!.Equals("Approved"))
+            .Where(t => accessoryType.Contains(t.AccessoryType!.Type) && t.Lab!.LabLocation == labLocation && t.ReviewStatus!.Equals("Approved"))
             .ToListAsync();
         return accessories;
     }
@@ -99,7 +96,7 @@ public class AccessoryRepository : Repository<Accessory>, IAccessoryRepository
     public async Task<List<ViewAccessoryTypeDTO>> GetAccessoryType(string labLocation)
     {
         var accessoryGroup = await _context.Accessories
-            .Include(l=>l.Lab)
+            .Include(l => l.Lab)
             .Include(a => a.AccessoryType)
             .Where(l => l.Lab!.LabLocation == labLocation && l.ReviewStatus!.Equals("Approved"))
             .GroupBy(t => t.AccessoryType!.Type)
@@ -122,11 +119,11 @@ public class AccessoryRepository : Repository<Accessory>, IAccessoryRepository
     public async Task<Accessory> GetLastRow()
     {
         var accessory = await _context.Accessories
-            .Include(l=>l.Lab)    
+            .Include(l => l.Lab)
             .OrderByDescending(a => a.Id).FirstOrDefaultAsync();
         return accessory;
     }
-    
+
     /// <summary>
     /// Delete accessory
     /// </summary>

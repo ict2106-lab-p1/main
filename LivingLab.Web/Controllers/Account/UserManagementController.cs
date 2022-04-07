@@ -17,7 +17,7 @@ public class UserManagementController : Controller
         _logger = logger;
         _userManagementService = userManagementService;
     }
-    
+
     /// <summary>
     /// 1. Get all user accounts
     /// 2. Map to view model
@@ -28,9 +28,9 @@ public class UserManagementController : Controller
     public async Task<IActionResult> UserAccounts(string Id)
     {
         ViewUserManagementViewModel ViewUserManagementVM = await _userManagementService.GetAllAccounts();
-        return View("Index", ViewUserManagementVM); 
+        return View("Index", ViewUserManagementVM);
     }
-    
+
     /// <summary>
     /// 1. View user details of selected user
     /// 2. Map to view model
@@ -39,12 +39,12 @@ public class UserManagementController : Controller
     ///  </summary>
     [Route("View/{id}")]
     public async Task<UserManagementViewModel> ViewUserDetails(string Id)
-    { 
+    {
         //retrieve data from db
         UserManagementViewModel User = await _userManagementService.ViewUserDetails(Id);
         return User;
     }
-    
+
     /// <summary>
     /// 1. Edit user details of selected user
     /// 2. Map to view model
@@ -59,7 +59,7 @@ public class UserManagementController : Controller
         ViewUserManagementViewModel ViewAcconts = await _userManagementService.GetAllAccounts();
         return View("Index", ViewAcconts);
     }
-    
+
     /// <summary>
     /// 1. Delete user details of selected user
     /// 2. Map to view model
@@ -70,12 +70,12 @@ public class UserManagementController : Controller
     public async Task<IActionResult> DeleteAccount(UserManagementViewModel DeleteAccount)
     {
 
-        
-            await _userManagementService.DeleteAccount(DeleteAccount);
-            ViewUserManagementViewModel ViewAcconts = await _userManagementService.GetAllAccounts();
-            return View("Index", ViewAcconts);
-        
-    
-       
+
+        await _userManagementService.DeleteAccount(DeleteAccount);
+        ViewUserManagementViewModel ViewAcconts = await _userManagementService.GetAllAccounts();
+        return View("Index", ViewAcconts);
+
+
+
     }
 }

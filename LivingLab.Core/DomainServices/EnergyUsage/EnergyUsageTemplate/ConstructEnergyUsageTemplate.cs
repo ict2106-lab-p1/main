@@ -48,12 +48,12 @@ public abstract class ConstructEnergyUsageTemplates<T>
     public List<EUWatt> BasicGetEUWatt(List<EnergyUsageLog> logs)
     {
         var energyList = new List<EUWatt>();
-        foreach(var item in logs)
+        foreach (var item in logs)
         {
             energyList.Add(new EUWatt
             {
                 id = item.Lab.LabLocation,
-                EU = _calculator.CalculateEnergyUsageInWatt((int) item.EnergyUsage,item.Interval.Minutes)
+                EU = _calculator.CalculateEnergyUsageInWatt((int)item.EnergyUsage, item.Interval.Minutes)
             });
         }
         return energyList;
@@ -71,11 +71,11 @@ public abstract class ConstructEnergyUsageTemplates<T>
 
         for (int i = 0; i < energyList.Count; i++)
         {
-            TotalCost.Add(_calculator.CalculateEnergyUsageCost(cost,energyList[i]));
+            TotalCost.Add(_calculator.CalculateEnergyUsageCost(cost, energyList[i]));
         }
         return TotalCost;
     }
-    
+
     /// <summary>
     /// Get the overall energy usage intensity of each index
     /// </summary>
@@ -87,7 +87,7 @@ public abstract class ConstructEnergyUsageTemplates<T>
         var TotalIntensity = new List<double>();
         for (int i = 0; i < totalEU.Count; i++)
         {
-            TotalIntensity.Add(_calculator.CalculateEnergyIntensity(area[i],(int)totalEU[i]));
+            TotalIntensity.Add(_calculator.CalculateEnergyIntensity(area[i], (int)totalEU[i]));
         }
         return TotalIntensity;
     }

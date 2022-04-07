@@ -34,7 +34,7 @@ public class EnergyUsageController : Controller
         var labs = await _energyUsageService.GetAllLabs();
         var newLabList = new ViewLabProfileViewModel()
         {
-          labList  = labs
+            labList = labs
         };
         return View(newLabList.labList);
     }
@@ -110,7 +110,7 @@ public class EnergyUsageController : Controller
             return RedirectToAction(nameof(Benchmark));
         }
     }
-    
+
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {

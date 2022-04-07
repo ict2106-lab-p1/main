@@ -12,13 +12,13 @@ public class NotificationDomainService : INotificationDomainService
 {
     private readonly IEmailRepository _emailRepository;
     private readonly IAccountDomainService _accountDomainService;
-    
+
     public NotificationDomainService(IAccountDomainService accountDomainService, IEmailRepository emailRepository)
     {
         _accountDomainService = accountDomainService;
         _emailRepository = emailRepository;
     }
-    
+
     /// <summary>
     /// Set notification preference of a user.
     /// </summary>

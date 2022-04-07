@@ -2,8 +2,8 @@ using LivingLab.Core.DomainServices.Account;
 using LivingLab.Core.Entities.Identity;
 using LivingLab.Core.Notifications;
 using LivingLab.Web.Models.ViewModels.Account;
-using LivingLab.Web.Models.ViewModels.Login;
 using LivingLab.Web.UIServices.NotificationManagement;
+
 using Microsoft.AspNetCore.Identity;
 namespace LivingLab.Web.UIServices.Account;
 /// <remarks>
@@ -19,11 +19,11 @@ public class AccountService : IAccountService
     private readonly IUserEmailStore<ApplicationUser> _emailStore;
     private readonly INotificationManagementService _notif;
     private readonly IEmailNotifier _emailSender;
-    
-    public AccountService(IUserStore<ApplicationUser> userStore, 
-        UserManager<ApplicationUser> userManager, 
-        ILogger<AccountService> logger, 
-        SignInManager<ApplicationUser> signInManager, 
+
+    public AccountService(IUserStore<ApplicationUser> userStore,
+        UserManager<ApplicationUser> userManager,
+        ILogger<AccountService> logger,
+        SignInManager<ApplicationUser> signInManager,
         IAccountDomainService accountDomainService,
         INotificationManagementService notif,
         IEmailNotifier emailSender)
@@ -81,10 +81,10 @@ public class AccountService : IAccountService
             {
                 ApplicationUser userDetails = await _userManager.FindByIdAsync(user.Id);
                 string msgBody = "Your 6 digit OTP for Living Lab is " + userDetails.OTP;
-                await _notif.SendTextToPhone("+65"+userDetails.PhoneNumber, msgBody);
+                await _notif.SendTextToPhone("+65" + userDetails.PhoneNumber, msgBody);
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }
@@ -114,7 +114,7 @@ public class AccountService : IAccountService
                     msgBody);
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }
@@ -161,7 +161,7 @@ public class AccountService : IAccountService
                                                 $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
         }
     }
-    
+
     /// <summary>
     /// Function to store email to user manager
     /// </summary>

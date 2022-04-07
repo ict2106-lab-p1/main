@@ -5,7 +5,7 @@ namespace LivingLab.Core.DomainServices.EnergyUsage.EnergyUsageTemplate;
 /// <remarks>
 /// Author: Team P1-2
 /// </remarks>
-public class TopLabEnergyUsageConstructor: ConstructEnergyUsageTemplates<string>
+public class TopLabEnergyUsageConstructor : ConstructEnergyUsageTemplates<string>
 {
     private List<LabEnergyUsageDTO> LabEUList = new List<LabEnergyUsageDTO>();
     private List<int> LabArea = new List<int>();
@@ -24,7 +24,7 @@ public class TopLabEnergyUsageConstructor: ConstructEnergyUsageTemplates<string>
             if (!uniqueLab.Contains(item.Lab.LabLocation) && count < 6)
             {
                 uniqueLab.Add(item.Lab.LabLocation);
-                LabArea.Add(item.Lab.Area??0);
+                LabArea.Add(item.Lab.Area ?? 0);
                 count++;
             }
         }
@@ -40,9 +40,9 @@ public class TopLabEnergyUsageConstructor: ConstructEnergyUsageTemplates<string>
     {
         var identifier = this.GetIdentifier(logs);
         // Console.WriteLine("id ="+identifier[0]);
-        var totalEU = this.GetTotalEU(logs,identifier);
+        var totalEU = this.GetTotalEU(logs, identifier);
         // Console.WriteLine("EU ="+totalEU[0]);
-        var intensity = this.GetIntensity(totalEU,LabArea);
+        var intensity = this.GetIntensity(totalEU, LabArea);
         // Console.WriteLine("inte ="+intensity[0]);
         var cost = this.GetEUCost(totalEU);
         // Console.WriteLine("cost ="+cost[0]);
@@ -50,10 +50,11 @@ public class TopLabEnergyUsageConstructor: ConstructEnergyUsageTemplates<string>
         for (int i = 0; i < identifier.Count; i++)
         {
             labDTO.Add(
-                new LabEnergyUsageDTO{
+                new LabEnergyUsageDTO
+                {
                     LabLocation = identifier[i],
-                    TotalEnergyUsage = Math.Round(totalEU[i]/1000,2),
-                    EnergyUsageIntensity = Math.Round(intensity[i]/1000,2),
+                    TotalEnergyUsage = Math.Round(totalEU[i] / 1000, 2),
+                    EnergyUsageIntensity = Math.Round(intensity[i] / 1000, 2),
                     EnergyUsageCost = cost[i]
                 }
             );
@@ -70,7 +71,7 @@ public class TopLabEnergyUsageConstructor: ConstructEnergyUsageTemplates<string>
     /// <returns>list of EU</returns>
     public List<double> GetTotalEU(List<EnergyUsageLog> logs, List<string> identifierList)
     {
-        return base.BasicGetTotalEU(logs,identifierList);
+        return base.BasicGetTotalEU(logs, identifierList);
     }
 
     /// <summary>

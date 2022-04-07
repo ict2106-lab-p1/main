@@ -48,7 +48,7 @@ public static class ConfigureEnergyMonitoringServices
         services.AddTransient<IEnergyUsageBuilder, DeviceEnergyUsageBuilder>();
         services.AddTransient<IEnergyUsageComparisonService, EnergyUsageComparisonService>();
         services.AddTransient<IEnergyUsageDomainService, EnergyUsageDomainService>();
-        
+
         return services;
     }
 
@@ -58,7 +58,7 @@ public static class ConfigureEnergyMonitoringServices
 
         return services;
     }
-    
+
     private static IServiceCollection AddSingletonServices(this IServiceCollection services)
     {
         // services.AddSingleton<ITodoRepository, TodoRepository>();

@@ -9,8 +9,6 @@ using LivingLab.Core.Entities.Identity;
 using LivingLab.Web.Models.ViewModels.Accessory;
 using LivingLab.Web.Models.ViewModels.UserManagement;
 
-using Microsoft.AspNetCore.Mvc.Rendering;
-
 namespace LivingLab.Web.UIServices.Accessory;
 
 /// <remarks>
@@ -43,7 +41,7 @@ public class AccessoryService : IAccessoryService
         // map entity model to view model
         List<AccessoryViewModel> accessories =
             _mapper.Map<List<Core.Entities.Accessory>, List<AccessoryViewModel>>(accessoryList);
-        return new ViewAccessoryViewModel {AccessoryList = accessories};
+        return new ViewAccessoryViewModel { AccessoryList = accessories };
     }
 
     /// <summary>
@@ -56,7 +54,7 @@ public class AccessoryService : IAccessoryService
         List<ViewAccessoryTypeDTO> viewAccessoryTypeDtos = await _accessoryDomainService.ViewAccessoryType(labLocation);
         List<OverallAccessoryTypeViewModel> accessoryTypeViewModels =
             _mapper.Map<List<ViewAccessoryTypeDTO>, List<OverallAccessoryTypeViewModel>>(viewAccessoryTypeDtos);
-        return new ViewAccessoryTypeViewModel {accessoryTypeList = accessoryTypeViewModels, labLocation = labLocation};
+        return new ViewAccessoryTypeViewModel { accessoryTypeList = accessoryTypeViewModels, labLocation = labLocation };
     }
 
     /// <summary>
@@ -85,7 +83,7 @@ public class AccessoryService : IAccessoryService
             _mapper.Map<List<Core.Entities.AccessoryType>, List<AccessoryTypeViewModel>>(
                 accessoryDetails.AccessoryTypes);
 
-        return new AccessoryDetailsViewModel {Accessory = accessory, AccessoryTypes = accessoryTypeList};
+        return new AccessoryDetailsViewModel { Accessory = accessory, AccessoryTypes = accessoryTypeList };
     }
 
     /// <summary>
@@ -107,7 +105,7 @@ public class AccessoryService : IAccessoryService
         var labUserListDB = await _accountDomainService.ViewAccounts();
         List<UserManagementViewModel> userList =
             _mapper.Map<List<ApplicationUser>, List<UserManagementViewModel>>(labUserListDB);
-        return new AccessoryDetailsViewModel {Accessory = accessory, AccessoryTypes = accessoryTypeList, UserList = userList};
+        return new AccessoryDetailsViewModel { Accessory = accessory, AccessoryTypes = accessoryTypeList, UserList = userList };
     }
 
     /// <summary>
@@ -139,7 +137,7 @@ public class AccessoryService : IAccessoryService
         accessoryVM.Status = "Available";
         accessoryVM.LastUpdated = DateTime.Today;
         accessoryVM.ReviewStatus = "Pending";
-        
+
         // map view model back to accessory
         Core.Entities.Accessory newAccessory = _mapper.Map<AccessoryViewModel, Core.Entities.Accessory>(accessoryVM);
         // add new accessory to db

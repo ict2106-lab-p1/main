@@ -1,7 +1,5 @@
 using LivingLab.Core.Entities;
-using LivingLab.Web.Models.ViewModels;
 using LivingLab.Web.Models.ViewModels.Booking;
-using LivingLab.Web.Models.ViewModels.Device;
 
 namespace LivingLab.Web.UIServices.LabBooking;
 /// <remarks>

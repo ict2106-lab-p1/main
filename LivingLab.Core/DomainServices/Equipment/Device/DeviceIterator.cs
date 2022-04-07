@@ -18,7 +18,7 @@ public class DeviceIterator : IDeviceIterator
     {
         return _collection.GetDevice(0);
     }
-    
+
     public bool HasNext()
     {
         return _index < _collection.Count;

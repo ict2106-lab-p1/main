@@ -10,13 +10,13 @@ public class NotifierFactory
 {
     private readonly ISmsNotifier _smsNotifier;
     private readonly IEmailNotifier _emailNotifier;
-    
+
     public NotifierFactory(ISmsNotifier smsNotifier, IEmailNotifier emailNotifier)
     {
         _smsNotifier = smsNotifier;
         _emailNotifier = emailNotifier;
     }
-    
+
     /// <summary>
     /// Creates a notifier based on the given notification type.
     /// </summary>
@@ -26,7 +26,7 @@ public class NotifierFactory
     {
         if (preference == NotificationType.SMS)
             return _smsNotifier;
-        
+
         return _emailNotifier;
     }
 }

@@ -27,7 +27,7 @@ public static class EnergyLogDataSeeder
                 var endDate = now.Date + new TimeSpan(23, 59, 59);
 
                 var current = startDate;
-            
+
                 while (current < endDate)
                 {
                     logs.Add(new EnergyUsageLog

@@ -6,6 +6,6 @@ namespace LivingLab.Web.Models.ViewModels.EnergyUsage;
 /// </remarks>
 public class EnergyUsageAnalysisViewModel
 {
-    public List<DeviceEnergyUsageDTO> DeviceEUList {get; set;}
-    public List<LabEnergyUsageDTO> LabEUList {get; set;}
+    public List<DeviceEnergyUsageDTO>? DeviceEUList { get; set; }
+    public List<LabEnergyUsageDTO>? LabEUList { get; set; }
 }

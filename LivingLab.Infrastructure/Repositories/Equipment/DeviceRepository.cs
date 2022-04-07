@@ -94,7 +94,7 @@ public class DeviceRepository : Repository<Device>, IDeviceRepository
 
         return collection;
     }
-    
+
     /// <summary>
     /// Function to get the list of devices based on lab location and device type
     /// </summary>
@@ -108,7 +108,7 @@ public class DeviceRepository : Repository<Device>, IDeviceRepository
             .Where(t => deviceType.Contains(t.Type) && t.Lab!.LabLocation == labLocation && t.ReviewStatus!.Equals("Approved")).ToListAsync();
         return deviceList;
     }
-    
+
     /// <summary>
     /// Get device details based on device id
     /// </summary>
@@ -122,7 +122,7 @@ public class DeviceRepository : Repository<Device>, IDeviceRepository
             .SingleOrDefaultAsync(d => d.Id == id))!;
         return device;
     }
-    
+
     /// <summary>
     /// Get the device based on the last device id
     /// </summary>
@@ -134,7 +134,7 @@ public class DeviceRepository : Repository<Device>, IDeviceRepository
             .OrderByDescending(d => d.Id).FirstOrDefaultAsync();
         return device;
     }
-    
+
     /// <summary>
     /// Function to add the device
     /// </summary>
@@ -151,7 +151,7 @@ public class DeviceRepository : Repository<Device>, IDeviceRepository
         await _context.SaveChangesAsync();
         return addedDevice;
     }
-    
+
     /// <summary>
     /// Function to update the device
     /// </summary>
@@ -200,7 +200,7 @@ public class DeviceRepository : Repository<Device>, IDeviceRepository
             )
             .ToListAsync();
     }
-    
+
     /// <summary>
     /// Function to get unique device type 
     /// </summary>

@@ -27,26 +27,27 @@ public class SmsNotifier : ISmsNotifier
     /// <summary>send sms</summary>
     /// <param name="phone">recipient phone number</param>
     /// <param name="msgBody">content body of SMS, strictly plaintext only</param>
-    public async Task SendSmsAsync(string phone, string msgBody)
+    public Task SendSmsAsync(string phone, string msgBody)
     {
         // Find your Account SID and Auth Token at twilio.com/console
         // and set the environment variables. See http://twil.io/secure
         // string accountSid = _config.GetSection("LivingLab:TWILIO_ACC_ID").Value;
         // string authToken = _config.GetSection("LivingLab:TWILIO_AUTH_ID").Value;
-        string accountSid = _config["LivingLab:TWILIO_ACC_ID"];
-        string authToken = _config["LivingLab:TWILIO_AUTH_ID"];
+        var accountSid = _config["LivingLab:TWILIO_ACC_ID"];
+        var authToken = _config["LivingLab:TWILIO_AUTH_ID"];
 
         TwilioClient.Init(accountSid, authToken);
 
-        var messageOptions = new CreateMessageOptions(new PhoneNumber(phone));   
+        var messageOptions = new CreateMessageOptions(new PhoneNumber(phone));
         // messageOptions.MessagingServiceSid = _config.GetSection("LivingLab:TWILIO_MSG_SERVICE_ID").Value;  
-        messageOptions.MessagingServiceSid = _config["LivingLab:TWILIO_MSG_SERVICE_ID"];  
-        messageOptions.Body = msgBody;   
- 
-        var message = MessageResource.Create(messageOptions); 
+        messageOptions.MessagingServiceSid = _config["LivingLab:TWILIO_MSG_SERVICE_ID"];
+        messageOptions.Body = msgBody;
+
+        var message = MessageResource.Create(messageOptions);
         Console.WriteLine(message.Body);
+        return Task.CompletedTask;
     }
-    
+
     /// <summary>send notification via sms</summary>
     /// <param name="message">notification message text</param>
     public async Task Notify(string message)
@@ -56,16 +57,17 @@ public class SmsNotifier : ISmsNotifier
             //message - contains device id & exceeded threshold amt
             string msgBody = "Hi " + labTechnicianDetails.FirstName + labTechnicianDetails.LastName
                              + ", " + message;
-            await SendSmsAsync("+65"+labTechnicianDetails.PhoneNumber, msgBody);
+            await SendSmsAsync("+65" + labTechnicianDetails.PhoneNumber, msgBody);
         }
-        
-        
+
+
     }
 
     /// <summary>
     /// Retrieve list of Lab Technicians whose Notification Preference is SMS
     /// </summary>
     /// <returns>list of lab technicians</returns>
+    [Obsolete]
     public async Task<List<ApplicationUser>> GetPhoneNumber()
     {
         var labTechnicians = await

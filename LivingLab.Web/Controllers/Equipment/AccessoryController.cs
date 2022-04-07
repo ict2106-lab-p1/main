@@ -43,7 +43,7 @@ public class AccessoryController : Controller
         ViewAccessoryViewModel viewAccessories = await _accessoryService.ViewAccessory(accessoryType, labLocation);
         return View("ViewAccessory", viewAccessories);
     }
-    
+
     /// <summary>
     /// 1. Call accessory service to get all accessory type according to the labLocation eg. NYP-SR7A
     /// </summary>
@@ -92,7 +92,7 @@ public class AccessoryController : Controller
         AccessoryViewModel accessoryViewModel = await _accessoryService.GetAccessory(id);
         return accessoryViewModel;
     }
-    
+
     /// <summary>
     /// 1. Call accessory service to request approval for addition of accessory using email
     /// </summary>
@@ -112,7 +112,7 @@ public class AccessoryController : Controller
 
         return Redirect($"ViewAccessoryType/{viewModel.Accessory.Lab.LabLocation}");
     }
-    
+
     /// <summary>
     /// 1. Call accessory service to edit accessory
     /// </summary>
@@ -122,11 +122,11 @@ public class AccessoryController : Controller
     public async Task<IActionResult> EditAccessory(AccessoryDetailsViewModel viewModel)
     {
         await _accessoryService.EditAccessory(viewModel);
-        
+
         ViewAccessoryViewModel viewAccessory = await _accessoryService.ViewAccessory(viewModel.Accessory.AccessoryType.Type, viewModel.Accessory.Lab.LabLocation);
         return View("ViewAccessory", viewAccessory);
     }
-    
+
     /// <summary>
     /// 1. Call accessory service to delete accessory
     /// </summary>
@@ -135,8 +135,8 @@ public class AccessoryController : Controller
     [HttpPost("View/Delete")]
     public async Task<IActionResult> DeleteAccessory(AccessoryViewModel deleteAccessory)
     {
-        await _accessoryService.DeleteAccessory(deleteAccessory); 
-        
+        await _accessoryService.DeleteAccessory(deleteAccessory);
+
         // Temp - To display ViewAll after editing
         ViewAccessoryViewModel viewAccessory = await _accessoryService.ViewAccessory(deleteAccessory.AccessoryType.Type, deleteAccessory.Lab.LabLocation);
         return View("ViewAccessory", viewAccessory);

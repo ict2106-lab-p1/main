@@ -114,7 +114,7 @@ public class DeviceService : IDeviceService
         Core.Entities.Device device = await _deviceDomainService.GetDeviceLastRow();
         DeviceViewModel deviceVM = _mapper.Map<Core.Entities.Device, DeviceViewModel>(device);
         List<String> deviceTypes = await _deviceDomainService.GetDeviceTypes();
-        return new AddDeviceViewModel {Device = deviceVM, DeviceTypes = deviceTypes};
+        return new AddDeviceViewModel { Device = deviceVM, DeviceTypes = deviceTypes };
     }
 
     /// <summary>

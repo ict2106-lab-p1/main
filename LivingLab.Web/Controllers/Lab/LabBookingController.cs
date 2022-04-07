@@ -39,7 +39,7 @@ public class LabBookingController : Controller
     [Authorize]
     public IActionResult Register(int labid = 0)
     {
-        BookFormModel newForm = new BookFormModel() {LabId = labid};
+        BookFormModel newForm = new BookFormModel() { LabId = labid };
 
         return View("Register", newForm);
     }
@@ -109,7 +109,7 @@ public class LabBookingController : Controller
 
         var getList = await _labBookingService.RetrieveBookTableList();
         listOfBookings.list = getList;
-         
+
         return View("ViewBooking", listOfBookings);
     }
 }

@@ -5,7 +5,6 @@ using LivingLab.Infrastructure.Data.Config;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic;
 
 namespace LivingLab.Infrastructure.Data;
 
@@ -17,7 +16,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     // Add new DB tables here
     public DbSet<Lab> Labs { get; set; }
     public DbSet<Device> Devices { get; set; }
-    
+
     public DbSet<EnergyUsageLog> EnergyUsageLogs { get; set; }
     public DbSet<EmailLog> EmailLogs { get; set; }
     public DbSet<Accessory> Accessories { get; set; }

@@ -3,8 +3,6 @@ using AutoMapper;
 using LivingLab.Core.DomainServices.Lab;
 using LivingLab.Core.Entities;
 using LivingLab.Web.Models.ViewModels.Booking;
-using LivingLab.Web.Models.ViewModels.Device;
-using LivingLab.Web.UIServices.LabProfile;
 
 namespace LivingLab.Web.UIServices.LabBooking;
 /// <remarks>
@@ -12,40 +10,40 @@ namespace LivingLab.Web.UIServices.LabBooking;
 /// </remarks>
 public class LabBookingService : ILabBookingService
 {
-    private readonly  IMapper _mapper;
+    private readonly IMapper _mapper;
     private readonly ILabProfileDomainService _labProfileDomainService;
     private readonly IBookingDomainService _BookingDomainService;
 
-    public LabBookingService(IMapper mapper, ILabProfileDomainService labProfileDomainService,IBookingDomainService BookingDomainService)
+    public LabBookingService(IMapper mapper, ILabProfileDomainService labProfileDomainService, IBookingDomainService BookingDomainService)
     {
         _mapper = mapper;
         _labProfileDomainService = labProfileDomainService;
-        _BookingDomainService=BookingDomainService;
+        _BookingDomainService = BookingDomainService;
         //initial mapper, Labdomainservice and bookingdomainservice
     }
 
 
     public async Task<List<BookingTableViewModel>> RetrieveBookTableList()
     {
-                var listOfBooks = await _BookingDomainService.ViewBooks();
-                //Store the book data list in the variable listofbook .
-                List<BookingTableViewModel> listOfBooking = new List<BookingTableViewModel>();
-                //Create list of BookingTableViewModel object to store the data
-                 foreach (Booking Book in listOfBooks)
+        var listOfBooks = await _BookingDomainService.ViewBooks();
+        //Store the book data list in the variable listofbook .
+        List<BookingTableViewModel> listOfBooking = new List<BookingTableViewModel>();
+        //Create list of BookingTableViewModel object to store the data
+        foreach (Booking Book in listOfBooks)
         {
             listOfBooking.Add(new BookingTableViewModel()
             {
-                LabNo=Book.LabId,
-                StartTime=Book.StartDateTime.ToString(),
-                EndTime=Book.EndDateTime.ToString(),
-                Description=Book.Description,
-                BookId=Book.BookingId
-               //match the data to the variable of BookingTableViewModel object
-                
+                LabNo = Book.LabId,
+                StartTime = Book.StartDateTime.ToString(),
+                EndTime = Book.EndDateTime.ToString(),
+                Description = Book.Description,
+                BookId = Book.BookingId
+                //match the data to the variable of BookingTableViewModel object
+
             });
             Console.WriteLine(Book.BookingId);
         }
-        
+
         return listOfBooking;
     }
 
@@ -56,7 +54,7 @@ public class LabBookingService : ILabBookingService
         var listOfLabs = await _labProfileDomainService.ViewLabs();
         //Store the lab data list in the variable listofbook .
         List<BookingDashboardViewModel> listOfLab = new List<BookingDashboardViewModel>();
-         //Create list of BookingDashboardViewModel object to store the data
+        //Create list of BookingDashboardViewModel object to store the data
         foreach (Lab lab in listOfLabs)
         {
             listOfLab.Add(new BookingDashboardViewModel()
@@ -71,18 +69,18 @@ public class LabBookingService : ILabBookingService
         }
         return listOfLab;
     }
-  /*Function to insert a new booking in database*/
-  
-       public async Task<Booking?> CreateBook(BookFormModel Book, string userid)
+    /*Function to insert a new booking in database*/
+
+    public async Task<Booking?> CreateBook(BookFormModel Book, string userid)
     {
-      var bookWrapper = new Booking
-        {  
+        var bookWrapper = new Booking
+        {
             StartDateTime = Book.StartTime,
             EndDateTime = Book.EndTime,
-            Description=Book.Description,
+            Description = Book.Description,
             LabId = Book.LabId,
             UserId = userid
-         
+
             //create new Booking object which is same as the schema in database to store data of user input 
         };
         Console.WriteLine("Booking Services");
@@ -92,13 +90,13 @@ public class LabBookingService : ILabBookingService
 
 
     /*Function to delete a exist booking in database*/
-       public async Task<Booking?> DeleteBook(int bookid)
+    public async Task<Booking?> DeleteBook(int bookid)
     {
-      
-           
+
+
 
         return await _BookingDomainService.DeleteBook(bookid);
         //pass the variable of bookid to domain service
     }
-    
+
 }

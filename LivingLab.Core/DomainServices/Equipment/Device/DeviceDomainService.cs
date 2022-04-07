@@ -13,7 +13,7 @@ public class DeviceDomainService : IDeviceDomainService
     {
         _deviceRepository = deviceRepository;
     }
-    
+
     /// <summary>
     /// Get the devices type by lab Location
     /// </summary>
@@ -52,7 +52,7 @@ public class DeviceDomainService : IDeviceDomainService
     {
         return _deviceRepository.GetAllAsync();
     }
-    
+
     /// <summary>
     /// function to get a list of devices based on device type and lab location
     /// </summary>
@@ -63,7 +63,7 @@ public class DeviceDomainService : IDeviceDomainService
     {
         return _deviceRepository.GetAllDevicesByType(deviceType, labLocation);
     }
-    
+
     /// <summary>
     /// function to get a list of devices and its quantity based on each device type
     /// </summary>
@@ -73,7 +73,7 @@ public class DeviceDomainService : IDeviceDomainService
     {
         var collection = await _deviceRepository.GetViewDeviceType(labLocation);
 
-        
+
         var iterator = collection.CreateIterator();
 
         List<ViewDeviceTypeDTO> deviceTypeDtos = new List<ViewDeviceTypeDTO>();
@@ -87,7 +87,7 @@ public class DeviceDomainService : IDeviceDomainService
         }
         return deviceTypeDtos;
     }
-    
+
     /// <summary>
     /// function to populate the edit device pop up modal 
     /// </summary>
@@ -97,7 +97,7 @@ public class DeviceDomainService : IDeviceDomainService
     {
         return _deviceRepository.GetDeviceDetails(id);
     }
-    
+
     /// <summary>
     /// function to get the last row of the device
     /// </summary>
@@ -106,7 +106,7 @@ public class DeviceDomainService : IDeviceDomainService
     {
         return _deviceRepository.GetLastRow();
     }
-    
+
     /// <summary>
     /// function to add device 
     /// </summary>
@@ -116,7 +116,7 @@ public class DeviceDomainService : IDeviceDomainService
     {
         return _deviceRepository.AddDevice(addedDevice);
     }
-    
+
     /// <summary>
     /// function to populate edit device details
     /// </summary>
@@ -126,7 +126,7 @@ public class DeviceDomainService : IDeviceDomainService
     {
         return _deviceRepository.EditDeviceDetails(editedDevice);
     }
-    
+
     /// <summary>
     /// function to delete device
     /// </summary>

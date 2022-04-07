@@ -13,7 +13,7 @@ public class SessionStatsDomainService : ISessionStatsDomainService
     {
         _sessionStatsRepository = sessionStatsRepository;
     }
-    
+
     /// <summary>
     /// This function calls SessionStatsRepository to retrieve a list of SessionStats of each lab.
     /// </summary>
@@ -23,5 +23,5 @@ public class SessionStatsDomainService : ISessionStatsDomainService
     {
         return _sessionStatsRepository.GetSessionStatsView(labLocation);
     }
-    
+
 }

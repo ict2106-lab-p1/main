@@ -9,5 +9,5 @@ namespace LivingLab.Web.Models.ViewModels.Booking;
 /// </remarks>
 public class BookingManagementViewModel
 {
-    public List<BookingDashboardViewModel> list { get; set; } 
+    public List<BookingDashboardViewModel>? list { get; set; }
 }

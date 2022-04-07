@@ -14,17 +14,17 @@ namespace LivingLab.Web.Controllers.Equipment;
 /// </remarks>
 [Authorize(Roles = "Labtech")]
 [Route("Equipment")]
-public class EquipmentController: Controller
+public class EquipmentController : Controller
 {
     private readonly ILogger<EquipmentController> _logger;
     private readonly IEquipmentService _equipmentService;
-    
+
     public EquipmentController(ILogger<EquipmentController> logger, IEquipmentService equipmentService)
     {
         _logger = logger;
         _equipmentService = equipmentService;
     }
-    
+
     /// <summary>
     /// 1. Call equipment service to get all devices and accessories according to the labLocation eg. NYP-SR7A
     /// </summary>
@@ -50,7 +50,7 @@ public class EquipmentController: Controller
         _equipmentService.UpdateDeviceStatus(deviceId, deviceReviewStatus);
         return Redirect($"ReviewEquipment/{labLocation}#device");
     }
-    
+
     /// <summary>
     /// 1. Call equipment service to update accessory status according to the labLocation eg. NYP-SR7A
     /// </summary>
@@ -64,7 +64,7 @@ public class EquipmentController: Controller
         _equipmentService.UpdateAccessoryStatus(accessoryId, accessoryReviewStatus);
         return Redirect($"ReviewEquipment/{labLocation}#accessory");
     }
-    
+
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {

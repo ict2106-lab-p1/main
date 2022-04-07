@@ -18,7 +18,7 @@ public class EnergyLogApiController : BaseApiController
         _energyLogService = energyLogService;
         _logger = logger;
     }
-    
+
     /// <summary>
     /// Get the number of energy usage logs
     /// </summary>
@@ -38,7 +38,7 @@ public class EnergyLogApiController : BaseApiController
             return BadRequest(e.Message);
         }
     }
-    
+
     /// <summary>
     /// Log energy usage into the system
     /// </summary>

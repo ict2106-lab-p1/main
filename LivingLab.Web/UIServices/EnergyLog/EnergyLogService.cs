@@ -14,13 +14,13 @@ public class EnergyLogService : IEnergyLogService
 {
     private readonly IEnergyLogDomainService _energyLogDomainService;
     private readonly IMapper _mapper;
-    
-    public EnergyLogService(IEnergyLogDomainService energyLogDomainService , IMapper mapper)
+
+    public EnergyLogService(IEnergyLogDomainService energyLogDomainService, IMapper mapper)
     {
         _energyLogDomainService = energyLogDomainService;
         _mapper = mapper;
     }
-    
+
     /// <summary>
     /// 1. Map log DTO to Energy Usage Log entity
     /// 2. Call Energy Log Domain Service to add the log into database
@@ -42,4 +42,4 @@ public class EnergyLogService : IEnergyLogService
         var logs = await _energyLogDomainService.GetLogs(size);
         return _mapper.Map<List<EnergyUsageLogViewModel>>(logs);
     }
-} 
+}

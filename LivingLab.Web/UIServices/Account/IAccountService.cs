@@ -1,6 +1,5 @@
 using LivingLab.Core.Entities.Identity;
 using LivingLab.Web.Models.ViewModels.Account;
-using LivingLab.Web.Models.ViewModels.Login;
 
 namespace LivingLab.Web.UIServices.Account;
 /// <remarks>
@@ -9,8 +8,8 @@ namespace LivingLab.Web.UIServices.Account;
 public interface IAccountService
 {
     Task<ApplicationUser?> NewUser(RegisterViewModel input);
-    Task <Boolean> GenerateCodeSMS(ApplicationUser user);
-    Task <Boolean> GenerateCodeEmail(ApplicationUser user);
+    Task<Boolean> GenerateCodeSMS(ApplicationUser user);
+    Task<Boolean> GenerateCodeEmail(ApplicationUser user);
     Task<Boolean> VerifyCode(string userid, int OTP);
     Task UpdateUserSettings(ApplicationUser user);
 }

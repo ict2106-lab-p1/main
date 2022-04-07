@@ -16,7 +16,7 @@ public class AccessoryDomainService : IAccessoryDomainService
         _accessoryRepository = accessoryRepository;
         _accessoryTypeRepository = accessoryTypeRepository;
     }
-    
+
     /// <summary>
     /// This function retrieve a list of entities for each lab.
     /// </summary>
@@ -26,7 +26,7 @@ public class AccessoryDomainService : IAccessoryDomainService
     {
         return _accessoryRepository.GetAccessoriesForLabProfile(labLocation);
     }
-    
+
     /// <summary>
     /// This function updates the review status of the accessory
     /// </summary>
@@ -45,7 +45,7 @@ public class AccessoryDomainService : IAccessoryDomainService
     {
         return _accessoryRepository.GetAllAccessoriesForReview(labLocation);
     }
-    
+
     /// <summary>
     /// This function returns a list of accessory base on the selected accessory type and lab.
     /// </summary>
@@ -56,7 +56,7 @@ public class AccessoryDomainService : IAccessoryDomainService
     {
         return _accessoryRepository.GetAccessoryWithAccessoryType(accessoryType, labLocation);
     }
-    
+
     /// <summary>
     /// Returns a list of devices quantity and type
     /// </summary>
@@ -66,7 +66,7 @@ public class AccessoryDomainService : IAccessoryDomainService
     {
         return _accessoryRepository.GetAccessoryType(labLocation);
     }
-    
+
     /// <summary>
     /// Returns a list of AccessoryType 
     /// </summary>
@@ -104,7 +104,7 @@ public class AccessoryDomainService : IAccessoryDomainService
     {
         return await _accessoryRepository.EditAccessory(accessoryDetailsDto);
     }
-    
+
     /// <summary>
     /// Return a DTO to populate add accessory pop up view
     /// </summary>
@@ -115,7 +115,8 @@ public class AccessoryDomainService : IAccessoryDomainService
         List<AccessoryType> accessoryTypeList = await _accessoryTypeRepository.GetAllAsync();
         return new AccessoryDetailsDTO
         {
-            Accessory = accessory, AccessoryTypes = accessoryTypeList
+            Accessory = accessory,
+            AccessoryTypes = accessoryTypeList
         };
     }
 
@@ -130,7 +131,8 @@ public class AccessoryDomainService : IAccessoryDomainService
         List<AccessoryType> accessoryTypeList = await _accessoryTypeRepository.GetAllAsync();
         return new AccessoryDetailsDTO
         {
-            Accessory = accessory, AccessoryTypes = accessoryTypeList
+            Accessory = accessory,
+            AccessoryTypes = accessoryTypeList
         };
     }
 
@@ -142,10 +144,10 @@ public class AccessoryDomainService : IAccessoryDomainService
     public async Task<Entities.Accessory> AddAccessory(Entities.Accessory accessory)
     {
         await _accessoryRepository.AddAsync(accessory);
-        
+
         return accessory;
     }
-    
+
     /// <summary>
     /// Function to delete accessory base on the deletedAccessory object
     /// </summary>

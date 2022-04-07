@@ -1,9 +1,11 @@
 using System.Diagnostics;
+
 using LivingLab.Core.Entities.Identity;
 using LivingLab.Core.Notifications;
 using LivingLab.Web.Models.ViewModels;
 using LivingLab.Web.Models.ViewModels.Account;
 using LivingLab.Web.UIServices.Account;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -12,21 +14,21 @@ namespace LivingLab.Web.Controllers.Account;
 /// <remarks>
 /// Author: Team P1-5
 /// </remarks>
-public class AccountController: Controller
+public class AccountController : Controller
 {
     private readonly IAccountService _accountService;
     private readonly ILogger<AccountController> _logger;
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly IEmailNotifier _emailSender;
-    
-    public AccountController( IEmailNotifier emailSender, IAccountService accountService, ILogger<AccountController> logger, UserManager<ApplicationUser> userManager)
+
+    public AccountController(IEmailNotifier emailSender, IAccountService accountService, ILogger<AccountController> logger, UserManager<ApplicationUser> userManager)
     {
         _accountService = accountService;
         _logger = logger;
         _userManager = userManager;
         _emailSender = emailSender;
     }
-    
+
     /// <summary>
     /// Admin can access this page
     /// </summary>
@@ -62,17 +64,17 @@ public class AccountController: Controller
                         HttpContext.Request.Host = HostString.FromUriComponent("livinglab.amatsuka.me");
                     }
                     var callbackUrl = Url.Action(
-                        "ConfirmEmail", "Account", 
-                        new { userId = model.Id, token = token }, 
+                        "ConfirmEmail", "Account",
+                        new { userId = model.Id, token = token },
                         protocol: Request.Scheme);
 
                     await _userManager.AddToRoleAsync(model, registration.Role);
-                    await _emailSender.SendEmailAsync(registration.Email, 
-                        "Confirm Living Lab Account", 
-                        "Dear "+registration.FirstName+", <br> Living Lab Admin "+model.FirstName+" has registered an account on your behalf. <br>" +
-                        "Your username is: "+registration.Email+"<br>" +
-                        "Your password is: "+registration.Password+" <br>" +
-                        "Please confirm your account by clicking this link: <a href=\"" 
+                    await _emailSender.SendEmailAsync(registration.Email,
+                        "Confirm Living Lab Account",
+                        "Dear " + registration.FirstName + ", <br> Living Lab Admin " + model.FirstName + " has registered an account on your behalf. <br>" +
+                        "Your username is: " + registration.Email + "<br>" +
+                        "Your password is: " + registration.Password + " <br>" +
+                        "Please confirm your account by clicking this link: <a href=\""
                         + callbackUrl + "\">link</a>");
                 }
                 return View("_CheckEmail");
@@ -80,13 +82,13 @@ public class AccountController: Controller
             catch (Exception e)
             {
                 _logger.LogError(e.Message);
-                return View(nameof(Register),registration);
+                return View(nameof(Register), registration);
             }
         }
         else
         {
             _logger.LogInformation("test");
-            return View(nameof(Register),registration);
+            return View(nameof(Register), registration);
         }
     }
 
@@ -134,13 +136,14 @@ public class AccountController: Controller
         if (user.AuthenticationType == "SMS")
         {
             settingsViewModel.SMSAuth = true;
-        }else if (user.AuthenticationType == "Email")
+        }
+        else if (user.AuthenticationType == "Email")
         {
             settingsViewModel.GoogleAuth = true;
         }
         return View("Settings", settingsViewModel);
     }
-    
+
     /// <summary>
     /// 1. User reconfigure their settings
     /// 2. Settings is saved to database
@@ -163,7 +166,8 @@ public class AccountController: Controller
             {
                 user.PhoneNumber = settingsViewModel.PhoneNumber;
             }
-        }else if (settingsViewModel.GoogleAuth)
+        }
+        else if (settingsViewModel.GoogleAuth)
         {
             _logger.LogInformation("Select Email");
             user.AuthenticationType = "Email";

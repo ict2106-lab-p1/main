@@ -1,6 +1,6 @@
-using LivingLab.Core.Entities;
-using LivingLab.Core.Entities.Identity;
 using System.ComponentModel.DataAnnotations;
+
+using LivingLab.Core.Entities.Identity;
 
 namespace LivingLab.Web.Models.ViewModels.Booking;
 /// <summary> What is a ViewModel
@@ -14,10 +14,10 @@ namespace LivingLab.Web.Models.ViewModels.Booking;
 public class BookFormModel
 {
 
-    
-    public List<Core.Entities.Booking> Bookings { get; set; }
 
-    public ApplicationUser ApplicationUser { get; set; }
+    public List<Core.Entities.Booking>? Bookings { get; set; }
+
+    public ApplicationUser? ApplicationUser { get; set; }
 
     public List<Core.Entities.SessionStats>? Logs { get; set; }
     public List<Core.Entities.Accessory>? Accessories { get; set; }
@@ -27,17 +27,17 @@ public class BookFormModel
     [Required]
     [Display(Name = "Lab")]
     public int LabId { get; set; }
-    
+
     [Required]
     [Display(Name = "StartTime")]
     public DateTime StartTime { get; set; }
-    
+
     [Required]
     [Display(Name = "EndTime")]
     public DateTime EndTime { get; set; }
-    
+
     [Required]
     [Display(Name = "Description")]
-    public String Description { get; set; }
-    
+    public String? Description { get; set; }
+
 }

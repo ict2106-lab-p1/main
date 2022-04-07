@@ -1,5 +1,4 @@
 using LivingLab.Core.Entities;
-using LivingLab.Core.Entities.Identity;
 using LivingLab.Core.Repositories.EnergyUsage;
 using LivingLab.Infrastructure.Data;
 
@@ -112,13 +111,13 @@ public class EnergyUsageRepository : Repository<EnergyUsageLog>, IEnergyUsageRep
     public async Task<List<EnergyUsageLog>> GetDeviceEnergyUsageByLabAndDate(int labId, DateTime? start, DateTime? end)
     {
         var now = DateTime.Now;
-        
+
         start ??= now.AddDays(-30).Date;
         end ??= now.Date;
 
         start += new TimeSpan(0, 0, 0);
         end += new TimeSpan(23, 59, 59);
-        
+
         var logsForLabInDateRange = await IncludeReferences(
                 _context.EnergyUsageLogs
                     .Where(log => log.LoggedDate >= start && log.LoggedDate <= end)
@@ -127,7 +126,7 @@ public class EnergyUsageRepository : Repository<EnergyUsageLog>, IEnergyUsageRep
             .ToListAsync();
         return logsForLabInDateRange;
     }
-    
+
     /// <summary>
     /// 1. define the start and end date
     /// 2. get the lab energy usage data according to the lab location, start and end date
@@ -139,16 +138,16 @@ public class EnergyUsageRepository : Repository<EnergyUsageLog>, IEnergyUsageRep
     public async Task<List<EnergyUsageLog>> GetLabEnergyUsageByLocationAndDate(string labLocation, DateTime? start, DateTime? end)
     {
         var now = DateTime.Now;
-        
+
         start ??= now.AddDays(-30).Date;
         end ??= now.Date;
 
         start += new TimeSpan(0, 0, 0);
         end += new TimeSpan(23, 59, 59);
-        
+
         Console.WriteLine("START: " + start);
         Console.WriteLine("END: " + end);
-        
+
         var logsForLabInDateRange = await IncludeReferences(
                 _context.EnergyUsageLogs
                     .Where(log => log.LoggedDate >= start && log.LoggedDate <= end)
@@ -157,7 +156,7 @@ public class EnergyUsageRepository : Repository<EnergyUsageLog>, IEnergyUsageRep
             .ToListAsync();
         return logsForLabInDateRange;
     }
-    
+
     /// <summary>
     /// 1. define the start and end date
     /// 2. get the lab energy usage data according to the start and end date
@@ -168,13 +167,13 @@ public class EnergyUsageRepository : Repository<EnergyUsageLog>, IEnergyUsageRep
     public async Task<List<EnergyUsageLog>> GetLabEnergyUsageByDate(DateTime? start, DateTime? end)
     {
         var now = DateTime.Now;
-        
+
         start ??= now.AddDays(-30).Date;
         end ??= now.Date;
 
         start += new TimeSpan(0, 0, 0);
         end += new TimeSpan(23, 59, 59);
-        
+
         var logsForLabInDateRange = await IncludeReferences(
                 _context.EnergyUsageLogs
                     .Where(log => log.LoggedDate >= start && log.LoggedDate <= end)
@@ -227,7 +226,7 @@ public class EnergyUsageRepository : Repository<EnergyUsageLog>, IEnergyUsageRep
             .ToListAsync();
         return logsForLab;
     }
-    
+
     /// <summary>
     /// override base repository class method to load associated labs and devices
     /// </summary>

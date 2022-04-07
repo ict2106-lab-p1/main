@@ -4,10 +4,10 @@ namespace LivingLab.Core.DomainServices.Account;
 /// <remarks>
 /// Author: Team P1-5
 /// </remarks>
-public class AccountDomainService: IAccountDomainService
+public class AccountDomainService : IAccountDomainService
 {
     private readonly IAccountRepository _accountRepository;
-    
+
     /// <summary>
     /// Initialise services for accountdomain
     /// </summary>
@@ -25,8 +25,8 @@ public class AccountDomainService: IAccountDomainService
     public Task<List<ApplicationUser>> ViewAccounts()
     {
         return _accountRepository.GetAllAccount();
-    } 
- 
+    }
+
     /// <summary>
     /// 1. Call on account repository GetAccountById function
     /// 2. Retrieve information of user by id
@@ -37,7 +37,7 @@ public class AccountDomainService: IAccountDomainService
     {
         return _accountRepository.GetAccountById(id);
     }
-    
+
     /// <summary>
     /// 1. Call on account repository EditAccount function
     /// 2. Update user information to database
@@ -59,7 +59,7 @@ public class AccountDomainService: IAccountDomainService
     {
         _accountRepository.DeleteAccount(deletedUser);
     }
-    
+
     /*Function to update user information one by one*/
     /// <summary>
     /// 1. Call on account repository UpdateAsync function
@@ -100,7 +100,7 @@ public class AccountDomainService: IAccountDomainService
         }
         return false;
     }
-    
+
     /// <summary>
     /// 1. Check if code is outdated
     /// 2. Check if the OTP is match
@@ -122,5 +122,5 @@ public class AccountDomainService: IAccountDomainService
 
         return false;
     }
-    
+
 }

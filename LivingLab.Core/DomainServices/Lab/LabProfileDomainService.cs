@@ -11,7 +11,7 @@ namespace LivingLab.Core.DomainServices.Lab;
 /// <remarks>
 /// Author: Team P1-5
 /// </remarks>
-public class LabProfileDomainService: ILabProfileDomainService
+public class LabProfileDomainService : ILabProfileDomainService
 {
     private readonly ILabProfileRepository _labRepository;
     private readonly ILogger _logger;
@@ -20,7 +20,7 @@ public class LabProfileDomainService: ILabProfileDomainService
         _labRepository = labRepository;
         _logger = logger;
     }
-    
+
     /// <summary>
     /// Get Lab Information of all labs
     /// </summary>
@@ -39,7 +39,7 @@ public class LabProfileDomainService: ILabProfileDomainService
     {
         return await _labRepository.AddAsync(labinput);
     }
-    
+
     /// <summary>
     /// Get lab information for individual labs by lab location
     /// </summary>

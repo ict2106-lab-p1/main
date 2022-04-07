@@ -70,7 +70,7 @@ public class EnergyUsageAnalysisController : Controller
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
-        return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
+        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 
     /// <summary>
@@ -86,7 +86,8 @@ public class EnergyUsageAnalysisController : Controller
             var modelAll = await _analysisService.GetEnergyUsageTrendAllLab(filter);
             var combinedGraphModels = new EnergyUsageAnalysisGraphViewModel
             {
-                SelectedLabEnergyUsage = model, AllLabEnergyUsage = modelAll
+                SelectedLabEnergyUsage = model,
+                AllLabEnergyUsage = modelAll
             };
             return Json(combinedGraphModels);
         }
@@ -107,7 +108,7 @@ public class EnergyUsageAnalysisController : Controller
         var end = new DateTime(2022, 12, 25);
         var deviceEUList = _analysisService.GetDeviceEnergyUsageByDate(start, end);
         var labEUList = _analysisService.GetLabEnergyUsageByDate(start, end);
-        var viewModel = new EnergyUsageAnalysisViewModel {DeviceEUList = deviceEUList, LabEUList = labEUList};
+        var viewModel = new EnergyUsageAnalysisViewModel { DeviceEUList = deviceEUList, LabEUList = labEUList };
         return viewModel;
     }
 

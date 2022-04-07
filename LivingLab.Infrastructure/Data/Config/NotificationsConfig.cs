@@ -3,7 +3,6 @@ using LivingLab.Core.Entities.Identity;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LivingLab.Infrastructure.Data.Config;
 

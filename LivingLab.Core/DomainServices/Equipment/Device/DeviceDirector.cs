@@ -6,13 +6,13 @@ namespace LivingLab.Core.DomainServices.Equipment.Device;
 /// </remarks>
 public class DeviceDirector
 {
-    private IEnergyUsageBuilder _builder;
-        
+    private IEnergyUsageBuilder? _builder;
+
     public IEnergyUsageBuilder Builder
     {
-        set { _builder = value; } 
+        set { _builder = value; }
     }
-    
+
     // The Director can construct several product variations using the same
     // building steps.
     public void BuildDeviceEU()

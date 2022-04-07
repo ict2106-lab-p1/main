@@ -1,7 +1,6 @@
-using System.Text;
 
 using Microsoft.AspNetCore.Http;
-using TinyCsvParser;
+
 using TinyCsvParser.Mapping;
 
 namespace LivingLab.Infrastructure.InfraServices.CsvParser;
@@ -20,9 +19,9 @@ public abstract class CsvParserTemplate<T> where T : class
     {
         var filePath = SaveFile(file);
         var result = ReadFile(filePath);
-        return MapResult(result);    
+        return MapResult(result);
     }
-    
+
     /// <summary>
     /// save file temporarily on disk
     /// </summary>

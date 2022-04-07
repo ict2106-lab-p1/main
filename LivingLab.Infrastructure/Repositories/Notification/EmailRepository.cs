@@ -11,10 +11,10 @@ namespace LivingLab.Infrastructure.Repositories.Notification;
 /// <remarks>
 /// Author: Team P1-5
 /// </remarks>
-public class EmailRepository : Repository<EmailLog>,IEmailRepository
+public class EmailRepository : Repository<EmailLog>, IEmailRepository
 {
     private readonly ApplicationDbContext _context;
-    
+
     public EmailRepository(ApplicationDbContext context) : base(context)
     {
         _context = context;

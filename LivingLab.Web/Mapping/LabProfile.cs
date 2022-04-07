@@ -1,7 +1,6 @@
 using AutoMapper;
 
 using LivingLab.Core.Entities;
-using LivingLab.Web.Models.ViewModels;
 using LivingLab.Web.Models.ViewModels.EnergyUsage;
 using LivingLab.Web.Models.ViewModels.LabProfile;
 

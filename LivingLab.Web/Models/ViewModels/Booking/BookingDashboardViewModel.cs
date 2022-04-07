@@ -10,12 +10,12 @@ namespace LivingLab.Web.Models.ViewModels.Booking;
 public class BookingDashboardViewModel
 {
     public int? LabNo { get; set; }
-    
-    public string? LabState { get; set;}
-    
-    public string? LabLocation { get; set;}
-    
-    public int? LabOccupancy { get; set;}
-    
-    public int? LabTotalUser { get; set;}
+
+    public string? LabState { get; set; }
+
+    public string? LabLocation { get; set; }
+
+    public int? LabOccupancy { get; set; }
+
+    public int? LabTotalUser { get; set; }
 }

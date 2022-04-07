@@ -18,8 +18,8 @@ public class EnergyLogDomainService : IEnergyLogDomainService
     private readonly ILabProfileRepository _labRepository;
     private readonly NotifierFactory _notifierFactory;
     private readonly IAccountRepository _accountRepository;
-    
-    public EnergyLogDomainService(IEnergyUsageRepository energyUsageRepository, IDeviceRepository deviceRepository, 
+
+    public EnergyLogDomainService(IEnergyUsageRepository energyUsageRepository, IDeviceRepository deviceRepository,
         ILabProfileRepository labRepository, NotifierFactory notifierFactory, IAccountRepository accountRepository)
     {
         _energyUsageRepository = energyUsageRepository;

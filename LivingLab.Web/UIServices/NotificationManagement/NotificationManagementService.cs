@@ -3,12 +3,6 @@ using LivingLab.Core.Entities.Identity;
 using LivingLab.Core.Enums;
 using LivingLab.Core.Notifications;
 
-using Microsoft.AspNetCore.Identity.UI.Services;
-
-using Twilio;
-using Twilio.Rest.Api.V2010.Account;
-using Twilio.Types;
-
 namespace LivingLab.Web.UIServices.NotificationManagement;
 
 /// <remarks>
@@ -19,14 +13,14 @@ public class NotificationManagementService : INotificationManagementService
     private readonly INotificationDomainService _notificationDomainService;
     private readonly IEmailNotifier _emailNotifier;
     private readonly ISmsNotifier _smsNotifier;
-    
+
     public NotificationManagementService(IEmailNotifier emailNotifier, ISmsNotifier smsNotifier, INotificationDomainService notificationDomainService)
     {
         _notificationDomainService = notificationDomainService;
         _emailNotifier = emailNotifier;
         _smsNotifier = smsNotifier;
     }
-    
+
     /// <summary>
     /// Call Notification Domain Service to set the notification preference of the current user
     /// </summary>
@@ -43,9 +37,9 @@ public class NotificationManagementService : INotificationManagementService
     public async Task SendTextToPhone(string phone, string msgBody)
     {
         await _smsNotifier.SendSmsAsync(phone, msgBody);
-        
+
     }
-    
+
     /// <summary>
     /// Call Email Notifier to send Email to email address
     /// </summary>
