@@ -1,3 +1,6 @@
+using System.Reflection.Metadata;
+
+using LivingLab.Core.DomainServices.Equipment.Device;
 using LivingLab.Core.Entities;
 using LivingLab.Core.Entities.DTO.Accessory;
 using LivingLab.Core.Repositories.Equipment;
