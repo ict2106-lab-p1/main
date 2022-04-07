@@ -52,21 +52,6 @@ public class EnergyUsageAnalysisController : Controller
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
-
-    // [HttpPost]
-    // public async Task<IActionResult> ViewUsage([FromBody] EnergyUsageFilterViewModel filter)
-    // {
-    //     try
-    //     {
-    //         var model = await _analysisService.GetEnergyUsageTrendSelectedLab(filter);
-    //         return model.Lab != null ? Json(model) : NotFound();
-    //     }
-    //     catch (Exception e)
-    //     {
-    //         _logger.Log(LogLevel.Error, e.Message);
-    //         return NotFound();
-    //     }
-    // }
     
     [HttpPost]
     public async Task<IActionResult> ViewUsage([FromBody] EnergyUsageFilterViewModel filter)
@@ -89,22 +74,6 @@ public class EnergyUsageAnalysisController : Controller
         }
     }
 
-    // [HttpPost]
-    // public async Task<IActionResult> ViewUsage([FromBody] EnergyUsageFilterViewModel filter)
-    // {
-    //     try
-    //     {
-    //         var modelAll = await _analysisService.GetEnergyUsageTrendAllLab(filter);
-    //         return modelAll.Lab != null ? Json(modelAll) : NotFound();
-    //     }
-    //     catch (Exception e)
-    //     {
-    //         _logger.Log(LogLevel.Error, e.Message);
-    //         return NotFound();
-    //     }
-    // }
-    
-
     public EnergyUsageAnalysisViewModel GetData() {
         DateTime start = new DateTime(2015, 12, 25);
         DateTime end = new DateTime(2022, 12, 25);
@@ -117,8 +86,6 @@ public class EnergyUsageAnalysisController : Controller
         return viewModel;
     }
 
-
-    // [HttpGet("EnergyUsageAnalysis/Benchmark/Lab/{labId?}")]
     public async Task<IActionResult> Benchmark(int? labId = 1)
     {
         try
