@@ -79,7 +79,7 @@ public abstract class ConstructEnergyUsageTemplates<T>
     /// <summary>
     /// Get the overall energy usage intensity of each index
     /// </summary>
-    /// <param name="totalEU">toatk energy usage</param>
+    /// <param name="totalEU">total energy usage</param>
     /// <param name="area">area of the lab</param>
     /// <returns>list of EU intensity</returns>
     public List<double> BasicGetIntensity(List<double> totalEU, List<int> area)
