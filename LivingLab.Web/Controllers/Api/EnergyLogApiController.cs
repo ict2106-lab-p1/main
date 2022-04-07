@@ -19,8 +19,11 @@ public class EnergyLogApiController : BaseApiController
         _logger = logger;
     }
     
-    
-
+    /// <summary>
+    /// Get the number of energy usage logs
+    /// </summary>
+    /// <param name="size"></param>
+    /// <returns>Json(logs)</returns>
     [HttpGet("{size}")]
     public async Task<IActionResult> GetLogs(int size)
     {
@@ -36,6 +39,11 @@ public class EnergyLogApiController : BaseApiController
         }
     }
     
+    /// <summary>
+    /// Log energy usage into the system
+    /// </summary>
+    /// <param name="usage"></param>
+    /// <returns>status 200</returns>
     [HttpPost]
     public async Task<IActionResult> Log(EnergyUsageLogDTO usage)
     {

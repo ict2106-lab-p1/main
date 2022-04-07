@@ -1,7 +1,4 @@
-
 using System.ComponentModel.DataAnnotations;
-using System.Globalization;
-
 namespace LivingLab.Web.Models.ViewModels.Account;
 /// <remarks>
 /// Author: Team P1-5
@@ -24,11 +21,7 @@ public class RegisterViewModel
     [Required(ErrorMessage = "Please enter a valid phone number")]
     [Display(Name = "Phone Number")]
     public string PhoneNumber { get; set; }
-    
-    public bool IsSMS { get; set; }
-    
-    public bool IsGoogleAuth { get; set; }
-    
+
     [Required]
     [Display(Name = "Password")]
     [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]

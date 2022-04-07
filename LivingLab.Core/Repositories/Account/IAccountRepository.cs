@@ -4,14 +4,10 @@ namespace LivingLab.Core.Repositories.Account;
 /// <remarks>
 /// Author: Team P1-5
 /// </remarks>
-public interface IAccountRepository : IRepository<ApplicationUser>
 
-   
+public interface IAccountRepository : IRepository<ApplicationUser>
 {
     Task<List<ApplicationUser>?> GetAllAccount();
     Task<ApplicationUser?> GetAccountById(string id);
-    Task<ApplicationUser?> EditAccount(ApplicationUser user);
-    Task<ApplicationUser> DeleteAccount(ApplicationUser deleteUser);
-
-
+    Task DeleteAccount(ApplicationUser deleteUser);
 }

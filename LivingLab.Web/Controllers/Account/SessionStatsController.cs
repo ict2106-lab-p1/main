@@ -1,6 +1,7 @@
 using LivingLab.Web.Models.ViewModels.SessionStats;
 using LivingLab.Web.UIServices.SessionStats;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LivingLab.Web.Controllers.Account;
@@ -9,6 +10,7 @@ namespace LivingLab.Web.Controllers.Account;
 /// Author: Team P1-3
 /// </remarks>
 
+[Authorize(Roles = "Labtech")]
 [Route("SessionStats/{labLocation}")]
 public class SessionStatsController : Controller
 {
@@ -21,6 +23,11 @@ public class SessionStatsController : Controller
         _sessionStatsService = sessionStatsService;
     }
     
+    /// <summary>
+    /// 1. Call Session Stats service to get all Session Stats according to the labLocation eg. NYP-SR7A
+    /// </summary>
+    /// <param name="labLocation">lab's location</param>
+    /// <returns>ViewSessionStatsViewModel</returns>
     public async Task<IActionResult> ViewSessionStats(string labLocation)
     {
         ViewSessionStatsViewModel viewSessionStats = await _sessionStatsService.ViewSessionStats(labLocation);

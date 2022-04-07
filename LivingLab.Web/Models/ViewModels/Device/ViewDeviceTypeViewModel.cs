@@ -1,4 +1,3 @@
-using LivingLab.Core.Entities.DTO;
 
 namespace LivingLab.Web.Models.ViewModels.Device;
 /// <remarks>
