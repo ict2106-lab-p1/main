@@ -17,10 +17,11 @@ public class BookingRepository : Repository<Booking>, IBookingRepository
     {
         _context = context;
     }
-
+      /**Get all the Booking in database**/
     public async Task<List<Booking>> GetAllBooking()
     {
            var labBooking = await _context.Bookings.ToListAsync();
+           //extract all the Booking data from Book table
         return labBooking;
     }
 }
