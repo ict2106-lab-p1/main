@@ -28,7 +28,7 @@ public class EnergyUsageAnalysisController : Controller
     /// Index page of analysis
     /// </summary>
     /// <returns>view with tables and graphs</returns>
-    public async Task<IActionResult> Index(string? LabLocation = "NYP-SR7C")
+    public async Task<IActionResult> Index()
     {
         return View(GetData());
     }
@@ -72,6 +72,10 @@ public class EnergyUsageAnalysisController : Controller
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
     
+    /// <summary>
+    /// View the graphs
+    /// </summary>
+    /// <returns>view selected lab energy usage graph and the all lab energy usage graph</returns>
     [HttpPost]
     public async Task<IActionResult> ViewUsage([FromBody] EnergyUsageFilterViewModel filter)
     {
@@ -93,7 +97,6 @@ public class EnergyUsageAnalysisController : Controller
         }
     }
     
-
     /// <summary>
     /// Get the data for lab and device
     /// </summary>
@@ -109,7 +112,11 @@ public class EnergyUsageAnalysisController : Controller
         };
         return viewModel;
     }
-
+    
+    /// <summary>
+    /// Get benchmark of the energy usage
+    /// </summary>
+    /// <returns>benchmark value</returns>
     public async Task<IActionResult> Benchmark(int? labId = 1)
     {
         try
