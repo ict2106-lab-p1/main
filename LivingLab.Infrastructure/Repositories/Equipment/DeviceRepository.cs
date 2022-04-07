@@ -1,3 +1,6 @@
+using System.ComponentModel.DataAnnotations;
+
+using LivingLab.Core.DomainServices.Equipment.Device;
 using LivingLab.Core.Entities;
 using LivingLab.Core.Entities.DTO.Device;
 using LivingLab.Core.Repositories.Equipment;
@@ -49,23 +52,23 @@ public class DeviceRepository : Repository<Device>, IDeviceRepository
             .ToListAsync();
         return device;
     }
-    public async Task<List<ViewDeviceTypeDTO>> GetViewDeviceType(string labLocation)
+    public async Task<DeviceCollection> GetViewDeviceType(string labLocation)
     {
         var deviceGroup = await _context.Devices
             .Include(l => l.Lab)
             .Where(l => l.Lab!.LabLocation == labLocation && l.ReviewStatus!.Equals("Approved"))
             .GroupBy(t => t.Type)
-            .Select(t => new { Key = t.Key, Count = t.Count() })
+            .Select(t => new ViewDeviceTypeDTO { Type = t.Key, Quantity = t.Count() })
             .ToListAsync();
-        List<ViewDeviceTypeDTO> deviceTypeDtos = new List<ViewDeviceTypeDTO>();
-        foreach (var group in deviceGroup)
+
+        var collection = new DeviceCollection();
+
+        foreach (var device in deviceGroup)
         {
-            ViewDeviceTypeDTO deviceTypeDto = new ViewDeviceTypeDTO();
-            deviceTypeDto.Type = group.Key;
-            deviceTypeDto.Quantity = group.Count;
-            deviceTypeDtos.Add(deviceTypeDto);
+            collection.AddDevice(device);
         }
-        return deviceTypeDtos;
+
+        return collection;
     }
 
     public async Task<List<Device>> GetAllDevicesByType(string deviceType, string labLocation)
@@ -143,4 +146,5 @@ public class DeviceRepository : Repository<Device>, IDeviceRepository
             .Distinct()
             .ToListAsync());
     }
+
 }

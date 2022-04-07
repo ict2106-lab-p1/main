@@ -39,9 +39,23 @@ public class DeviceDomainService : IDeviceDomainService
         return _deviceRepository.GetAllDevicesByType(deviceType, labLocation);
     }
 
-    public Task<List<ViewDeviceTypeDTO>> ViewDeviceType(string labLocation)
+    public async Task<List<ViewDeviceTypeDTO>> ViewDeviceType(string labLocation)
     {
-        return _deviceRepository.GetViewDeviceType(labLocation);
+        var collection = await _deviceRepository.GetViewDeviceType(labLocation);
+
+        
+        var iterator = collection.CreateIterator();
+
+        List<ViewDeviceTypeDTO> deviceTypeDtos = new List<ViewDeviceTypeDTO>();
+        for (var device = iterator.First(); iterator.HasNext(); device = iterator.Next())
+        {
+            deviceTypeDtos.Add(new ViewDeviceTypeDTO
+            {
+                Type = device.Type,
+                Quantity = device.Quantity
+            });
+        }
+        return deviceTypeDtos;
     }
     
     public Task<Entities.Device> ViewDeviceDetails(int id)
