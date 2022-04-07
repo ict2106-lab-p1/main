@@ -8,7 +8,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LivingLab.Web.Controllers.Equipment;
-
+/// <remarks>
+/// Author: Team P1-3
+/// </remarks>
 
 [Authorize(Roles = "Labtech")]
 [Route("Equipment")]
