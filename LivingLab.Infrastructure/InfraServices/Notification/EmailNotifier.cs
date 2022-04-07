@@ -65,9 +65,10 @@ public class EmailNotifier : IEmailNotifier
         }
     }
     
-    /*
-     * Retrieve list of Lab Technicians whose Notification Preference is Email
-     */
+    /// <summary>
+    /// Retrieve list of Lab Technicians whose Notification Preference is Email
+    /// </summary>
+    /// <returns>list of lab technicians</returns>
     public async Task<List<ApplicationUser>> GetEmail()
     {
         var labTechnicians = await

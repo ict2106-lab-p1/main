@@ -9,6 +9,9 @@ namespace LivingLab.Infrastructure.Data;
 /// </remarks>
 public static class EnergyLogDataSeeder
 {
+    /// <summary>
+    /// insert initial energy usage log demo values into database
+    /// </summary>
     public static void SeedEnergyLogs(this ModelBuilder modelBuilder)
     {
         var logs = new List<EnergyUsageLog>();

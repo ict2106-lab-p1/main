@@ -24,10 +24,6 @@ public class SmsNotifier : ISmsNotifier
         _notificationDomainService = notificationDomainService;
         _config = config;
     }
-    // public void Notify(string message)
-    // {
-    //     throw new NotImplementedException();
-    // }
     public async Task SendSmsAsync(string phone, string msgBody)
     {
         // Find your Account SID and Auth Token at twilio.com/console
@@ -61,9 +57,10 @@ public class SmsNotifier : ISmsNotifier
         
     }
 
-    /*
-     * retrieves list of lab technicians whose notification pref is sms
-     */
+    /// <summary>
+    /// Retrieve list of Lab Technicians whose Notification Preference is SMS
+    /// </summary>
+    /// <returns>list of lab technicians</returns>
     public async Task<List<ApplicationUser>> GetPhoneNumber()
     {
         var labTechnicians = await

@@ -19,6 +19,10 @@ public class EnergyUsageRepository : Repository<EnergyUsageLog>, IEnergyUsageRep
         _context = context;
     }
 
+    /// <summary>
+    /// insert an entire collection of logs in a single operation
+    /// </summary>
+    /// <param name="logs">collection of log entities to insert</param>
     public async Task BulkInsertAsync(ICollection<EnergyUsageLog> logs)
     {
         foreach (var log in logs)
@@ -165,6 +169,7 @@ public class EnergyUsageRepository : Repository<EnergyUsageLog>, IEnergyUsageRep
         return logsForLab;
     }
     
+    // override base repository class method to load associated labs and devices
     protected override IQueryable<EnergyUsageLog> IncludeReferences(IQueryable<EnergyUsageLog> logQuery)
     {
         return base.IncludeReferences(logQuery)
@@ -172,6 +177,7 @@ public class EnergyUsageRepository : Repository<EnergyUsageLog>, IEnergyUsageRep
             .Include(log => log.Lab);
     }
 
+    // override base repository class method to load associated labs and devices
     protected override async Task IncludeReferencesForFindAsync(EnergyUsageLog log)
     {
         await base.IncludeReferencesForFindAsync(log);
