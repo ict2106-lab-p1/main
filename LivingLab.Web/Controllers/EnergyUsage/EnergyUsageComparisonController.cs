@@ -30,7 +30,7 @@ public class EnergyUsageComparisonController : Controller
     }
 
     /// <summary>
-    /// 1. retrieve lab energy usage according to the labName, start and end date
+    /// Retrieve lab energy usage according to the labName, start and end date
     /// </summary>
     /// <param>list of lab names</param>
     /// <param>start date</param>
@@ -98,7 +98,7 @@ public class EnergyUsageComparisonController : Controller
     }
 
     /// <summary>
-    /// 2. retrieve lab energy usage according to the labName, start and end date
+    /// Retrieve lab energy usage according to the labName, start and end date
     /// </summary>
     /// <param>list of lab names</param>
     /// <param>start date</param>
@@ -168,7 +168,7 @@ public class EnergyUsageComparisonController : Controller
     }
 
     // <summary>
-    /// 3. retrieve device energy usage according to the deviceType, start and end date
+    /// Retrieve device energy usage according to the deviceType, start and end date
     /// </summary>
     /// <param>list of devices type</param>
     /// <param>start date</param>
@@ -237,7 +237,7 @@ public class EnergyUsageComparisonController : Controller
     }
 
     /// <summary>
-    /// 4. retrieve list of lab name or device types based on the compare type
+    /// Retrieve list of lab name or device types based on the compare type
     /// </summary>
     /// <param>type</param>
     /// <returns>array list</returns>
