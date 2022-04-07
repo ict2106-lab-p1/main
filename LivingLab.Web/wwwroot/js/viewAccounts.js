@@ -9,20 +9,6 @@ $(document).ready(function () {
 
         clickDelete(this)
     });
-    
-    $(document).on('click', '.modal-open', function () {
-        document.write("clicked")
-        let modal2FA = document.getElementById("modal-box");
-        modal2FA.style.display = "none";
-
-    });
-    let modal = document.getElementById("modal");
-
-    window.onclick = function (event) {
-        if (event.target === modal) {
-            modal.style.display = "none";
-        }
-    }
 
     function clickEditUser(e) {
         $.get('/UserManagement/View/'+e.getAttribute('data-id'), 
