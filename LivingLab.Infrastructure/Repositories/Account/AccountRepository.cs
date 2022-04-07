@@ -1,7 +1,6 @@
 using LivingLab.Core.Entities.Identity;
 using LivingLab.Core.Repositories.Account;
 using LivingLab.Infrastructure.Data;
-
 using Microsoft.EntityFrameworkCore;
 
 namespace LivingLab.Infrastructure.Repositories.Account;
@@ -17,43 +16,48 @@ public class AccountRepository : Repository<ApplicationUser>, IAccountRepository
         _context = context;
     }
     
-    /**
-     * Get all accounts registered
-     */
+    /// <summary>
+    /// 1. Get all user accounts 
+    /// </summary>
     public async Task<List<ApplicationUser>> GetAllAccount()
     {
-        var accountGroup = await _context.Users.ToListAsync();
-        return accountGroup;
+        var AccountGroup = await _context.Users.ToListAsync();
+        return AccountGroup;
     }
 
-    /**Get the account by ID**/
-    public async Task<ApplicationUser?> GetAccountById(string id)
+    /// <summary>
+    /// 1. Get all user accounts by user id 
+    /// </summary>
+    /// <param name="id">Filter by ID</param>
+    /// <returns>Filter account</returns>
+    public async Task<ApplicationUser?> GetAccountById(string Id)
     {
-        return await _context.Set<ApplicationUser>().FindAsync(id);
+        return await _context.Set<ApplicationUser>().FindAsync(Id);
     }
 
-    /**Add the account into DB**/
-    public async Task<ApplicationUser?> EditAccount(ApplicationUser user)
+    /// <summary>
+    /// 1. Edit user account
+    /// </summary>
+    /// <param name="user">Filter by user</param>
+    /// <returns>Edited email and faculty when matching id is found</returns>
+    public async Task<ApplicationUser?> EditAccount(ApplicationUser User)
     {
-        ApplicationUser currentUser = (await _context.Users.SingleOrDefaultAsync(d => d.Id == user.Id))!;
-        currentUser.Email = user.Email;
-        currentUser.UserFaculty  = user.UserFaculty;
-        currentUser.LabAccesses  = user.LabAccesses;
+        ApplicationUser CurrentAccount = (await _context.Users.SingleOrDefaultAsync(d => d.Id == User.Id))!;
+        CurrentAccount.Email = User.Email;
+        CurrentAccount.UserFaculty  = User.UserFaculty;
         await _context.SaveChangesAsync();       
-        return user;
-        // await _context.AddAsync(user);
-        // return user;
+        return User;
     }
-    /**
-     * Delete selected user
-     */
-    public async Task<ApplicationUser> DeleteAccount(ApplicationUser deleteUser)
+    /// <summary>
+    /// 1. Delete user account
+    /// </summary>
+    /// <param name="user">Filter by user</param>
+    /// <returns>Delete user when there is a matching id</returns>
+    public async Task<ApplicationUser> DeleteAccount(ApplicationUser User)
     {
-        ApplicationUser currentUser = (await _context.Users.SingleOrDefaultAsync(d => d.Id == deleteUser.Id))!;
-        _context.Users.Remove(currentUser);
+        ApplicationUser CurrentUser = (await _context.Users.SingleOrDefaultAsync(d => d.Id == User.Id))!;
+        _context.Users.Remove(CurrentUser);
         await _context.SaveChangesAsync();
-        Console.WriteLine("Delete Succ");
-
-        return deleteUser;    
+        return User;    
     }
 }

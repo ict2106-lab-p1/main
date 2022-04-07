@@ -1,12 +1,10 @@
 using System.Diagnostics;
-
 using LivingLab.Core.Entities.Identity;
 using LivingLab.Core.Notifications;
 using LivingLab.Web.Models.ViewModels;
 using LivingLab.Web.Models.ViewModels.Account;
 using LivingLab.Web.Models.ViewModels.Login;
 using LivingLab.Web.UIServices.Account;
-
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -21,27 +19,19 @@ public class AccountController: Controller
     private readonly ILogger<AccountController> _logger;
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly IEmailNotifier _emailSender;
-
+    
     public AccountController( IEmailNotifier emailSender, IAccountService accountService, ILogger<AccountController> logger, UserManager<ApplicationUser> userManager)
     {
         _accountService = accountService;
         _logger = logger;
         _userManager = userManager;
         _emailSender = emailSender;
-
     }
-    
-    //TODO: Add [Authorize(Roles = "Admin")]
-    /*Admin can see this page and register*/
-    public IActionResult Register()
-    {
-        return View("Register");
-    }
-
-    
+    /// <summary>
+    /// 1. Allow admin to create user account
+    ///  <param name="registration">Map to ViewModel to retrieve neccessary attributes</param>
+    /// </summary>
     [HttpPost]
-    //TODO: Add [Authorize(Roles = "Admin")]
-    /*Allow admin to register users*/
     public async Task<ViewResult> Register(RegisterViewModel registration)
     {
         if (ModelState.IsValid)
@@ -58,7 +48,6 @@ public class AccountController: Controller
                         protocol: Request.Scheme);
 
                     await _userManager.AddToRoleAsync(model, registration.Role);
-
                     await _emailSender.SendEmailAsync(registration.Email, 
                         "Confirm Living Lab Account", 
                         "Dear "+registration.FirstName+", <br> (Admin) "+model.FirstName+" has registered an account on your behalf. <br>" +
@@ -82,9 +71,13 @@ public class AccountController: Controller
         }
     }
 
+    /// <summary>
+    /// 1. Display confirmation of email
+    ///  <param name="userId">UserID</param>
+    ///  <param name="token">Token</param>
+    ///  </summary>
     [HttpGet]
     [AllowAnonymous]
-    /*Goes to confirm email page*/
     public async Task<IActionResult> ConfirmEmail(string? userId, string? token)
     {
         _logger.LogInformation(userId);
