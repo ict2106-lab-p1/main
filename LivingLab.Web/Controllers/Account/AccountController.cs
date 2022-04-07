@@ -33,7 +33,6 @@ public class AccountController: Controller
     /// Admin can access this page
     /// </summary>
     /// <returns>Register User Page</returns>
-    [Authorize(Roles = "Admin")]
     public IActionResult Register()
     {
         return View("Register");
@@ -50,7 +49,6 @@ public class AccountController: Controller
     /// <param name="registration">RegisterViewModel form</param>
     /// <returns></returns>
     [HttpPost]
-    [Authorize(Roles = "Admin")]
     public async Task<ViewResult> Register(RegisterViewModel registration)
     {
         if (ModelState.IsValid)

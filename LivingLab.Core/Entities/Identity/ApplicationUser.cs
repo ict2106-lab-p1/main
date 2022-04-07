@@ -16,6 +16,7 @@ public class ApplicationUser : IdentityUser
     // Add additional profile data for application users by adding properties to this class
     public string? FirstName { get; set; }
     public string? LastName { get; set; }
+    private List<EmailLog> NotificationEmails { get; set; }
     public NotificationType PreferredNotification { get; set; }
     public string? AuthenticationType { get; set; }
     public int? OTP { get; set; }
