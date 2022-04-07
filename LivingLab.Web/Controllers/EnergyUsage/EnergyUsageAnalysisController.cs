@@ -25,7 +25,7 @@ public class EnergyUsageAnalysisController : Controller
     }
 
     /// <summary>
-    /// Index page of analyiss
+    /// Index page of analysis
     /// </summary>
     /// <returns>view with tables and graphs</returns>
     public async Task<IActionResult> Index(string? LabLocation = "NYP-SR7C")
@@ -34,7 +34,7 @@ public class EnergyUsageAnalysisController : Controller
     }
 
     /// <summary>
-    /// Display the additonal devices detail
+    /// Display additonal devices in-detail
     /// </summary>
     /// <returns>view</returns>
     public IActionResult DeviceMoreDetail()
@@ -43,7 +43,7 @@ public class EnergyUsageAnalysisController : Controller
     }
 
     /// <summary>
-    /// Display devices in the lab
+    /// Display additonal lab in-detail
     /// </summary>
     /// <returns>view of devices</returns>
     public IActionResult LabMoreDetail()
