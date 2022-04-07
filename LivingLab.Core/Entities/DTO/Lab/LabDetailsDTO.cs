@@ -1,5 +1,8 @@
 namespace LivingLab.Core.Entities.DTO.Lab;
 
+/// <remarks>
+/// Author: Team P1-1
+/// </remarks>
 public class LabDetailsDTO
 {
     public int LabId { get; set; }

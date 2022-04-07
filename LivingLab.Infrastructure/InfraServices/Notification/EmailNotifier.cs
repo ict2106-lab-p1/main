@@ -28,9 +28,10 @@ public class EmailNotifier : IEmailNotifier
         _config = config;
     }
 
-    /*
-     * Send Email
-     */
+    /// <summary>send email</summary>
+    /// <param name="email">recipient email address</param>
+    /// <param name="subject">subject/title of email</param>
+    /// <param name="htmlMessage">content body of email, can be HTML formatted</param>
     public async Task SendEmailAsync(string email, string subject, string htmlMessage)
     {
         string fromMail = _config["LivingLab:DEFAULT_SYSTEM_EMAILADDRESS"];
@@ -52,6 +53,8 @@ public class EmailNotifier : IEmailNotifier
         smtpClient.Send(message);
     }
     
+    /// <summary>send notification via email</summary>
+    /// <param name="message">email message text</param>
     public async Task Notify(string message)
     {
         foreach (var labTechnicianDetails in GetEmail().Result)
@@ -65,9 +68,10 @@ public class EmailNotifier : IEmailNotifier
         }
     }
     
-    /*
-     * Retrieve list of Lab Technicians whose Notification Preference is Email
-     */
+    /// <summary>
+    /// Retrieve list of Lab Technicians whose Notification Preference is Email
+    /// </summary>
+    /// <returns>list of lab technicians</returns>
     public async Task<List<ApplicationUser>> GetEmail()
     {
         var labTechnicians = await
