@@ -27,6 +27,12 @@ public class AccountController: Controller
         _userManager = userManager;
         _emailSender = emailSender;
     }
+    
+    public IActionResult Register()
+    {
+        return View("Register");
+    }
+
     /// <summary>
     /// 1. Allow admin to create user account
     ///  <param name="registration">Map to ViewModel to retrieve neccessary attributes</param>
