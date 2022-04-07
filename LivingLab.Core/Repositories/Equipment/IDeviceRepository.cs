@@ -1,3 +1,4 @@
+using LivingLab.Core.DomainServices.Equipment.Device;
 using LivingLab.Core.Entities;
 using LivingLab.Core.Entities.DTO.Device;
 
@@ -9,7 +10,7 @@ public interface IDeviceRepository : IRepository<Device>
 {
 
     Task<Device> GetDeviceBySerialNo(string serialNo);
-    Task<List<ViewDeviceTypeDTO>> GetViewDeviceType(string labLocation);
+    Task<DeviceCollection>  GetViewDeviceType(string labLocation);
     Task<List<Device>> GetAllDevicesByType(string deviceType, string labLocation);
     
     void UpdateDeviceStatus(string deviceId, string deviceReviewStatus);

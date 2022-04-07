@@ -1,3 +1,4 @@
+using LivingLab.Core.DomainServices.Equipment.Device;
 using LivingLab.Core.Entities;
 using LivingLab.Core.Entities.DTO.Device;
 using LivingLab.Core.Repositories.Equipment;
@@ -17,6 +18,7 @@ public class DeviceRepository : Repository<Device>, IDeviceRepository
     {
         _context = context;
     }
+
     /// <summary>
     /// Get device based on serial Number
     /// </summary>
@@ -26,6 +28,7 @@ public class DeviceRepository : Repository<Device>, IDeviceRepository
     {
         return await _context.Devices.FirstOrDefaultAsync(d => d.SerialNo == serialNo);
     }
+
     /// <summary>
     /// Function to get the list of devices based on lab location
     /// <param name="labLocation"></param>
@@ -39,6 +42,7 @@ public class DeviceRepository : Repository<Device>, IDeviceRepository
             .ToListAsync();
         return device;
     }
+
     /// <summary>
     /// Function to update the device status based on device id and review status
     /// <param name="deviceId">string deviceId</param>
@@ -53,6 +57,7 @@ public class DeviceRepository : Repository<Device>, IDeviceRepository
         }
         await _context.SaveChangesAsync();
     }
+
     /// <summary>
     /// Function to get the list of devices for review based on lab location
     /// </summary>
@@ -65,29 +70,31 @@ public class DeviceRepository : Repository<Device>, IDeviceRepository
             .ToListAsync();
         return device;
     }
+
     /// <summary>
     /// Function to get the list of devices type based on lab location
     /// </summary>
     /// <param name="labLocation"></param>
     /// <returns>deviceTypeDtos</returns>
-    public async Task<List<ViewDeviceTypeDTO>> GetViewDeviceType(string labLocation)
+    public async Task<DeviceCollection> GetViewDeviceType(string labLocation)
     {
         var deviceGroup = await _context.Devices
             .Include(l => l.Lab)
             .Where(l => l.Lab!.LabLocation == labLocation && l.ReviewStatus!.Equals("Approved"))
             .GroupBy(t => t.Type)
-            .Select(t => new { Key = t.Key, Count = t.Count() })
+            .Select(t => new ViewDeviceTypeDTO { Type = t.Key, Quantity = t.Count() })
             .ToListAsync();
-        List<ViewDeviceTypeDTO> deviceTypeDtos = new List<ViewDeviceTypeDTO>();
-        foreach (var group in deviceGroup)
+
+        var collection = new DeviceCollection();
+
+        foreach (var device in deviceGroup)
         {
-            ViewDeviceTypeDTO deviceTypeDto = new ViewDeviceTypeDTO();
-            deviceTypeDto.Type = group.Key;
-            deviceTypeDto.Quantity = group.Count;
-            deviceTypeDtos.Add(deviceTypeDto);
+            collection.AddDevice(device);
         }
-        return deviceTypeDtos;
+
+        return collection;
     }
+    
     /// <summary>
     /// Function to get the list of devices based on lab location and device type
     /// </summary>
@@ -205,4 +212,5 @@ public class DeviceRepository : Repository<Device>, IDeviceRepository
             .Distinct()
             .ToListAsync());
     }
+
 }
