@@ -29,6 +29,13 @@ public class EnergyUsageComparisonController : Controller
         return View();
     }
 
+    /// <summary>
+    /// 1. retrieve lab energy usage according to the labName, start and end date
+    /// </summary>
+    /// <param>list of lab names</param>
+    /// <param>start date</param>
+    /// <param>end date</param>
+    /// <returns>list of Dictionary Object</returns>
     [HttpPost]
     public List<Dictionary<string, object>> GetLabEnergyUsageDetailTable(string listOfLabName, string start, string end)
     {
@@ -90,6 +97,13 @@ public class EnergyUsageComparisonController : Controller
         return iData;
     }
 
+    /// <summary>
+    /// 2. retrieve lab energy usage according to the labName, start and end date
+    /// </summary>
+    /// <param>list of lab names</param>
+    /// <param>start date</param>
+    /// <param>end date</param>
+    /// <returns>list of Object in JSON format</returns>
     [HttpPost]
     public JsonResult GetLabEnergyUsageDetailGraph(string listOfLabName, string start, string end)
     {
@@ -153,6 +167,13 @@ public class EnergyUsageComparisonController : Controller
         return Json(iData);
     }
 
+    // <summary>
+    /// 3. retrieve device energy usage according to the deviceType, start and end date
+    /// </summary>
+    /// <param>list of devices type</param>
+    /// <param>start date</param>
+    /// <param>end date</param>
+    /// <returns>list of Dictionary Object</returns>
     [HttpPost]
     public List<Dictionary<string, object>> GetDeviceEnergy(string listOfDeviceType, string start, string end)
     {
@@ -215,6 +236,11 @@ public class EnergyUsageComparisonController : Controller
         return iData;
     }
 
+    /// <summary>
+    /// 4. retrieve list of lab name or device types based on the compare type
+    /// </summary>
+    /// <param>type</param>
+    /// <returns>array list</returns>
     [HttpGet]
     public string[] GetLabLocationOrDeviceType(string type)
     {

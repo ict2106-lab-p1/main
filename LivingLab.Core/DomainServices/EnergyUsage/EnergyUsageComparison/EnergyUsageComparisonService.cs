@@ -12,7 +12,6 @@ namespace LivingLab.Core.DomainServices.EnergyUsage.EnergyUsageComparison;
 /// </remarks>
 public class EnergyUsageComparisonService : IEnergyUsageComparisonService
 {
-    //hy, not sure what is your DTO, the DTO have to create in LivingLab.Core.Entities.DTO.EnergyUsageDTOs
     private readonly IEnergyUsageRepository _repository;
 
     private readonly IDeviceRepository _deviceRepository;
@@ -30,6 +29,13 @@ public class EnergyUsageComparisonService : IEnergyUsageComparisonService
         _abRepository = labRepository;
     }
 
+    /// <summary>
+    /// 1. retrieve lab energy usage according to the labName, start and end date
+    /// </summary>
+    /// <param>lab names</param>
+    /// <param>start date</param>
+    /// <param>end date</param>
+    /// <returns>list of EnergyComparisonLabTableDTO</returns>
     public List<EnergyComparisonLabTableDTO> GetEnergyUsageByLabNameTable(string labName, DateTime start, DateTime end)
     {
         TopLabEnergyUsageConstructor labEUCon = new TopLabEnergyUsageConstructor();
@@ -64,6 +70,13 @@ public class EnergyUsageComparisonService : IEnergyUsageComparisonService
         return LabEUList;
     }
 
+    /// <summary>
+    /// 2. retrieve lab energy usage according to the labName, start and end date
+    /// </summary>
+    /// <param>lab names</param>
+    /// <param>start date</param>
+    /// <param>end date</param>
+    /// <returns>list of EnergyComparisonGraphDTO</returns>
     public List<EnergyComparisonGraphDTO> GetEnergyUsageByLabNameGraph(string labName, DateTime start, DateTime end)
     {
         List<EnergyUsageLog> result = _repository.GetLabEnergyUsageByLabNameAndDate(labName, start, end).Result;
@@ -72,7 +85,6 @@ public class EnergyUsageComparisonService : IEnergyUsageComparisonService
         int LabArea = 0;
 
         List<EnergyComparisonGraphDTO> LabEUList = new List<EnergyComparisonGraphDTO>();
-        //List<EUWatt> EUWatt = new List<EUWatt>();
 
         foreach (var item in result)
         {
@@ -92,13 +104,19 @@ public class EnergyUsageComparisonService : IEnergyUsageComparisonService
         return LabEUList;
     }
 
+    /// <summary>
+    /// 3. retrieve energy usage benchmark for the lab according to the labName, start and end date
+    /// </summary>
+    /// <param>list of lab names</param>
+    /// <param>start date</param>
+    /// <param>end date</param>
+    /// <returns>benchmark value</returns>
     public double GetEnergyUsageByLabNameBenchmark(string[] labNames, DateTime start, DateTime end)
     {
         double benchmark = 0;
         foreach(var i in labNames)
         {
             List<EnergyUsageLog> result = _repository.GetLabEnergyUsageByLabNameAndDate(i, start, end).Result;
-            //List<EUWatt> EUWatt = new List<EUWatt>();
 
             int LabEU = 0;
 
@@ -115,6 +133,13 @@ public class EnergyUsageComparisonService : IEnergyUsageComparisonService
         return benchmark;
     }
 
+    /// <summary>
+    /// 4. retrieve device energy usage according to the deviceType, start and end date
+    /// </summary>
+    /// <param>devices type</param>
+    /// <param>start date</param>
+    /// <param>end date</param>
+    /// <returns>list of EnergyComparisonDeviceTableDTO</returns>
     public List<EnergyComparisonDeviceTableDTO> GetEnergyUsageByDeviceType(string deviceType, DateTime start, DateTime end)
     {
         List<EnergyUsageLog> result = _repository.GetDeviceEnergyUsageByDeviceTypeAndDate(deviceType,start, end).Result;
@@ -123,7 +148,6 @@ public class EnergyUsageComparisonService : IEnergyUsageComparisonService
 
 
         List<EnergyComparisonDeviceTableDTO> DeviceEUList = new List<EnergyComparisonDeviceTableDTO>();
-        //List<EUWatt> EUWatt = new List<EUWatt>();
 
         foreach (var item in result)
         {
@@ -149,6 +173,10 @@ public class EnergyUsageComparisonService : IEnergyUsageComparisonService
         throw new NotImplementedException();
     }
 
+    /// <summary>
+    /// 5. retrieve list of device types
+    /// </summary>
+    /// <returns>array list</returns>
     public List<string> GetAllDeviceType()
     {
         List<Entities.Device> result = _deviceRepository.GetAllDeviceType().Result;
@@ -162,6 +190,11 @@ public class EnergyUsageComparisonService : IEnergyUsageComparisonService
         return deviceType;
 
     }
+
+    /// <summary>
+    /// 6. retrieve list of labs location
+    /// </summary>
+    /// <returns>array list</returns>
     public List<string> GetAllLabLocation()
     {
         List<Entities.Lab> result = _abRepository.GetAllLabLocation().Result;
