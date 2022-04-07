@@ -5,6 +5,7 @@ using LivingLab.Web.Models.ViewModels;
 using LivingLab.Web.Models.ViewModels.Device;
 using LivingLab.Web.UIServices.Device;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,6 +13,8 @@ namespace LivingLab.Web.Controllers.Equipment;
 /// <remarks>
 /// Author: Team P1-3
 /// </remarks>
+
+[Authorize(Roles = "Labtech")]
 [Route("/Device")]
 public class DeviceController : Controller
 {
