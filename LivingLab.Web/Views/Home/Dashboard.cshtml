@@ -21,7 +21,7 @@
     <div class=" flex justify-evenly ">
         <div class=" w-64 py-12 px-12 bg-white shadow-lg rounded-lg my-20 mr-4">
             <div>
-                <h2 class="text-gray-800 text-xl font-semibold mt-4">This month's Devices Energy Usage</h2>
+                <h2 class="text-gray-800 text-xl font-semibold mt-4">Month's Energy Usage</h2>
                 <div class="flex">
                     <p class="mt-2 text-3xl text-gray-600 font-semibold">@Model.Usages[0]</p>
                     <p class="mt-2 text-gray-600  text-xl"> kw</p>
@@ -36,7 +36,7 @@
 
             </div>
             <div>
-                <h2 class="text-gray-800 text-xl font-semibold mt-4">This month's Labs Energy Usage</h2>
+                <h2 class="text-gray-800 text-xl font-semibold mt-4">Week's Energy Usage</h2>
                 <div class="flex">
                     <p class="mt-2 text-3xl text-gray-600 font-semibold ">@Model.Usages[1]</p>
                     <p class="mt-2 text-gray-600  text-xl"> kw</p>
@@ -49,7 +49,7 @@
 
         <div class=" w-64 py-12 px-12 bg-white shadow-lg rounded-lg my-20 mr-4">
             <div>
-                <h2 class="text-gray-800 text-xl font-semibold mt-4">Today's Devices Usages</h2>
+                <h2 class="text-gray-800 text-xl font-semibold mt-4">Today's Energy Usages</h2>
                 <div class="flex">
                     <p class="mt-2 text-3xl text-gray-600 font-semibold ">@Model.Usages[2]</p>
                     <p class="mt-2 text-gray-600  text-xl"> kw</p>
@@ -59,19 +59,7 @@
                 <a class=" btn btn-primary text-sm font-medium" asp-controller="EnergyUsageAnalysis" asp-action="Index">View more</a>
             </div>
         </div>
-
-        <div class=" w-64 py-12 px-12 bg-white shadow-lg rounded-lg my-20 mr-4">
-            <div>
-                <h2 class="text-gray-800 text-xl font-semibold mt-4">Today's Labs Energy Usages</h2>
-                <div class="flex">
-                    <p class="mt-2 text-3xl text-gray-600 font-semibold ">@Model.Usages[3]</p>
-                    <p class="mt-2 text-gray-600  text-xl"> kw</p>
-                </div>
-            </div>
-            <div class=" mt-8 ml-2">
-                <a class=" btn btn-primary text-sm font-medium" asp-controller="EnergyUsage" asp-action="Index">View more</a>
-            </div>
-        </div>
+        
     </div>
 </div>
 
