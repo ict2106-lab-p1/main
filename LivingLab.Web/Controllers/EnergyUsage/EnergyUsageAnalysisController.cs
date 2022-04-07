@@ -1,6 +1,5 @@
 using System.Diagnostics;
 
-using LivingLab.Core.Repositories.EnergyUsage;
 using LivingLab.Web.Models.ViewModels;
 using LivingLab.Web.Models.ViewModels.EnergyUsage;
 using LivingLab.Web.UIServices.EnergyUsage;
@@ -9,32 +8,34 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LivingLab.Web.Controllers.EnergyUsage;
+
 /// <remarks>
-/// Author: Team P1-2
+///     Author: Team P1-2
 /// </remarks>
 [Authorize(Roles = "Labtech")]
 public class EnergyUsageAnalysisController : Controller
 {
     private readonly ILogger<EnergyUsageAnalysisController> _logger;
     private readonly IEnergyUsageAnalysisUIService _analysisService;
-    
-    public EnergyUsageAnalysisController(ILogger<EnergyUsageAnalysisController> logger, IEnergyUsageAnalysisUIService analysisService)
+
+    public EnergyUsageAnalysisController(ILogger<EnergyUsageAnalysisController> logger,
+        IEnergyUsageAnalysisUIService analysisService)
     {
         _logger = logger;
         _analysisService = analysisService;
     }
 
     /// <summary>
-    /// Index page of analysis
+    ///     Index page of analysis
     /// </summary>
     /// <returns>view with tables and graphs</returns>
-    public async Task<IActionResult> Index(string? LabLocation = "NYP-SR7C")
+    public async Task<IActionResult> Index()
     {
         return View(GetData());
     }
 
     /// <summary>
-    /// Display additonal devices in-detail
+    ///     Display additonal devices in-detail
     /// </summary>
     /// <returns>view</returns>
     public IActionResult DeviceMoreDetail()
@@ -43,7 +44,7 @@ public class EnergyUsageAnalysisController : Controller
     }
 
     /// <summary>
-    /// Display additonal lab in-detail
+    ///     Display additonal lab in-detail
     /// </summary>
     /// <returns>view of devices</returns>
     public IActionResult LabMoreDetail()
@@ -52,26 +53,30 @@ public class EnergyUsageAnalysisController : Controller
     }
 
     /// <summary>
-    /// Export the device data in the table
+    ///     Export the device data in the table
     /// </summary>
     /// <returns>csv file of device energy usage</returns>
     [HttpGet]
     public IActionResult Export()
     {
-        byte [] content =  _analysisService.Export(GetData().DeviceEUList);
+        var content = _analysisService.Export(GetData().DeviceEUList);
         return File(content, "text/csv", "Device Energy Usage.csv");
     }
 
     /// <summary>
-    /// Error modal
+    ///     Error modal
     /// </summary>
     /// <returns>view with error message</returns>
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
     }
-    
+
+    /// <summary>
+    ///     View the graphs
+    /// </summary>
+    /// <returns>view selected lab energy usage graph and the all lab energy usage graph</returns>
     [HttpPost]
     public async Task<IActionResult> ViewUsage([FromBody] EnergyUsageFilterViewModel filter)
     {
@@ -79,10 +84,9 @@ public class EnergyUsageAnalysisController : Controller
         {
             var model = await _analysisService.GetEnergyUsageTrendSelectedLab(filter);
             var modelAll = await _analysisService.GetEnergyUsageTrendAllLab(filter);
-            EnergyUsageAnalysisGraphViewModel combinedGraphModels = new EnergyUsageAnalysisGraphViewModel()
+            var combinedGraphModels = new EnergyUsageAnalysisGraphViewModel
             {
-                SelectedLabEnergyUsage = model,
-                AllLabEnergyUsage = modelAll
+                SelectedLabEnergyUsage = model, AllLabEnergyUsage = modelAll
             };
             return Json(combinedGraphModels);
         }
@@ -92,26 +96,25 @@ public class EnergyUsageAnalysisController : Controller
             return NotFound();
         }
     }
-    
 
     /// <summary>
-    /// Get the data for lab and device
+    ///     Get the data for lab and device
     /// </summary>
     /// <returns>viewmodel with device and lab energy usage data</returns>
-    public EnergyUsageAnalysisViewModel GetData() {
-        DateTime start = new DateTime(2015, 12, 25);
-        DateTime end = new DateTime(2022, 12, 25);
-        var deviceEUList = _analysisService.GetDeviceEnergyUsageByDate(start,end);
-        var labEUList = _analysisService.GetLabEnergyUsageByDate(start,end);
-        var viewModel = new EnergyUsageAnalysisViewModel {
-            DeviceEUList = deviceEUList,
-            LabEUList = labEUList
-        };
+    public EnergyUsageAnalysisViewModel GetData()
+    {
+        var start = new DateTime(2015, 12, 25);
+        var end = new DateTime(2022, 12, 25);
+        var deviceEUList = _analysisService.GetDeviceEnergyUsageByDate(start, end);
+        var labEUList = _analysisService.GetLabEnergyUsageByDate(start, end);
+        var viewModel = new EnergyUsageAnalysisViewModel {DeviceEUList = deviceEUList, LabEUList = labEUList};
         return viewModel;
     }
 
-
-    // [HttpGet("EnergyUsageAnalysis/Benchmark/Lab/{labId?}")]
+    /// <summary>
+    ///     Get benchmark of the energy usage
+    /// </summary>
+    /// <returns>benchmark value</returns>
     public async Task<IActionResult> Benchmark(int? labId = 1)
     {
         try
@@ -125,8 +128,4 @@ public class EnergyUsageAnalysisController : Controller
             return Error();
         }
     }
-} 
-
-
-
-
+}

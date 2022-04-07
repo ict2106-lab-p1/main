@@ -24,8 +24,6 @@ public class EnergyUsageProfile : Profile
         CreateMap<LabDetailsDTO, EnergyBenchmarkViewModel>().ReverseMap();
         CreateMap<EnergyUsageLog, EnergyUsageLogViewModel>().ReverseMap();
         CreateMap<EnergyUsageDTO, EnergyUsageViewModel>().ReverseMap();
-        
-        // JOEY
         CreateMap<MonthlyEnergyUsageDTO, EnergyUsageTrendAllLabViewModel>().ReverseMap();
         CreateMap<IndividualLabMonthlyEnergyUsageDTO, EnergyUsageTrendSelectedLabViewModel>().ReverseMap();
         
