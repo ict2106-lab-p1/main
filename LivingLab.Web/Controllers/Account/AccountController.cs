@@ -52,7 +52,7 @@ public class AccountController: Controller
                 if (model != null)
                 {
                     var token = await _userManager.GenerateEmailConfirmationTokenAsync(model);
-                    HttpContext.Request.Host = HostString.FromUriComponent("livinglab.amatsuka.me/");
+                    HttpContext.Request.Host = HostString.FromUriComponent("livinglab.amatsuka.me");
                     var callbackUrl = Url.Action(
                         "ConfirmEmail", "Account", 
                         new { userId = model.Id, token = token }, 

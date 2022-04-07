@@ -32,13 +32,16 @@ public class SmsNotifier : ISmsNotifier
     {
         // Find your Account SID and Auth Token at twilio.com/console
         // and set the environment variables. See http://twil.io/secure
-        string accountSid = _config.GetSection("LivingLab:TWILIO_ACC_ID").Value;
-        string authToken = _config.GetSection("LivingLab:TWILIO_AUTH_ID").Value;
+        // string accountSid = _config.GetSection("LivingLab:TWILIO_ACC_ID").Value;
+        // string authToken = _config.GetSection("LivingLab:TWILIO_AUTH_ID").Value;
+        string accountSid = _config["LivingLab:TWILIO_ACC_ID"];
+        string authToken = _config["LivingLab:TWILIO_AUTH_ID"];
 
         TwilioClient.Init(accountSid, authToken);
 
         var messageOptions = new CreateMessageOptions(new PhoneNumber(phone));   
-        messageOptions.MessagingServiceSid = _config.GetSection("LivingLab:TWILIO_MSG_SERVICE_ID").Value;  
+        // messageOptions.MessagingServiceSid = _config.GetSection("LivingLab:TWILIO_MSG_SERVICE_ID").Value;  
+        messageOptions.MessagingServiceSid = _config["LivingLab:TWILIO_MSG_SERVICE_ID"];  
         messageOptions.Body = msgBody;   
  
         var message = MessageResource.Create(messageOptions); 
