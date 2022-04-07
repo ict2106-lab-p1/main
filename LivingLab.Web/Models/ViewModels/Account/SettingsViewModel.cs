@@ -1,9 +1,8 @@
 using System.ComponentModel.DataAnnotations;
-
-using Microsoft.AspNetCore.Mvc;
-
 namespace LivingLab.Web.Models.ViewModels.Account;
-
+/// <remarks>
+/// Author: Team P1-5
+/// </remarks>
 public class SettingsViewModel
 {
     [EmailAddress]

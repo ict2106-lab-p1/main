@@ -7,7 +7,6 @@ using LivingLab.Web.Models.ViewModels.Account;
 using LivingLab.Web.UIServices.Account;
 
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,20 +27,28 @@ public class AccountController: Controller
         _logger = logger;
         _userManager = userManager;
         _emailSender = emailSender;
-
     }
     
-    //TODO: Add [Authorize(Roles = "Admin")]
-    /*Admin can see this page and register*/
+    /// <summary>
+    /// Admin can access this page
+    /// </summary>
+    /// <returns>Register User Page</returns>
     public IActionResult Register()
     {
         return View("Register");
     }
 
-    
+    /// <summary>
+    /// 1. Check if model form is filled / valid
+    /// 2. Change the localhost to web domain if not localhost
+    /// 3. Create a new user
+    /// 4. Generate token and url string to user
+    /// 4. Send a confirmation email to user
+    /// 5. Return to successful account creation
+    /// </summary>
+    /// <param name="registration">RegisterViewModel form</param>
+    /// <returns></returns>
     [HttpPost]
-    //TODO: Add [Authorize(Roles = "Admin")]
-    /*Allow admin to register users*/
     public async Task<ViewResult> Register(RegisterViewModel registration)
     {
         if (ModelState.IsValid)
@@ -52,7 +59,10 @@ public class AccountController: Controller
                 if (model != null)
                 {
                     var token = await _userManager.GenerateEmailConfirmationTokenAsync(model);
-                    HttpContext.Request.Host = HostString.FromUriComponent("livinglab.amatsuka.me");
+                    if (Url.IsLocalUrl(Request.Headers["Referer"].ToString()))
+                    {
+                        HttpContext.Request.Host = HostString.FromUriComponent("livinglab.amatsuka.me");
+                    }
                     var callbackUrl = Url.Action(
                         "ConfirmEmail", "Account", 
                         new { userId = model.Id, token = token }, 
@@ -83,42 +93,47 @@ public class AccountController: Controller
         }
     }
 
+    /// <summary>
+    /// 1. New User/Labtech/Admin has to confirm email with the email confirmation link
+    /// 2. Authenticates the user by confirming the email (adding 1 to the repository)
+    /// 3. Redirect to login
+    /// </summary>
+    /// <param name="userId">String GUID of User</param>
+    /// <param name="token">Token generated from EF core</param>
+    /// <returns>Fail To Confirm Email Page</returns>
     [HttpGet]
     [AllowAnonymous]
-    /*Goes to confirm email page*/
     public async Task<IActionResult> ConfirmEmail(string? userId, string? token)
     {
-        _logger.LogInformation(userId);
-
         var user = await _userManager.FindByIdAsync(userId);
-
         if (user == null)
         {
             ViewBag.ErrorMessage = $"The User ID {userId} is invalid";
-            return View(nameof(Register));
+            return View("_FailConfirmEmail");
         }
-
         var result = await _userManager.ConfirmEmailAsync(user, token);
         if (result.Succeeded)
         {
             return View("_ConfirmEmail");
         }
-        else
-        {
-            ViewBag.ErrorTitle = "Email cannot be confirmed";
-            return View("Error");
-        }
+        ViewBag.ErrorTitle = "Email cannot be confirmed";
+        return View("Error");
     }
 
+    /// <summary>
+    /// 1. Load user information to see if email or sms is configured, return user phone and email
+    /// 2. Check user authentication preference
+    /// 3. Populate settingsViewModel
+    /// 4. Return settingsViewModel to Settings
+    /// </summary>
+    /// <returns>Settings Page with settingsViewModel configured</returns>
     [Authorize(Roles = "User, Labtech, Admin")]
-    /*Show the settings page with properties binding*/
     public async Task<ViewResult> Settings()
     {
         SettingsViewModel settingsViewModel = new SettingsViewModel();
         var user = await _userManager.GetUserAsync(User);
         settingsViewModel.Email = user.Email;
         settingsViewModel.PhoneNumber = user.PhoneNumber;
-
         if (user.AuthenticationType == "SMS")
         {
             settingsViewModel.SMSAuth = true;
@@ -129,6 +144,13 @@ public class AccountController: Controller
         return View("Settings", settingsViewModel);
     }
     
+    /// <summary>
+    /// 1. User reconfigure their settings
+    /// 2. Settings is saved to database
+    /// 3. Will only allow 1 method
+    /// </summary>
+    /// <param name="settingsViewModel">Get settingsViewModel data</param>
+    /// <returns>Settings Page</returns>
     [HttpPost]
     [Authorize(Roles = "User,Admin,Labtech")]
     /*User can select their 2 fa option*/
@@ -144,7 +166,6 @@ public class AccountController: Controller
             {
                 user.PhoneNumber = settingsViewModel.PhoneNumber;
             }
-
         }else if (settingsViewModel.GoogleAuth)
         {
             _logger.LogInformation("Select Email");
@@ -159,9 +180,7 @@ public class AccountController: Controller
             _logger.LogInformation("Don't Select");
             user.AuthenticationType = "None";
         }
-
         await _accountService.UpdateUserSettings(user);
-
         return RedirectToAction("Settings", "Account");
     }
 
