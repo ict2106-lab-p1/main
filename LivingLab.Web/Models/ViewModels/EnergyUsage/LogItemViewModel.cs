@@ -17,6 +17,7 @@ public class LogItemViewModel
     [Display(Name = "Energy Usage")]
     public double EnergyUsage { get; set; }
 
+    // energy usage log period
     [Display(Name = "Interval (mins)")]
     public int Interval { get; set; }
 
