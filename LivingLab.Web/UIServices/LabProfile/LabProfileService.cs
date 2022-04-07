@@ -60,7 +60,10 @@ public class LabProfileService : ILabProfileService
         List<string> deviceNames = new List<string>();
         foreach (var items in listOfDevices)
         {
-            deviceNames.Add(items.Name);
+            if (deviceNames.Contains(items.Name) == false)
+            {
+                deviceNames.Add(items.Name);
+            }
         }
         return deviceNames;
     }
@@ -71,7 +74,11 @@ public class LabProfileService : ILabProfileService
         List<string> accessoriesName = new List<string>();
         foreach (var items in listOfAccessories)
         {
-            accessoriesName.Add(items.Name);
+            if (accessoriesName.Contains(items.Name) == false)
+            {
+                accessoriesName.Add(items.Name);
+
+            }
         }
         return accessoriesName;
     }
