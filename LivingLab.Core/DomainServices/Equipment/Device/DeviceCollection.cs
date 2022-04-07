@@ -8,7 +8,7 @@ public class DeviceCollection : IAbstractDeviceCollection
 
     public IDeviceIterator CreateIterator()
     {
-        return new NameIterator(this);
+        return new DeviceIterator(this);
     }
     public int Count
     {
