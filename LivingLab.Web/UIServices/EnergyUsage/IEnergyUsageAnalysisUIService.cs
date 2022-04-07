@@ -4,7 +4,7 @@ using LivingLab.Web.Models.ViewModels.EnergyUsage;
 namespace LivingLab.Web.UIServices.EnergyUsage;
 
 /// <remarks>
-///     Author: Team P1-2
+/// Author: Team P1-2
 /// </remarks>
 public interface IEnergyUsageAnalysisUIService
 {

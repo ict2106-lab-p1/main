@@ -7,6 +7,9 @@ using LivingLab.Web.Models.ViewModels.LabProfile;
 
 namespace LivingLab.Web.Mapping;
 
+/// <remarks>
+/// Author: Team P1-5
+/// </remarks>
 public class LabProfile : Profile
 {
     public LabProfile()

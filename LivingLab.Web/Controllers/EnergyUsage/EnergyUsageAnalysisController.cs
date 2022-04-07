@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace LivingLab.Web.Controllers.EnergyUsage;
 
 /// <remarks>
-///     Author: Team P1-2
+/// Author: Team P1-2
 /// </remarks>
 [Authorize(Roles = "Labtech")]
 public class EnergyUsageAnalysisController : Controller

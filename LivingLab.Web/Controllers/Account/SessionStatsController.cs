@@ -9,7 +9,6 @@ namespace LivingLab.Web.Controllers.Account;
 /// <remarks>
 /// Author: Team P1-3
 /// </remarks>
-
 [Authorize(Roles = "Labtech")]
 [Route("SessionStats/{labLocation}")]
 public class SessionStatsController : Controller

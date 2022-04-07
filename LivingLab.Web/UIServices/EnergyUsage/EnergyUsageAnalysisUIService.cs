@@ -9,7 +9,7 @@ using LivingLab.Web.UIServices.LabProfile;
 namespace LivingLab.Web.UIServices.EnergyUsage;
 
 /// <remarks>
-///     Author: Team P1-2
+/// Author: Team P1-2
 /// </remarks>
 public class EnergyUsageAnalysisUIService : IEnergyUsageAnalysisUIService
 {

@@ -1,12 +1,12 @@
 namespace LivingLab.Web.Models.ViewModels.LabProfile;
-/// <remarks>
-/// Author: Team P1-5
-/// </remarks>
-
 
 /// <summary>
 /// Consist of the attributes required for displaying the Lab Profile Details
 /// </summary>
+///
+/// <remarks>
+/// Author: Team P1-5
+/// </remarks>
 public class LabInformationModel
 {
 

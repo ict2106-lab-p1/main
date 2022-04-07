@@ -1,5 +1,8 @@
 namespace LivingLab.Web.Models.ViewModels.LabProfile;
 
+/// <remarks>
+/// Author: Team P1-5
+/// </remarks>
 public class LabViewModel
 {
     public int LabId { get; set; }
