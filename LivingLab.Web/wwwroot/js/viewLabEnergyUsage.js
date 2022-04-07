@@ -126,7 +126,7 @@ function getLineChart(data, start = null, end = null) {
         data: {
             labels: getDates(start, end),
             datasets: [{
-                label: "Actual Usage (kW)",
+                label: "Actual Usage (kWh)",
                 data: getLogs(data),
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',

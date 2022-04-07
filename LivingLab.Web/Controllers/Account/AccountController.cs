@@ -4,10 +4,10 @@ using LivingLab.Core.Entities.Identity;
 using LivingLab.Core.Notifications;
 using LivingLab.Web.Models.ViewModels;
 using LivingLab.Web.Models.ViewModels.Account;
-using LivingLab.Web.Models.ViewModels.Login;
 using LivingLab.Web.UIServices.Account;
 
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -52,6 +52,7 @@ public class AccountController: Controller
                 if (model != null)
                 {
                     var token = await _userManager.GenerateEmailConfirmationTokenAsync(model);
+                    HttpContext.Request.Host = HostString.FromUriComponent("livinglab.amatsuka.me");
                     var callbackUrl = Url.Action(
                         "ConfirmEmail", "Account", 
                         new { userId = model.Id, token = token }, 
@@ -61,7 +62,7 @@ public class AccountController: Controller
 
                     await _emailSender.SendEmailAsync(registration.Email, 
                         "Confirm Living Lab Account", 
-                        "Dear "+registration.FirstName+", <br> (Admin) "+model.FirstName+" has registered an account on your behalf. <br>" +
+                        "Dear "+registration.FirstName+", <br> Living Lab Admin "+model.FirstName+" has registered an account on your behalf. <br>" +
                         "Your username is: "+registration.Email+"<br>" +
                         "Your password is: "+registration.Password+" <br>" +
                         "Please confirm your account by clicking this link: <a href=\"" 
@@ -125,7 +126,7 @@ public class AccountController: Controller
         {
             settingsViewModel.GoogleAuth = true;
         }
-        return View("SMSAuth", settingsViewModel);
+        return View("Settings", settingsViewModel);
     }
     
     [HttpPost]

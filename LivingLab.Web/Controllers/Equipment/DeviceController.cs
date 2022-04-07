@@ -80,8 +80,8 @@ public class DeviceController : Controller
         
         // Send email to labTech in charge for approval
         string scheme = this.Request.Scheme;
-        string host = this.Request.Host.ToString();
-        string url = scheme + "://" + host;
+        string url = scheme + "://" + HostString.FromUriComponent("livinglab.amatsuka.me");
+
         var user = await _userManager.GetUserAsync(User);
         await _deviceService.SendReviewerEmail(url, addedDevice.Device.Lab.LabLocation, user);
         
