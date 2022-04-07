@@ -4,15 +4,8 @@ using LivingLab.Core.Notifications;
 using LivingLab.Web.Models.ViewModels.Account;
 using LivingLab.Web.Models.ViewModels.Login;
 using LivingLab.Web.UIServices.NotificationManagement;
-
 using Microsoft.AspNetCore.Identity;
-
-
 namespace LivingLab.Web.UIServices.Account;
-/// <summary>
-/// This is a UI-specific service so it belongs in the Web project.
-/// It does not contain any business logic and works with UI-specific types (view models and DTOs).
-/// </summary>
 /// <remarks>
 /// Author: Team P1-5
 /// </remarks>
@@ -45,46 +38,41 @@ public class AccountService : IAccountService
         _emailSender = emailSender;
     }
 
-    /*Registers a new user - Admin only*/
+    /// <summary>
+    /// 1. Create the EF user account
+    /// 2. Add the rest of the information into a wrapper
+    /// 3. Update to accountDomainService with UpdateUser function
+    /// </summary>
+    /// <param name="input">RegisterViewModel form</param>
+    /// <returns>ApplicationUser object of new user</returns>
     public async Task<ApplicationUser?> NewUser(RegisterViewModel input)
     {
         var user = CreateUser();
-
         await _userStore.SetUserNameAsync(user, input.Email, CancellationToken.None);
         await _emailStore.SetEmailAsync(user, input.Email, CancellationToken.None);
         var result = await _userManager.CreateAsync(user, input.Password);
-
         if (result.Succeeded)
         {
             _logger.LogInformation("User created a new account with password.");
-
             user.UserFaculty = input.Faculty;
             user.LastName = input.LastName;
             user.FirstName = input.FirstName;
             user.PreferredNotification = 0;
-            if (input.IsGoogleAuth)
-            {
-                user.AuthenticationType = "Email";
-            }
-            else if (input.IsGoogleAuth)
-            {
-                user.AuthenticationType = "SMS";
-            }
-            else
-            {
-                user.AuthenticationType = "None";
-            }
-
+            user.AuthenticationType = "None";
             user.PhoneNumber = input.PhoneNumber;
-
             return await _accountDomainService.UpdateUser(user);
-
         }
         return user;
 
     }
 
-    /*Generate login OTP for SMS*/
+    /// <summary>
+    /// 1.Call the accountDomainService GenerateCode
+    /// 2. Check the code generated with EF library
+    /// 3. Call the SMS service to send the user an OTP
+    /// </summary>
+    /// <param name="user">ApplicationUser object</param>
+    /// <returns>Return status of this task</returns>
     public async Task<bool> GenerateCodeSMS(ApplicationUser user)
     {
         if (await _accountDomainService.GenerateCode(user))
@@ -105,7 +93,13 @@ public class AccountService : IAccountService
         return false;
     }
 
-    /*Generates login OTP for email*/
+    /// <summary>
+    /// 1.Call the accountDomainService GenerateCode
+    /// 2. Check the code generated with EF library
+    /// 3. Call the Email service to send the user an OTP
+    /// </summary>
+    /// <param name="user">ApplicationUser object</param>
+    /// <returns>Return status of this task</returns>
     public async Task<bool> GenerateCodeEmail(ApplicationUser user)
     {
         if (await _accountDomainService.GenerateCode(user))
@@ -129,19 +123,31 @@ public class AccountService : IAccountService
         return false;
     }
 
-    /*Verify if the OTP code is correct*/
-    public async Task<bool> VerifyCode(string userid, VerifyViewModel viewModel)
+    /// <summary>
+    /// Check if the code entered is correct
+    /// </summary>
+    /// <param name="userid">String GUID of user</param>
+    /// <param name="viewModel">VerifyViewModel OTP form</param>
+    /// <returns></returns>
+    public async Task<bool> VerifyCode(string userid, int OTP)
     {
-        return await _accountDomainService.VerifyCode(userid, viewModel.OTP);
+        return await _accountDomainService.VerifyCode(userid, OTP);
     }
 
-    /*Update user settings 2FA selection*/
+    /// <summary>
+    /// Update user preferences
+    /// </summary>
+    /// <param name="user">ApplicationUser object</param>
     public async Task UpdateUserSettings(ApplicationUser user)
     {
         await _accountDomainService.UpdateUser(user);
     }
 
-    /*Function from users manager to create users*/
+    /// <summary>
+    /// EF core function to create a new user
+    /// </summary>
+    /// <returns>ApplicationUser object</returns>
+    /// <exception cref="InvalidOperationException"></exception>
     private ApplicationUser CreateUser()
     {
         try
@@ -156,7 +162,11 @@ public class AccountService : IAccountService
         }
     }
     
-    /*Function to store email to user manager*/
+    /// <summary>
+    /// Function to store email to user manager
+    /// </summary>
+    /// <returns>EF Core userStore</returns>
+    /// <exception cref="NotSupportedException"></exception>
     private IUserEmailStore<ApplicationUser> GetEmailStore()
     {
         if (!_userManager.SupportsUserEmail)

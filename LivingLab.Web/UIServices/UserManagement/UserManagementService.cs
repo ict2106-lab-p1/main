@@ -55,7 +55,7 @@ public class UserManagementService : IUserManagementService
     public async Task<UserManagementViewModel> DeleteAccount(UserManagementViewModel userViewModel)
     {
         ApplicationUser deleteAccount = _mapper.Map<UserManagementViewModel, ApplicationUser> (userViewModel);
-        await _accountDomainService.DeleteAccount(deleteAccount);
+        _accountDomainService.DeleteAccount(deleteAccount);
         
         return userViewModel;    
         

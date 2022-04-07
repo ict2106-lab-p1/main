@@ -9,7 +9,5 @@ namespace LivingLab.Core.Repositories.Notification;
 /// </remarks>
 public interface IEmailRepository
 {
-    Task<List<EmailLog>> GetEmailByStatus(string status);
-    Task<List<EmailLog>> GetEmailByDateRange(DateTime start, DateTime end);
     Task<List<ApplicationUser>> GetAccountByNotiPref(NotificationType preference);
 }
