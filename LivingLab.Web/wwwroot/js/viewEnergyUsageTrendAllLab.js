@@ -131,7 +131,8 @@ function getLogsAllEnergyUsageTrend(data) {
 function getBenchmarkAllEnergyUsageTrend(data) {
     const benchmarkAllEnergyUsageTrend = [];
     for (let i = 0; i < getDatesAllEnergyUsageTrend().length; i++) {
-        benchmarkAllEnergyUsageTrend.push(data.allLabEnergyUsage.lab.energyUsageBenchmark);
+        benchmarkAllEnergyUsageTrend.push(1003);
+        // benchmarkAllEnergyUsageTrend.push(data.allLabEnergyUsage.lab.energyUsageBenchmark);
     }
     return benchmarkAllEnergyUsageTrend;
 }
