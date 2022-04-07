@@ -1,14 +1,19 @@
 let table;
+let prevDate;
 
 $(document).ready(async function() {
     let data = await getData();
+    prevDate = data[0].loggedDate;
     initTable(data);
     
     setInterval(async function() {
-        console.log("Refreshing data...");
         data = await getData();
-        table.destroy();
-        initTable(data);
+        if (data[0].loggedDate !== prevDate) {
+            prevDate = data[0].loggedDate;
+            console.log("Refreshing data...");
+            table.destroy();
+            initTable(data);
+        }
     }, 2000);
 })
 
