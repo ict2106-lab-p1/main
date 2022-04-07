@@ -29,14 +29,15 @@ public class LabBookingController: Controller
 
     }
     [Authorize]
-    /*Admin can see this page and register*/
+    /*User can see this page and register a new Booking*/
     public IActionResult Register(int labid = 0)
     {   //Function which navigate to a book register form  page named Register with a preset value labid. 
         BookFormModel newForm = new BookFormModel() {LabId = labid};
         
         return View("Register", newForm);
     }
-    
+
+    /*Everyone can see this page and delete exist Booking*/
     [Authorize(Roles = "User,Admin,Labtech")]
       /*User,Admin and Labtech can see this Booking overview page */
     [HttpGet]
@@ -49,8 +50,8 @@ public class LabBookingController: Controller
          return View("Index", listOfBookings);
     }
     
+    /*User,Admin and Labtech can see this ViewAllBooking page which display the existed booking */
     [Authorize(Roles = "User,Admin,Labtech")]
-     /*User,Admin and Labtech can see this ViewAllBooking page which display the existed booking */
     [HttpGet]
     public async Task<IActionResult> ViewAllBookings(BookingTableManagementViewModel listOfBookings)
     {
@@ -63,6 +64,8 @@ public class LabBookingController: Controller
         return View("ViewBooking", listOfBookings);
     }
 
+
+   /*Everyone can register a new booking*/
     [Authorize(Roles = "User,Admin,Labtech")]
     [HttpPost]
        public async Task<IActionResult> BookRegister(BookFormModel labModel)
@@ -73,7 +76,8 @@ public class LabBookingController: Controller
             // Call LabBookingservice function to create a book data in database
             return View("_CompleteBooking");
     }
-        
+
+        /*User can delete lab booking*/
        [Route("deletebooking/{bookingid}")]
          public async Task<IActionResult> DeleteBook(BookingTableManagementViewModel listOfBookings, int bookingid)
     {       

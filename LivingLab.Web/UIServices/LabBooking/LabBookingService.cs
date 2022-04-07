@@ -63,7 +63,7 @@ public class LabBookingService : ILabBookingService
     //     return viewDevices;
     // }
 
-
+    /*Retriving lab data from lab table in database*/
     public async Task<List<BookingDashboardViewModel>> RetrieveList()
     {
         var listOfLabs = await _labProfileDomainService.ViewLabs();
@@ -84,7 +84,7 @@ public class LabBookingService : ILabBookingService
         }
         return listOfLab;
     }
-
+  /*Function to insert a new booking in database*/
        public async Task<Booking?> CreateBook(BookFormModel Book, string userid)
     {
       var bookWrapper = new Booking
@@ -102,11 +102,13 @@ public class LabBookingService : ILabBookingService
         //pass the object to domain service
     }
 
+
+    /*Function to delete a exist booking in database*/
        public async Task<Booking?> DeleteBook(int bookid)
     {
       
            
-   
+
         return await _BookingDomainService.DeleteBook(bookid);
         //pass the variable of bookid to domain service
     }
