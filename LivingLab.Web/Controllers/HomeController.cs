@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LivingLab.Web.Controllers;
 /// <remarks>
-/// Author: Team P1-3
+/// Author: Team P1-5
 /// </remarks>
 public class HomeController : Controller
 {
