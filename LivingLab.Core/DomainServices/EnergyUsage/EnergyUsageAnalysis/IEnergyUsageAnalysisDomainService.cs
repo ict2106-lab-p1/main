@@ -5,7 +5,7 @@ namespace LivingLab.Core.DomainServices.EnergyUsage.EnergyUsageAnalysis;
 /// <remarks>
 ///     Author: Team P1-2
 /// </remarks>
-public interface IEnergyUsageAnalysisService
+public interface IEnergyUsageAnalysisDomainService
 {
     public byte[] ExportDeviceEU(List<DeviceEnergyUsageDTO> DeviceEUList);
     public List<DeviceEnergyUsageDTO> GetDeviceEnergyUsageByDate(DateTime start, DateTime end);

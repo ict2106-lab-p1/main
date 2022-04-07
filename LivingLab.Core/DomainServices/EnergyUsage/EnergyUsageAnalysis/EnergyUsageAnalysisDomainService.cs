@@ -16,7 +16,7 @@ namespace LivingLab.Core.DomainServices.EnergyUsage.EnergyUsageAnalysis;
 /// <remarks>
 ///     Author: Team P1-2
 /// </remarks>
-public class EnergyUsageAnalysisService : IEnergyUsageAnalysisService
+public class EnergyUsageAnalysisDomainDomainService : IEnergyUsageAnalysisDomainService
 {
     private readonly IEnergyUsageRepository _repository;
     private readonly ILabProfileRepository _labRepository;
@@ -26,7 +26,7 @@ public class EnergyUsageAnalysisService : IEnergyUsageAnalysisService
 
     private double cost = 0.2544;
 
-    public EnergyUsageAnalysisService(IEnergyUsageRepository repository, ILabProfileRepository labRepository)
+    public EnergyUsageAnalysisDomainDomainService(IEnergyUsageRepository repository, ILabProfileRepository labRepository)
     {
         _repository = repository;
         _labRepository = labRepository;
