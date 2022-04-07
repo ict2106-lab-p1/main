@@ -11,6 +11,9 @@ namespace LivingLab.Infrastructure.Data.Config;
 /// </remarks>
 public class EnergyUsageLogConfig : IEntityTypeConfiguration<EnergyUsageLog>
 {
+    /// <remarks>
+    /// store time intervals as long int ticks
+    /// </remarks>
     public void Configure(EntityTypeBuilder<EnergyUsageLog> builder)
     {
         builder.Property(log => log.Interval)

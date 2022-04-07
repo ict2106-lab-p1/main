@@ -59,7 +59,9 @@
     </a>
 </div>
 <ul class="relative">
-<li>
+@if (SignInManager.IsSignedIn(User))
+{
+    <li>
     <div class="@Html.ActiveClass("", "") collapse-title text-gray-400 px-5 font-medium  w-full flex items-center">
         <a asp-controller="Home" asp-action="Dashboard">Dashboard</a>
         <hr class="border-gray-600"/>
@@ -243,12 +245,10 @@
     </div>
 </li>
 
-@if (SignInManager.IsSignedIn(User))
-{
     <li>
         <div class="@Html.ActiveClass("", "") collapse-title text-gray-400 px-5 font-medium w-full flex items-center">
             <span>
-                <a asp-controller="Account" asp-action="Settings">Notification Settings</a>
+                <a asp-controller="Account" asp-action="Settings">Settings</a>
             </span>
             <hr class="border-gray-600"/>
         </div>
@@ -280,7 +280,15 @@
         </div>
     </li>
 }
-
+else
+{
+    <li>
+        <div class="@Html.ActiveClass("", "") collapse-title text-gray-400 px-5 font-medium  w-full flex items-center">
+            <a asp-controller="Login" asp-action="Index">Login</a>
+            <hr class="border-gray-600"/>
+        </div>
+    </li>
+}
 </ul>
 </div>
 <!-- end sidebar -->

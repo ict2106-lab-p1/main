@@ -12,13 +12,13 @@ namespace LivingLab.Infrastructure.Data.Config;
 /// </remarks>
 public class NotificationsConfig : IEntityTypeConfiguration<ApplicationUser>
 {
-    // this is needed to force EF to recognize many-to-many relationship
-    // otherwise it just autogenerates a one-to-many relationship
+    /// <remarks>
+    /// this is needed to force EF to recognize many-to-many relationship
+    /// otherwise it just autogenerates a one-to-many relationship
+    /// </remarks>
     public void Configure(EntityTypeBuilder<ApplicationUser> builder)
     {
         builder.HasMany<EmailLog>("NotificationEmails")
             .WithMany(email => email.Users);
-        builder.HasMany<SmsLog>("NotificationSmses")
-            .WithMany(sms => sms.Users);
     }
 }

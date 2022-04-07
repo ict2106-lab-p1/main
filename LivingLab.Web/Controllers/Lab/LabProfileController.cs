@@ -18,12 +18,18 @@ public class LabProfileController: Controller
     private readonly ILabProfileService _labProfileService;
     private readonly ILogger<LabProfileController> _logger;
     private readonly IUserManagementService _accountService;
-
+    
+    
     public LabProfileController(ILabProfileService labProfileService, ILogger<LabProfileController> logger)
     {  _labProfileService = labProfileService;
         _logger = logger;
     }
     
+    /// <summary>
+    /// List of lab profiles can only be seen by Admins and Lab Technicians
+    /// Display the list of labs information in the lab profile Index page
+    /// </summary>
+    /// <returns>A list of lab information in the lab profile Index page </returns>
     [HttpGet]
     [Authorize(Roles = "Users,Admin,Labtech")]
     public async Task<IActionResult> ViewLab(MultiModel model)
@@ -32,15 +38,22 @@ public class LabProfileController: Controller
         return View("Index", model); 
     }
     
-    
+    /// <summary>
+    /// Reroute to lab register view
+    /// </summary>
+    /// <returns>Lab Register Page</returns>
     [Authorize(Roles="Admin")]
-    /*Redirect to lab view*/
     [HttpGet]
     public async Task<IActionResult> LabRegister()
     {
         return View("LabRegister");
     }
 
+    /// <summary>
+    /// 1. Check if viewModel is filled
+    /// </summary>
+    /// <param name="labform">Parse labRegisterViewModel form</param>
+    /// <returns>Complete Register Page if successful</returns>
     [HttpPost]
     [Authorize(Roles="Admin")]
     /*Create labs by admins*/
@@ -54,6 +67,12 @@ public class LabProfileController: Controller
         }
         return View("LabRegister");
     }
+    
+    /// <summary>
+    /// Display the Individual Lab Profile details as such the basic lab profile details,
+    /// lab devices available and lab accessory available
+    /// </summary>
+    /// <returns> Lab Profile details in each lab based on lab location</returns>
     
     [HttpGet]
     [Route("ViewLab/{labLocation}")]
@@ -75,15 +94,7 @@ public class LabProfileController: Controller
             accessoriesNames = accessoriestype
         };
 
-        _logger.LogInformation("Lab ID is" + labModel.LabId);
-        _logger.LogInformation("Lab Devices " + devicestype);
-
         return View("LabProfile", combinedModels);
     }
-
-    public async Task<IActionResult> GoToManageDevices()
-    {
-        _logger.LogInformation("Go To Manage Devices");
-        return View("LabProfile");
-    }
+    
 }

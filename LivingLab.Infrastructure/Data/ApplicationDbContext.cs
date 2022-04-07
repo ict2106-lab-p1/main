@@ -16,13 +16,11 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     public DbSet<Device> Devices { get; set; }
     
     public DbSet<EnergyUsageLog> EnergyUsageLogs { get; set; }
-    public DbSet<SmsLog> SmsLogs { get; set; }
     public DbSet<EmailLog> EmailLogs { get; set; }
     public DbSet<Accessory> Accessories { get; set; }
     public DbSet<SessionStats> SessionStats { get; set; }
     public DbSet<AccessoryType> AccessoryTypes { get; set; }
     public DbSet<Booking> Bookings { get; set; }
-    public DbSet<LabAccess> LabAccesses { get; set; }
     public DbSet<Lab> LabProfile { get; set; }
 
     public DbSet<ApplicationUser> Users { get; set; }
@@ -42,7 +40,6 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         new AccessoryConfig().Configure(modelBuilder.Entity<Accessory>());
         new BookingConfig().Configure(modelBuilder.Entity<Booking>());
         new DeviceConfig().Configure(modelBuilder.Entity<Device>());
-        new LabAccessConfig().Configure(modelBuilder.Entity<LabAccess>());
         new LabConfig().Configure(modelBuilder.Entity<Lab>());
 
         // Rename ASP.NET Identity tables

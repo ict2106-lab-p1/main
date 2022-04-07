@@ -21,7 +21,11 @@ public class NotificationsController : Controller
         _userManager = userManager;
         _notificationManager = notificationManager;
     }
-    // GET
+    
+    /// <summary>
+    /// Get the user's preferred notification channel (email or sms)
+    /// </summary>
+    /// <returns>Redirect to Notification index</returns>
     [Authorize]
     public async Task<IActionResult> Index()
     {
@@ -31,6 +35,12 @@ public class NotificationsController : Controller
         };
         return View("Index", notiPrefViewModel);
     }
+    
+    /// <summary>
+    /// Update the user's notification preference upon selecting a notification mode in the dropdown
+    /// </summary>
+    /// <param name="notiPrefViewModel"></param>
+    /// <returns>Redirect to Notification index</returns>
     [Authorize]
     [HttpPost]
     public async Task<IActionResult> UpdateNotificationPreference(NotificationPrefViewModel notiPrefViewModel)

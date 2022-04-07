@@ -21,12 +21,22 @@ public class EnergyLogService : IEnergyLogService
         _mapper = mapper;
     }
     
+    /// <summary>
+    /// 1. Map log DTO to Energy Usage Log entity
+    /// 2. Call Energy Log Domain Service to add the log into database
+    /// </summary>
+    /// <param name="log">Energy Usage Logs DTO</param>
     public Task Log(EnergyUsageLogDTO log)
     {
         var map = _mapper.Map<EnergyUsageLog>(log);
         return _energyLogDomainService.Log(map);
     }
 
+    /// <summary>
+    /// 1. Call Energy Log Domain Service to get specified number of latest logs
+    /// 2. Map logs to Energy Usage Log ViewModel
+    /// </summary>
+    /// <param name="size"></param>
     public async Task<List<EnergyUsageLogViewModel>> GetLogs(int size)
     {
         var logs = await _energyLogDomainService.GetLogs(size);

@@ -19,17 +19,7 @@ public class EmailRepository : Repository<EmailLog>,IEmailRepository
     {
         _context = context;
     }
-    
-    public Task<List<EmailLog>> GetEmailByStatus(string status)
-    {
-        throw new NotImplementedException();
-    }
 
-    public Task<List<EmailLog>> GetEmailByDateRange(DateTime start, DateTime end)
-    {
-        throw new NotImplementedException();
-    }
-    
     public async Task<List<ApplicationUser>> GetAccountByNotiPref(NotificationType preference)
     {
         var technicianContacts = await _context.Users

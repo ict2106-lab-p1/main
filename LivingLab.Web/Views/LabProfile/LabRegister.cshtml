@@ -2,9 +2,9 @@
 @using Microsoft.AspNetCore.Identity
 @model LivingLab.Web.Models.ViewModels.LabProfile.LabRegisterViewModel
 @inject UserManager<ApplicationUser> UserManager
-
 @* /// <remarks> *@
 @* /// Author: Team P1-5 *@
+@* /// </remarks> *@
 @{
     ViewData["Title"] = "Lab Register";
     var listofusers = await UserManager.GetUsersInRoleAsync("labtech");

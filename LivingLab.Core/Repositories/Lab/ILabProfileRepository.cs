@@ -2,6 +2,11 @@ namespace LivingLab.Core.Repositories.Lab;
 /// <remarks>
 /// Author: Team P1-5
 /// </remarks>
+
+
+/// <summary>
+/// Consist of Interfaces for lab profile repository
+/// </summary>
 public interface ILabProfileRepository : IRepository<Entities.Lab>
 {
     Task<List<Entities.Lab>> GetAllLabs();

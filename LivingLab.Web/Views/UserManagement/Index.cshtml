@@ -1,7 +1,6 @@
 ﻿@* /// <remarks> *@
 @* /// Author: Team P1-5 *@
- @* /// </remarks> *@
- @using LivingLab.Web.Models.ViewModels.UserManagement 
+@using LivingLab.Web.Models.ViewModels.UserManagement 
 @using Microsoft.AspNetCore.Identity
 @using LivingLab.Core.Entities.Identity
 
@@ -21,12 +20,6 @@
         <p class="text-base mt-3 font-medium text-lg">View All accounts </p>
     </div>
     <div class="mb-10">
-<<<<<<< HEAD
-        <a asp-controller="LabProfile" asp-action="LabRegister">
-            <button class="btn btn-outline btn-primary ">Add Lab</button>
-        </a>
-=======
->>>>>>> 43718c2cb1f5075086a26ceaf823f0eefb4a8f39
         <a asp-controller="Account" asp-action="Register">
             <button class="btn btn-outline btn-primary ">Add User</button>
         </a>
@@ -53,7 +46,7 @@
                        </thead>
                        <tbody class="bg-white divide-y divide-gray-200">
                        <tr class="hover:bg-blue-100">
-                       @foreach (var user in Model.userList)
+                       @foreach (var user in Model.UserList)
                        {
                            <tr>
                                <td class="px-6 py-4 whitespace-nowrap">
@@ -103,7 +96,7 @@
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
                         <tr class="hover:bg-blue-100">
-                        @foreach (var user in Model.userList)
+                        @foreach (var user in Model.UserList)
                         {
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap">
@@ -173,11 +166,9 @@
                      </div>
                  </div>
              </form>
-
          </div>
      </div>
  </div>
- 
 
 @section Scripts
 {
