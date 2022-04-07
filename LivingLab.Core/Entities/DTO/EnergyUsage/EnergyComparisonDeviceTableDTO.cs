@@ -1,6 +1,7 @@
 namespace LivingLab.Core.Entities.DTO.EnergyUsage;
+
 /// <remarks>
-/// Author: Team P1-2
+///     Author: Team P1-2
 /// </remarks>
 public class EnergyComparisonDeviceTableDTO
 {
