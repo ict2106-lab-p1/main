@@ -9,7 +9,7 @@ using LivingLab.Core.Repositories.Lab;
 namespace LivingLab.Core.DomainServices.EnergyLog;
 
 /// <remarks>
-/// Author: Team P1-1
+///     Author: Team P1-1
 /// </remarks>
 public class EnergyLogDomainService : IEnergyLogDomainService
 {
@@ -42,7 +42,7 @@ public class EnergyLogDomainService : IEnergyLogDomainService
         var lab = await _labRepository.GetLabByLocation(log.Lab.LabLocation);
         log.Device = device;
         log.Lab = lab;
-        
+
         var labTech = await _accountRepository.GetAccountById(log.Lab.LabInCharge);
         var notificationSetting = labTech.PreferredNotification;
 
@@ -50,7 +50,7 @@ public class EnergyLogDomainService : IEnergyLogDomainService
         {
             Notify(notificationSetting, device.Id, device.Threshold);
         }
-        
+
         return _energyUsageRepository.AddAsync(log).Result;
     }
 
@@ -63,7 +63,7 @@ public class EnergyLogDomainService : IEnergyLogDomainService
     {
         return _energyUsageRepository.GetLatestLogs(size);
     }
-    
+
     /// <summary>
     /// Checks if the energy usage is above the threshold.
     /// </summary>
@@ -73,7 +73,7 @@ public class EnergyLogDomainService : IEnergyLogDomainService
     public bool ExceedThreshold(int deviceId, double currentEnergyUsage)
     {
         var thresholdSet = _deviceRepository.GetDeviceDetails(deviceId).Result.Threshold;
-        return (currentEnergyUsage > thresholdSet);
+        return currentEnergyUsage > thresholdSet;
     }
 
     /// <summary>
@@ -84,7 +84,7 @@ public class EnergyLogDomainService : IEnergyLogDomainService
     /// <param name="threshold">Threshold limit</param>
     private void Notify(NotificationType preference, int deviceId, double? threshold)
     {
-        string message = $"Device ID {deviceId} has exceeded the set threshold of {threshold}.";
+        var message = $"Device ID {deviceId} has exceeded the set threshold of {threshold}.";
         _notifierFactory.CreateNotifier(preference).Notify(message);
     }
 }

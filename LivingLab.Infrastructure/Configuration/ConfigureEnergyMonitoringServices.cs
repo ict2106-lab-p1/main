@@ -40,7 +40,7 @@ public static class ConfigureEnergyMonitoringServices
         services.AddTransient<IManualLogDomainService, ManualLogDomainService>();
         services.AddTransient<INotificationDomainService, NotificationDomainService>();
         services.AddTransient<IEnergyLogDomainService, EnergyLogDomainService>();
-        services.AddTransient<IEnergyUsageAnalysisService, EnergyUsageAnalysisService>();
+        services.AddTransient<IEnergyUsageAnalysisDomainService, EnergyUsageAnalysisDomainDomainService>();
         services.AddTransient<IEnergyUsageBuilder, DeviceEnergyUsageBuilder>();
         services.AddTransient<IEnergyUsageComparisonService, EnergyUsageComparisonService>();
         services.AddTransient<IEnergyUsageDomainService, EnergyUsageDomainService>();

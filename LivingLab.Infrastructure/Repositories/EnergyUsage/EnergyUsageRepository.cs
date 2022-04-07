@@ -128,7 +128,14 @@ public class EnergyUsageRepository : Repository<EnergyUsageLog>, IEnergyUsageRep
         return logsForLabInDateRange;
     }
     
-    // JOEY: start
+    /// <summary>
+    /// 1. define the start and end date
+    /// 2. get the lab energy usage data according to the lab location, start and end date
+    /// </summary>
+    /// <param name="labLocation">lab location</param>
+    /// <param name="start">start date</param>
+    /// <param name="end">end date</param>
+    /// <returns>list of EnergyUsageLog</returns>
     public async Task<List<EnergyUsageLog>> GetLabEnergyUsageByLocationAndDate(string labLocation, DateTime? start, DateTime? end)
     {
         var now = DateTime.Now;
@@ -151,6 +158,13 @@ public class EnergyUsageRepository : Repository<EnergyUsageLog>, IEnergyUsageRep
         return logsForLabInDateRange;
     }
     
+    /// <summary>
+    /// 1. define the start and end date
+    /// 2. get the lab energy usage data according to the start and end date
+    /// </summary>
+    /// <param name="start">start date</param>
+    /// <param name="end">end date</param>
+    /// <returns>list of EnergyUsageLog</returns>
     public async Task<List<EnergyUsageLog>> GetLabEnergyUsageByDate(DateTime? start, DateTime? end)
     {
         var now = DateTime.Now;
@@ -168,8 +182,6 @@ public class EnergyUsageRepository : Repository<EnergyUsageLog>, IEnergyUsageRep
             .ToListAsync();
         return logsForLabInDateRange;
     }
-
-    // JOEY: end
 
     /// <summary>
     /// get logs for energy usage from a specified device
@@ -216,7 +228,11 @@ public class EnergyUsageRepository : Repository<EnergyUsageLog>, IEnergyUsageRep
         return logsForLab;
     }
     
-    // override base repository class method to load associated labs and devices
+    /// <summary>
+    /// override base repository class method to load associated labs and devices
+    /// </summary>
+    /// <param name="logQuery"></param>
+    /// <returns></returns>
     protected override IQueryable<EnergyUsageLog> IncludeReferences(IQueryable<EnergyUsageLog> logQuery)
     {
         return base.IncludeReferences(logQuery)
@@ -224,7 +240,10 @@ public class EnergyUsageRepository : Repository<EnergyUsageLog>, IEnergyUsageRep
             .Include(log => log.Lab);
     }
 
-    // override base repository class method to load associated labs and devices
+    /// <summary>
+    /// override base repository class method to load associated labs and devices
+    /// </summary>
+    /// <param name="log"></param>
     protected override async Task IncludeReferencesForFindAsync(EnergyUsageLog log)
     {
         await base.IncludeReferencesForFindAsync(log);
