@@ -25,6 +25,7 @@ public class EquipmentController: Controller
         _logger = logger;
         _equipmentService = equipmentService;
     }
+    
     /// <summary>
     /// 1. Call equipment service to get all devices and accessories according to the labLocation eg. NYP-SR7A
     /// </summary>
