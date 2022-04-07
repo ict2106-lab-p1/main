@@ -2,12 +2,12 @@ using LivingLab.Core.Entities.DTO.Device;
 
 namespace LivingLab.Core.DomainServices.Equipment.Device;
 
-public class NameIterator : IDeviceIterator
+public class DeviceIterator : IDeviceIterator
 {
     private int _index;
     private DeviceCollection _collection;
 
-    public NameIterator(DeviceCollection collection)
+    public DeviceIterator(DeviceCollection collection)
     {
         _collection = collection;
     }
