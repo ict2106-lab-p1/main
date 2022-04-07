@@ -21,7 +21,7 @@ public class DeviceRepository : Repository<Device>, IDeviceRepository
     /// Get device based on serial Number
     /// </summary>
     /// <param name="serialNo"></param>
-    /// <returns></returns>
+    /// <returns>device</returns>
     public async Task<Device> GetDeviceBySerialNo(string serialNo)
     {
         return await _context.Devices.FirstOrDefaultAsync(d => d.SerialNo == serialNo);
