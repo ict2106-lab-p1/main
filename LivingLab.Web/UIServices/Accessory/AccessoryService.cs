@@ -30,6 +30,12 @@ public class AccessoryService : IAccessoryService
         _labProfileDomainService = labProfileDomainService;
     }
 
+    /// <summary>
+    /// View list of accessories by accessory type and the lab they are in
+    /// </summary>
+    /// <param name="accessoryType"> Type of Accessory e.g "Camera" </param>
+    /// <param name="labLocation"> The name of the classroom e.g "NYP-SR7B" </param>
+    /// <returns> ViewAccessoryViewModel </returns>
     public async Task<ViewAccessoryViewModel> ViewAccessory(string accessoryType, string labLocation)
     {
         // retrieve all accessory from specific accessory type from db
@@ -40,6 +46,11 @@ public class AccessoryService : IAccessoryService
         return new ViewAccessoryViewModel {AccessoryList = accessories};
     }
 
+    /// <summary>
+    /// View list of accessory types by lab
+    /// </summary>
+    /// <param name="labLocation"> The name of the classroom e.g "NYP-SR7B" </param>
+    /// <returns> ViewAccessoryTypeViewModel </returns>
     public async Task<ViewAccessoryTypeViewModel> ViewAccessoryType(string labLocation)
     {
         List<ViewAccessoryTypeDTO> viewAccessoryTypeDtos = await _accessoryDomainService.ViewAccessoryType(labLocation);
@@ -48,6 +59,11 @@ public class AccessoryService : IAccessoryService
         return new ViewAccessoryTypeViewModel {accessoryTypeList = accessoryTypeViewModels, labLocation = labLocation};
     }
 
+    /// <summary>
+    /// View details for a specific accessory
+    /// </summary>
+    /// <param name="id"> Device ID e.g "1"</param>
+    /// <returns></returns>
     public async Task<AccessoryViewModel> GetAccessory(int id)
     {
         Core.Entities.Accessory accessory = await _accessoryDomainService.GetAccessory(id);
@@ -55,6 +71,10 @@ public class AccessoryService : IAccessoryService
         return accessoryViewModel;
     }
 
+    /// <summary>
+    /// Adds details to an accessory
+    /// </summary>
+    /// <returns> AccessoryDetailsViewModel </returns>
     public async Task<AccessoryDetailsViewModel> AddAccessoryDetails()
     {
         //retrieve data from db
@@ -68,6 +88,11 @@ public class AccessoryService : IAccessoryService
         return new AccessoryDetailsViewModel {Accessory = accessory, AccessoryTypes = accessoryTypeList};
     }
 
+    /// <summary>
+    /// Edits an accessory's details
+    /// </summary>
+    /// <param name="id"> Device ID e.g "1"</param>
+    /// <returns> AccessoryDetailsViewModel </returns>
     public async Task<AccessoryDetailsViewModel> EditAccessoryDetails(int id)
     {
         //retrieve data from db
@@ -85,6 +110,11 @@ public class AccessoryService : IAccessoryService
         return new AccessoryDetailsViewModel {Accessory = accessory, AccessoryTypes = accessoryTypeList, UserList = userList};
     }
 
+    /// <summary>
+    /// Adds a new accessory to the database
+    /// </summary>
+    /// <param name="viewModelInput"> The AccessoryDetailsViewModel, obtained from the users input </param>
+    /// <returns> viewAccessoryViewModel </returns>
     public async Task<ViewAccessoryViewModel> AddAccessory(AccessoryDetailsViewModel viewModelInput)
     {
         AccessoryDetailsViewModel addAccessoryDetails = viewModelInput;
@@ -118,6 +148,11 @@ public class AccessoryService : IAccessoryService
         return viewAccessoryViewModel;
     }
 
+    /// <summary>
+    /// Edits an accessory
+    /// </summary>
+    /// <param name="viewModelInput"> The AccessoryDetailsViewModel, obtained from the users input </param>
+    /// <returns> The viewModelInput from the input</returns>
     public async Task<AccessoryDetailsViewModel> EditAccessory(AccessoryDetailsViewModel viewModelInput)
     {
         AccessoryDetailsDTO accessoryDetailsDto =
@@ -126,6 +161,11 @@ public class AccessoryService : IAccessoryService
         return viewModelInput;
     }
 
+    /// <summary>
+    /// Deletes an accessory
+    /// </summary>
+    /// <param name="deleteAccessory"> The AccessoryViewModel for the accessory to be deleted </param>
+    /// <returns> The deleteAccessory from the input </returns>
     public async Task<AccessoryViewModel> DeleteAccessory(AccessoryViewModel deleteAccessory)
     {
         //retrieve data from db
