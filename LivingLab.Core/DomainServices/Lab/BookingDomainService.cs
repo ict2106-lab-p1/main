@@ -16,14 +16,17 @@ public class BookingDomainService: IBookingDomainService
      private readonly IBookingRepository _BookingRepository;
     private readonly ILogger _logger;
     
-    //initialise repository 
       public BookingDomainService(IBookingRepository BookingRepository, ILogger<IBookingRepository> logger)
-    {
+      {
+      //Initalise Booking repository
         _BookingRepository = BookingRepository;
         _logger = logger;
-        //initalise Bookingrepository
     }
-     //Function to Insert new booking data 
+     /// <summary>
+     /// Function to Insert new booking data
+     /// </summary>
+     /// <param name="book">Booking data object</param>
+     /// <returns></returns>
     public async Task<Booking> NewBook(Booking book)
     {
         Console.WriteLine("Booking Domain Services");
@@ -31,7 +34,7 @@ public class BookingDomainService: IBookingDomainService
           //Using function of Repository class to add Book
     }
 
-    //function to get current booking data 
+
     /// <summary>
     /// 1. Call Booking repo to get all book data
     /// </summary>
@@ -39,10 +42,14 @@ public class BookingDomainService: IBookingDomainService
     public Task<List<Booking>> ViewBooks()
     {
         return _BookingRepository.GetAllBooking();
-        //Retrevie all the database of booking in book table
+        //Retrieve all the database of booking in book table
     } 
 
-    //function to delete booking by their bookid
+    /// <summary>
+    /// Function to delete booking by their bookid
+    /// </summary>
+    /// <param name="bookid">Lab booking id</param>
+    /// <returns></returns>
       public async Task<Booking> DeleteBook(int bookid)
     {
         return await _BookingRepository.DeleteAsync(bookid);

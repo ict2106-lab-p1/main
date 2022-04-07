@@ -17,8 +17,12 @@ public class BookingRepository : Repository<Booking>, IBookingRepository
     {
         _context = context;
     }
-      /**Get all the Booking in database**/
-    public async Task<List<Booking>> GetAllBooking()
+
+    /// <summary>
+      /// Retrieve lab bookings
+      /// </summary>
+      /// <returns>List of bookings</returns>
+      public async Task<List<Booking>> GetAllBooking()
     {
            var labBooking = await _context.Bookings.ToListAsync();
            //extract all the Booking data from Book table
