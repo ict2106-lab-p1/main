@@ -5,7 +5,10 @@ using LivingLab.Core.DomainServices.Lab;
 using LivingLab.Core.Entities;
 using LivingLab.Web.Models.ViewModels.Device;
 using LivingLab.Web.Models.ViewModels.LivingLabDashboard;
+using LivingLab.Web.UIServices.EnergyLog;
 using LivingLab.Web.UIServices.EnergyUsage;
+
+using Microsoft.CodeAnalysis.CodeActions;
 
 namespace LivingLab.Web.UIServices.LivingLabDashboard;
 /// <remarks>
@@ -13,49 +16,47 @@ namespace LivingLab.Web.UIServices.LivingLabDashboard;
 /// </remarks>
 public class LivingLabDashboardService : ILivingLabDashboardService
 {
-    private readonly IEnergyUsageAnalysisUIService _energyAnalysisService;
 
-    public LivingLabDashboardService(IEnergyUsageAnalysisUIService energyAnalysisService)
+    private readonly IEnergyLogService _energyLogService;
+
+    public LivingLabDashboardService(IEnergyLogService energyLogService)
     {
-        _energyAnalysisService = energyAnalysisService;
+        _energyLogService = energyLogService;
     }
 
     public async Task<List<string>> GetUsages()
     {
         var usages = new List<string>();
-        DateTime thisDay = DateTime.Now;
-        DateTime previousWeek = DateTime.Now.AddMonths(-1);
+
+        DateTime previousMonth = DateTime.Now.AddDays(-30);
+        DateTime previousWeek = DateTime.Now.AddDays(-7);
         DateTime previousDay = DateTime.Now.AddDays(-1);
-        var oneMtnDeviceResult = _energyAnalysisService.GetDeviceEnergyUsageByDate(previousWeek, thisDay);
-        var oneDayDeviceResult = _energyAnalysisService.GetDeviceEnergyUsageByDate(previousDay, thisDay);
-        var oneMthEnergyResult = _energyAnalysisService.GetLabEnergyUsageByDate(previousWeek, thisDay);
-        var oneDayEnergyResult = _energyAnalysisService.GetLabEnergyUsageByDate(previousDay, thisDay);
+        
+        var EnergyResult = await _energyLogService.GetLogs(1000);
 
-        Double totalDeviceUsage = 0.0;
-        Double totalEnergyUsage = 0.0;
-        Double todayDeviceUsage = 0.0;
-        Double todayEnergyUsage = 0.0;
-        foreach (var data in oneMtnDeviceResult)
+        Double totalUsageMonth = 0.0;
+        Double totalUsageWeek = 0.0;
+        Double totalUsageDay = 0.0;
+        
+        foreach (var data in EnergyResult)
         {
-            totalDeviceUsage += data.TotalEnergyUsage;
-        }
-        foreach (var data in oneDayDeviceResult)
-        {
-            todayDeviceUsage += data.TotalEnergyUsage;
-        }
-        foreach (var data in oneMthEnergyResult)
-        {
-            totalEnergyUsage += data.TotalEnergyUsage;
-        }
-        foreach (var data in oneDayEnergyResult)
-        {
-            todayEnergyUsage += data.TotalEnergyUsage;
+            if (data.LoggedDate > previousMonth)
+            {
+                totalUsageMonth += data.EnergyUsage;
+            } 
+            if (data.LoggedDate > previousWeek)
+            {
+                totalUsageWeek += data.EnergyUsage;
+            } 
+            if (data.LoggedDate > previousDay)
+            {
+                totalUsageDay += data.EnergyUsage;
+            }
         }
 
-        usages.Add(String.Format("{0:0.00}", totalDeviceUsage));
-        usages.Add(String.Format("{0:0.00}", totalEnergyUsage));
-        usages.Add(String.Format("{0:0.00}", todayDeviceUsage));
-        usages.Add(String.Format("{0:0.00}", todayEnergyUsage)); 
+        usages.Add(String.Format("{0:0.00}", totalUsageMonth / 1000));
+        usages.Add(String.Format("{0:0.00}", (totalUsageWeek / 1000) / 4));
+        usages.Add(String.Format("{0:0.00}", totalUsageDay / 1000));
         return usages;
     }
 }

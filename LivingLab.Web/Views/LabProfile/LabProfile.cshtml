@@ -1,11 +1,15 @@
+@using LivingLab.Core.Entities.Identity
+@using Microsoft.AspNetCore.Identity
 @model LivingLab.Web.Models.ViewModels.LabProfile.MultiModel
 @* /// <remarks> *@
 @* /// Author: Team P1-5 *@
 @* /// </remarks> *@
+
 @{
     ViewData["Title"] = "Lab Profile";
+    var listofusers = await UserManager.GetUsersInRoleAsync("labtech");
 }
-
+@inject UserManager<ApplicationUser> UserManager
 <div class="">
     <div class="  ">
         <div class="">
@@ -32,8 +36,16 @@
                                             			c29.765,0,53.895-24.13,53.895-53.895C458.105,346.487,367.619,256,256,256z"/>
 
                         </svg>
-
                         <p class="font-semibold text-base mb-4">@Html.Raw(Model.eachlab.LabInCharge)</p>
+                        <p class="font-semibold text-base mb-4">
+                            @foreach (var user in @listofusers)
+                            {
+                                @if (@user.Id == Model.eachlab.LabInCharge)
+                                {
+                                    @user.Email
+                                }
+                            }
+                        </p>
                     </div>
                     <div class=" flex flex-column">
                         <svg class="ml-12 " xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"

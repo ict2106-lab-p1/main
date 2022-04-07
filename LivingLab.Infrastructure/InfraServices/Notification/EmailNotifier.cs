@@ -33,8 +33,8 @@ public class EmailNotifier : IEmailNotifier
      */
     public async Task SendEmailAsync(string email, string subject, string htmlMessage)
     {
-        string fromMail = "LivingLab2022.NoReply@gmail.com";
-        string fromPassword = "aejrbvdnrrwqkogs";
+        string fromMail = _config["LivingLab:DEFAULT_SYSTEM_EMAILADDRESS"];
+        string fromPassword = _config["LivingLab:DEFAULT_SYSTEM_PASSWORD"];
  
         MailMessage message = new MailMessage();
         message.From = new MailAddress(fromMail);
