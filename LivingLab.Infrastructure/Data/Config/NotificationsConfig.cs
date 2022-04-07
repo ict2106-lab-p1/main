@@ -18,7 +18,5 @@ public class NotificationsConfig : IEntityTypeConfiguration<ApplicationUser>
     {
         builder.HasMany<EmailLog>("NotificationEmails")
             .WithMany(email => email.Users);
-        builder.HasMany<SmsLog>("NotificationSmses")
-            .WithMany(sms => sms.Users);
     }
 }
