@@ -3,12 +3,14 @@ using LivingLab.Core.Enums;
 using Microsoft.AspNetCore.Identity;
 
 namespace LivingLab.Core.Entities.Identity;
+
+/// <summary>
+/// The Application user created by EF core, below are attributes added to the template IdentityUser
+/// </summary>
+///
 /// <remarks>
 /// Author: Team P1-5
 /// </remarks>
-///<summary>
-/// The Application user created by EF core, below are attributes added to the template IdentityUser
-/// </summary>
 public class ApplicationUser : IdentityUser
 { public string? FirstName { get; set; }
     public string? LastName { get; set; }

@@ -5,7 +5,7 @@ using LivingLab.Core.Enums;
 namespace LivingLab.Core.Repositories.Notification;
 
 /// <remarks>
-/// Author: Team P1-1
+/// Author: Team P1-5
 /// </remarks>
 public interface IEmailRepository
 {

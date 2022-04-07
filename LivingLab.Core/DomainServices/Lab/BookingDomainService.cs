@@ -8,6 +8,7 @@ namespace LivingLab.Core.DomainServices.Lab;
 /// Domain service implementations belongs here.
 /// Domain service are classes that are responsible for business logic.
 /// </summary>
+/// 
 /// <remarks>
 /// Author: Team P1-5
 /// </remarks>

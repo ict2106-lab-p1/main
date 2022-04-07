@@ -1,7 +1,9 @@
 using LivingLab.Core.Entities.DTO.Device;
 
 namespace LivingLab.Core.DomainServices.Equipment.Device;
-
+/// <remarks>
+/// Author: Team P1-3
+/// </remarks>
 public class DeviceIterator : IDeviceIterator
 {
     private int _index;

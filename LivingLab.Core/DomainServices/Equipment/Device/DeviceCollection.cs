@@ -2,6 +2,9 @@ using LivingLab.Core.Entities.DTO.Device;
 
 namespace LivingLab.Core.DomainServices.Equipment.Device;
 
+/// <remarks>
+/// Author: Team P1-3
+/// </remarks>
 public class DeviceCollection : IAbstractDeviceCollection
 {
     private List<ViewDeviceTypeDTO> _deviceDTOList = new();

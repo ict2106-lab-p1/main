@@ -1,7 +1,9 @@
 using LivingLab.Core.Entities.Identity;
 
 namespace LivingLab.Core.Entities.DTO.Accessory;
-
+/// <remarks>
+/// Author: Team P1-3
+/// </remarks>
 public class AccessoryDetailsDTO
 {
     public string? NewAccessoryType { get; set; }

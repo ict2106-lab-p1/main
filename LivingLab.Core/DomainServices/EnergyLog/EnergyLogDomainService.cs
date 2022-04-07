@@ -9,7 +9,7 @@ using LivingLab.Core.Repositories.Lab;
 namespace LivingLab.Core.DomainServices.EnergyLog;
 
 /// <remarks>
-///     Author: Team P1-1
+/// Author: Team P1-1
 /// </remarks>
 public class EnergyLogDomainService : IEnergyLogDomainService
 {

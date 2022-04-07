@@ -1,16 +1,12 @@
 namespace LivingLab.Core.DomainServices.Lab;
 /// <summary>
 /// Interfaces for the domain services should
-/// belong in this directory.
+/// belong in this directory. Consist of Interfaces for lab profile domain service.
 /// </summary>
+/// 
 /// <remarks>
 /// Author: Team P1-5
 /// </remarks>
-
-
-/// <summary>
-/// Consist of Interfaces for lab profile domain service
-/// </summary>
 public interface ILabProfileDomainService
 {
     Task<List<Entities.Lab>> ViewLabs();

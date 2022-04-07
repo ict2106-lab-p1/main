@@ -3,15 +3,17 @@ using System.ComponentModel.DataAnnotations;
 using LivingLab.Core.Entities.Identity;
 
 namespace LivingLab.Core.Entities;
+
+
+/// <summary>
+/// Consist of the entity attributes required for Lab Accounts,
+/// Lab Profile Details, Lab Booking functions, Lab Energy usage functions
+/// Lab accessories functions and Lab Devices functions
+/// </summary>
+/// 
 /// <remarks>
 /// Author: Team P1-5
 /// </remarks>
-
-/// <summary>
-    /// Consist of the entity attributes required for Lab Accounts,
-    /// Lab Profile Details, Lab Booking functions, Lab Energy usage functions
-    /// Lab accessories functions and Lab Devices functions
-    /// </summary>
 public class Lab
 {
     [Key]

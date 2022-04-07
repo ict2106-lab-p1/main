@@ -7,7 +7,6 @@ namespace LivingLab.Core.DomainServices.EnergyUsage.EnergyUsageBuilder;
 /// <remarks>
 /// Author: Team P1-2
 /// </remarks>
-
 public class DeviceEnergyUsageBuilder: IEnergyUsageBuilder
 {
     private readonly IEnumerable<EnergyUsageLog> _logs;

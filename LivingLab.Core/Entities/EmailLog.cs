@@ -4,7 +4,7 @@ using LivingLab.Core.Enums;
 namespace LivingLab.Core.Entities;
 
 /// <remarks>
-/// Author: Team P1-1
+/// Author: Team P1-5
 /// </remarks>
 public class EmailLog: BaseEntity
 {

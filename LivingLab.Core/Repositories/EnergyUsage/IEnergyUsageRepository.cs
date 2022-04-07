@@ -4,7 +4,7 @@ using LivingLab.Core.Entities.Identity;
 namespace LivingLab.Core.Repositories.EnergyUsage;
 
 /// <remarks>
-/// Author: Team P1-1
+/// Author: Team P1-5
 /// </remarks>
 public interface IEnergyUsageRepository : IRepository<EnergyUsageLog>
 {

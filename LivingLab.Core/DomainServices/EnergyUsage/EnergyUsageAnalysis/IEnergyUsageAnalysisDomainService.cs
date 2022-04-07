@@ -3,7 +3,7 @@ using LivingLab.Core.Entities.DTO.EnergyUsage;
 namespace LivingLab.Core.DomainServices.EnergyUsage.EnergyUsageAnalysis;
 
 /// <remarks>
-///     Author: Team P1-2
+/// Author: Team P1-2
 /// </remarks>
 public interface IEnergyUsageAnalysisDomainService
 {
