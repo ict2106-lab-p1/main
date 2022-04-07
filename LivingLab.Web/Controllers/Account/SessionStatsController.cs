@@ -24,7 +24,7 @@ public class SessionStatsController : Controller
     /// <summary>
     /// 1. Call Session Stats service to get all Session Stats according to the labLocation eg. NYP-SR7A
     /// </summary>
-    /// <param name="labLocation"></param>
+    /// <param name="labLocation">lab's location</param>
     /// <returns>ViewSessionStatsViewModel</returns>
     public async Task<IActionResult> ViewSessionStats(string labLocation)
     {

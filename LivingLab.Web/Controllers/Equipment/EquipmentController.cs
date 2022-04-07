@@ -28,7 +28,7 @@ public class EquipmentController: Controller
     /// <summary>
     /// 1. Call equipment service to get all devices and accessories according to the labLocation eg. NYP-SR7A
     /// </summary>
-    /// <param name="labLocation"></param>
+    /// <param name="labLocation">Lab's location</param>
     /// <returns>EquipmentViewModel</returns>
     [Route("ReviewEquipment/{labLocation}")]
     public async Task<IActionResult> ReviewEquipment(string labLocation)
@@ -40,9 +40,9 @@ public class EquipmentController: Controller
     /// <summary>
     /// 1. Call equipment service to update device status according to the labLocation eg. NYP-SR7A
     /// </summary>
-    /// <param name="deviceId"></param>
-    ///<param name="deviceReviewStatus"></param>
-    /// <param name="labLocation"></param>
+    /// <param name="deviceId">device's id</param>
+    ///<param name="deviceReviewStatus"> device's review status</param>
+    /// <param name="labLocation">lab's location</param>
     /// <returns></returns>
     [HttpPost("UpdateDevice")]
     public IActionResult UpdateDevice(string deviceId, string deviceReviewStatus, string labLocation)
@@ -54,9 +54,9 @@ public class EquipmentController: Controller
     /// <summary>
     /// 1. Call equipment service to update accessory status according to the labLocation eg. NYP-SR7A
     /// </summary>
-    /// <param name="accessoryId"></param>
-    ///<param name="accessoryReviewStatus"></param>
-    /// <param name="labLocation"></param>
+    /// <param name="accessoryId">accessory's id</param>
+    ///<param name="accessoryReviewStatus">accessory's review status</param>
+    /// <param name="labLocation">lab's location</param>
     /// <returns></returns>
     [HttpPost("UpdateAccessory")]
     public IActionResult UpdateAccessory(string accessoryId, string accessoryReviewStatus, string labLocation)

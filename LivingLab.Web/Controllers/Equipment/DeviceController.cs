@@ -28,7 +28,7 @@ public class DeviceController : Controller
     /// <summary>
     /// 1. Call device service to get all devices according to the labLocation eg. NYP-SR7A and devices type chosen
     /// </summary>
-    /// <param name="labLocation"></param>
+    /// <param name="labLocation">lab's location</param>
     /// <returns>ViewDeviceTypeViewModel</returns>
     [Route("ViewType/{labLocation}")]
     public async Task<IActionResult> ViewType(string labLocation)
@@ -40,8 +40,8 @@ public class DeviceController : Controller
     /// <summary>
     /// 1. Call device service to get all devices type according to the labLocation eg. NYP-SR7A
     /// </summary>
-    /// <param name="deviceType"></param>
-    /// <param name="labLocation"></param>
+    /// <param name="deviceType">device's type</param>
+    /// <param name="labLocation">lab's location</param>
     /// <returns>ViewDeviceViewModel</returns>
     [HttpPost("View")]
     public async Task<IActionResult> ViewAll(string deviceType, string labLocation)
@@ -53,7 +53,7 @@ public class DeviceController : Controller
     /// <summary>
     /// 1. Call device service to get all devices details based on device Id
     /// </summary>
-    /// <param name="id"></param>
+    /// <param name="id">device's id</param>
     /// <returns>DeviceViewModel</returns>
     [Route("View/{id}")]
     public async Task<DeviceViewModel> ViewDeviceDetails(int id)
@@ -62,13 +62,11 @@ public class DeviceController : Controller
         DeviceViewModel device = await _deviceService.ViewDeviceDetails(id);
 
         return device;
-        // return View("_DeviceDetails", device);
     }
 
     /// <summary>
     /// 1. Call device service to add a device to db
     /// </summary>
-    /// <param></param>
     /// <returns>AddDeviceViewModel</returns>
     [Route("ViewAddDetails")]
     public async Task<AddDeviceViewModel> ViewAddDetails()
@@ -82,7 +80,7 @@ public class DeviceController : Controller
     /// <summary>
     /// 1. Call device service to edit a device to db and display ViewAll after editing
     /// </summary>
-    /// <param name="editedDevice"></param>
+    /// <param name="editedDevice">device's view model</param>
     /// <returns>ViewDeviceViewModel</returns>
     [HttpPost("View/Edit")]
     public async Task<IActionResult> EditDevice(DeviceViewModel editedDevice)
@@ -99,8 +97,8 @@ public class DeviceController : Controller
     /// <summary>
     /// 1. Call device service to request approval for addition of devices using email
     /// </summary>
-    /// <param name="addedDevice"></param>
-    /// <returns></returns>
+    /// <param name="addedDevice">add device's view model</param>
+    /// <returns>device type page</returns>
     [HttpGet]
     [HttpPost("ViewAdd")]
     public async Task<IActionResult> AddDevice(AddDeviceViewModel addedDevice)
@@ -120,8 +118,8 @@ public class DeviceController : Controller
     /// <summary>
     /// 1. Delete device based on device Id
     /// </summary>
-    /// <param name="deleteDevice"></param>
-    /// <returns></returns>
+    /// <param name="deleteDevice">delete device's view model</param>
+    /// <returns>ViewDeviceViewModel</returns>
     [HttpPost("View/Delete")]
     public async Task<IActionResult> DeleteDevice(DeviceViewModel deleteDevice)
     {

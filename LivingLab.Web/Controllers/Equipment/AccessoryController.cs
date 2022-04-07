@@ -32,7 +32,8 @@ public class AccessoryController : Controller
     /// <summary>
     /// 1. Call accessory service to get all accessory according to the labLocation eg. NYP-SR7A and accessory type chosen
     /// </summary>
-    /// <param name="accessoryType, labLocation"></param>
+    /// <param name="accessoryType">accessory's type</param>
+    /// <param name="labLocation">lab's location</param>
     /// <returns>ViewAccessoryViewModel</returns>
     [HttpPost("ViewAccessory")]
     public async Task<IActionResult> ViewAccessory(string accessoryType, string labLocation)
@@ -44,7 +45,7 @@ public class AccessoryController : Controller
     /// <summary>
     /// 1. Call accessory service to get all accessory type according to the labLocation eg. NYP-SR7A
     /// </summary>
-    /// <param name="labLocation"></param>
+    /// <param name="labLocation">lab's location</param>
     /// <returns>ViewAccessoryTypeViewModel</returns>
     [Route("ViewAccessoryType/{labLocation}")]
     public async Task<IActionResult> ViewAccessoryType(string labLocation)
@@ -56,7 +57,6 @@ public class AccessoryController : Controller
     /// <summary>
     /// 1. Call accessory service to get all accessory details based on accessory Id
     /// </summary>
-    /// <param></param>
     /// <returns>AccessoryDetailsViewModel</returns>
     [Route("AddAccessoryDetails")]
     public async Task<AccessoryDetailsViewModel> AddAccessoryDetails()
@@ -69,7 +69,7 @@ public class AccessoryController : Controller
     /// <summary>
     /// 1. Call accessory service to edit an accessory to db
     /// </summary>
-    /// <param name="id"></param>
+    /// <param name="id">accessory's id</param>
     /// <returns>AccessoryDetailsViewModel</returns>
     [Route("GetEditDetails/{id}")]
     public async Task<AccessoryDetailsViewModel> EditAccessoryDetails(int id)
@@ -82,7 +82,7 @@ public class AccessoryController : Controller
     /// <summary>
     /// 1. Call accessory service to get delete details such as accessory name etc
     /// </summary>
-    /// <param name="id"></param>
+    /// <param name="id">accessory's id</param>
     /// <returns>AccessoryViewModel</returns>
     [Route("GetDeleteDetails/{id}")]
     public async Task<AccessoryViewModel> GetDeleteDetails(int id)
@@ -94,7 +94,7 @@ public class AccessoryController : Controller
     /// <summary>
     /// 1. Call accessory service to request approval for addition of accessory using email
     /// </summary>
-    /// <param name="viewModel"></param>
+    /// <param name="viewModel">accessory details view model</param>
     /// <returns></returns>
     [HttpGet]
     [HttpPost("CreateAccessory")]
@@ -114,7 +114,7 @@ public class AccessoryController : Controller
     /// <summary>
     /// 1. Call accessory service to edit accessory
     /// </summary>
-    /// <param name="viewModel"></param>
+    /// <param name="viewModel">accessory details view model</param>
     /// <returns>ViewAccessoryViewModel</returns>
     [HttpPost("EditAccessory")]
     public async Task<IActionResult> EditAccessory(AccessoryDetailsViewModel viewModel)
@@ -128,7 +128,7 @@ public class AccessoryController : Controller
     /// <summary>
     /// 1. Call accessory service to delete accessory
     /// </summary>
-    /// <param name="deleteAccessory"></param>
+    /// <param name="deleteAccessory">accessory view model</param>
     /// <returns>ViewAccessoryViewModel</returns>
     [HttpPost("View/Delete")]
     public async Task<IActionResult> DeleteAccessory(AccessoryViewModel deleteAccessory)
