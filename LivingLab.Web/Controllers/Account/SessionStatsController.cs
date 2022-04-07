@@ -1,6 +1,7 @@
 using LivingLab.Web.Models.ViewModels.SessionStats;
 using LivingLab.Web.UIServices.SessionStats;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LivingLab.Web.Controllers.Account;
@@ -9,6 +10,7 @@ namespace LivingLab.Web.Controllers.Account;
 /// Author: Team P1-3
 /// </remarks>
 
+[Authorize(Roles = "Labtech")]
 [Route("SessionStats/{labLocation}")]
 public class SessionStatsController : Controller
 {
