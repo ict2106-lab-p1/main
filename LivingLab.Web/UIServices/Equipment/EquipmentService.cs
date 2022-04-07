@@ -16,7 +16,6 @@ public class EquipmentService: IEquipmentService
     private readonly IMapper _mapper;
     private readonly IAccessoryDomainService _accessoryDomainService;
     private readonly IDeviceDomainService _deviceDomainService;
-
     public EquipmentService(IMapper mapper, IAccessoryDomainService accessoryDomainService, IDeviceDomainService deviceDomainService)
     {
         _mapper = mapper;
