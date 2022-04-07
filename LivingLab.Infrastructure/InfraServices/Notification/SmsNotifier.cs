@@ -24,6 +24,9 @@ public class SmsNotifier : ISmsNotifier
         _notificationDomainService = notificationDomainService;
         _config = config;
     }
+    /// <summary>send sms</summary>
+    /// <param name="phone">recipient phone number</param>
+    /// <param name="msgBody">content body of SMS, strictly plaintext only</param>
     public async Task SendSmsAsync(string phone, string msgBody)
     {
         // Find your Account SID and Auth Token at twilio.com/console
@@ -44,6 +47,8 @@ public class SmsNotifier : ISmsNotifier
         Console.WriteLine(message.Body);
     }
     
+    /// <summary>send notification via sms</summary>
+    /// <param name="message">notification message text</param>
     public async Task Notify(string message)
     {
         foreach (var labTechnicianDetails in GetPhoneNumber().Result)
