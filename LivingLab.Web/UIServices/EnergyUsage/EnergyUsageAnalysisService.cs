@@ -11,13 +11,13 @@ namespace LivingLab.Web.UIServices.EnergyUsage;
 /// <remarks>
 /// Author: Team P1-2
 /// </remarks>
-public class EnergyUsageAnalysisUIService : IEnergyUsageAnalysisUIService
+public class EnergyUsageAnalysisService : IEnergyUsageAnalysisService
 {
     private readonly IMapper _mapper;
     private readonly IEnergyUsageAnalysisDomainService _analysisDomain;
     private readonly ILabProfileService _labProfileService;
 
-    public EnergyUsageAnalysisUIService(IMapper mapper, IEnergyUsageAnalysisDomainService analysisDomain,
+    public EnergyUsageAnalysisService(IMapper mapper, IEnergyUsageAnalysisDomainService analysisDomain,
         ILabProfileService labProfileService)
     {
         _mapper = mapper;

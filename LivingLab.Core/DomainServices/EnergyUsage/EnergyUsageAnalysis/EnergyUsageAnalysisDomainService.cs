@@ -16,17 +16,17 @@ namespace LivingLab.Core.DomainServices.EnergyUsage.EnergyUsageAnalysis;
 /// <remarks>
 ///     Author: Team P1-2
 /// </remarks>
-public class EnergyUsageAnalysisDomainDomainService : IEnergyUsageAnalysisDomainService
+public class EnergyUsageAnalysisDomainService : IEnergyUsageAnalysisDomainService
 {
     private readonly IEnergyUsageRepository _repository;
     private readonly ILabProfileRepository _labRepository;
     private const int OneThousand = 1000;
 
-    private readonly IEnergyUsageCalculationService _calculator = new EnergyUsageCalculationService();
+    private readonly IEnergyUsageCalculationDomainService _calculator = new EnergyUsageCalculationDomainService();
 
     private double cost = 0.2544;
 
-    public EnergyUsageAnalysisDomainDomainService(IEnergyUsageRepository repository, ILabProfileRepository labRepository)
+    public EnergyUsageAnalysisDomainService(IEnergyUsageRepository repository, ILabProfileRepository labRepository)
     {
         _repository = repository;
         _labRepository = labRepository;
