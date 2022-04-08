@@ -70,7 +70,7 @@ public class EnergyUsageAnalysisService : IEnergyUsageAnalysisService
     {
         var energyUsageFilter = _mapper.Map<EnergyUsageFilterViewModel, EnergyUsageFilterDTO>(filter);
         var logs = await _analysisDomain.GetEnergyUsageTrendSelectedLab(energyUsageFilter);
-        return _mapper.Map<IndividualLabMonthlyEnergyUsageDTO, EnergyUsageTrendSelectedLabViewModel>(logs);
+        return _mapper.Map<LabEnergyUsageAnalysisGraphDTO, EnergyUsageTrendSelectedLabViewModel>(logs);
     }
 
     /// <summary>
@@ -84,7 +84,7 @@ public class EnergyUsageAnalysisService : IEnergyUsageAnalysisService
     {
         var energyUsageFilter = _mapper.Map<EnergyUsageFilterViewModel, EnergyUsageFilterDTO>(filter);
         var logs = await _analysisDomain.GetEnergyUsageTrendAllLab(energyUsageFilter);
-        return _mapper.Map<MonthlyEnergyUsageDTO, EnergyUsageTrendAllLabViewModel>(logs);
+        return _mapper.Map<LabEnergyUsageAnalysisGraphDTO, EnergyUsageTrendAllLabViewModel>(logs);
     }
 
     /// <summary>
