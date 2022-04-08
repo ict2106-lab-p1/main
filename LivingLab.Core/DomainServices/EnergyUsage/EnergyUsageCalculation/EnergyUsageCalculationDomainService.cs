@@ -2,7 +2,7 @@ namespace LivingLab.Core.DomainServices.EnergyUsage.EnergyUsageCalculation;
 /// <remarks>
 /// Author: Team P1-2
 /// </remarks>
-public class EnergyUsageCalculationService : IEnergyUsageCalculationService
+public class EnergyUsageCalculationDomainService : IEnergyUsageCalculationDomainService
 {
     /// <summary>
     /// Calculate the energy usage in watt
